@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<ArrayList<WeatherItems>> loader, ArrayList<WeatherItems> data) {
 
         Log.d("Load Finish","1");
-
         adapter.setData(data);
-
     }
 
     @Override
