@@ -26,13 +26,19 @@ import cz.msebera.android.httpclient.Header;
 public class GetCurrentWeatherJobService extends JobService{
 
     public static final String TAG = "GetWeather";
+
     private final String APP_ID = "ISIKAN DENGAN APIKEY KAMU";
-    private final String CITY = "ISIKAN DENGAN NAMA KOTA KAMU";
+
+    //private final String CITY = "ISIKAN DENGAN NAMA KOTA KAMU";
+    
+    private final String CITY = "Jakarta";
+
 
     @Override
     public boolean onStartJob(JobParameters params) {
         Log.d(TAG, "onStartJob() Executed");
         getCurrentWeather(params);
+
         return true;
     }
 
@@ -46,6 +52,7 @@ public class GetCurrentWeatherJobService extends JobService{
         Log.d("GetWeather", "Running");
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "http://api.openweathermap.org/data/2.5/weather?q="+CITY+"&appid="+APP_ID;
+        Log.e(TAG, "getCurrentWeather: "+url );
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {

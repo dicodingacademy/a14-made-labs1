@@ -46,8 +46,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         JobInfo.Builder builder = new JobInfo.Builder(jobId, mServiceComponent);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED);
         builder.setRequiresDeviceIdle(true);
-        builder.setPeriodic(180000);
         builder.setRequiresCharging(false);
+
+        builder.setPeriodic(100);
+
+        //Hidupkan code dibawah untuk force trigger job scheduler, dan matikan fungsi setPeriodic
+        //builder.setOverrideDeadline(500);
 
         JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
         jobScheduler.schedule(builder.build());
