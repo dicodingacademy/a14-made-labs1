@@ -30,7 +30,7 @@ public class GetCurrentWeatherJobService extends JobService{
     private final String APP_ID = "ISIKAN DENGAN APIKEY KAMU";
 
     //private final String CITY = "ISIKAN DENGAN NAMA KOTA KAMU";
-    
+
     private final String CITY = "Jakarta";
 
 

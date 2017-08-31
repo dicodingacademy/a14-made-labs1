@@ -60,7 +60,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     private static String ID_BANDUNG ="1650357" ;
     private static String ID_SEMARANG = "1627896" ;
 
-    private static String API_KEY = "cb744b309dbc7c577fe57bde64e8cf3a";
+    private static String API_KEY = "ISIKAN DENGAN API KEY MU";
 
     @Override
     public ArrayList<WeatherItems> loadInBackground() {
