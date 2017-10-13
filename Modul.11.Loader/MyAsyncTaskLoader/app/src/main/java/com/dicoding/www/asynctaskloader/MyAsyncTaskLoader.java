@@ -23,13 +23,15 @@ import cz.msebera.android.httpclient.Header;
 
 public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> {
     private ArrayList<WeatherItems> mData;
-    public boolean hasResult = false;
+    private boolean hasResult = false;
+
 
     public MyAsyncTaskLoader(final Context context) {
         super(context);
         onContentChanged();
     }
 
+    //Ketika data loading,
     @Override
     protected void onStartLoading() {
         if (takeContentChanged())
@@ -66,7 +68,6 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     public ArrayList<WeatherItems> loadInBackground() {
          SyncHttpClient client = new SyncHttpClient();
 
-
         final ArrayList<WeatherItems> weatherItemses = new ArrayList<>();
         String url = "http://api.openweathermap.org/data/2.5/group?id=" + ID_BANDUNG + "," + ID_JAKARTA + "," + ID_SEMARANG + "&units=metric&appid=" + API_KEY;
 
@@ -74,6 +75,10 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
             @Override
             public void onStart() {
                 super.onStart();
+
+                //Menggunakan synchronous karena pada dasarnya thread yang digunakan sudah asynchronous dan method
+                //loadInBackground mengembalikan nilai balikan
+
                 setUseSynchronousMode(true);
             }
 
@@ -91,13 +96,11 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
                     }
 
 
-                    Log.d("REQUEST SUCCESS","1");
-
                 }catch (Exception e){
 
-                    e.printStackTrace();
+                    //Jika terjadi error pada saat parsing maka akan masuk ke catch()
 
-                    Log.d("REQUEST FAILED","1");
+                    e.printStackTrace();
 
                 }
             }
@@ -105,12 +108,9 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
+                //Jika response gagal maka , do nothing
             }
         });
-
-        for (int i = 0 ; i< weatherItemses.size() ; i++){
-            Log.d("KOTA",weatherItemses.get(i).getNama());
-        }
 
         return weatherItemses;
     }

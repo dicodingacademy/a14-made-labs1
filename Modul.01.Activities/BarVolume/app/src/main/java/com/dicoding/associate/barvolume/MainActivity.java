@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
     implements View.OnClickListener{
-    private EditText edtWidth, edtHeight, edtLength;
-    private Button btnCalculate;
-    private TextView tvResult;
+    EditText edtWidth, edtHeight, edtLength;
+    Button btnCalculate;
+    TextView tvResult;
 
     private static String STATE_HASIL = "state_hasil";
     @Override
