@@ -9,12 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button btnMoveActivity;
-    private Button btnMoveWithDataActivity;
-    private Button btnMoveWithObject;
-    private Button btnDialPhone;
-    private Button btnMoveForResult;
-    private TextView tvResult;
+    Button btnMoveActivity;
+    Button btnMoveWithDataActivity;
+    Button btnMoveWithObject;
+    Button btnDialPhone;
+    Button btnMoveForResult;
+    TextView tvResult;
 
     private int REQUEST_CODE = 100;
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == REQUEST_CODE){
             if (resultCode == MoveForResultActivity.RESULT_CODE){
                 int selectedValue = data.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0);
-                tvResult.setText("Hasil : "+selectedValue);
+                tvResult.setText(String.format("Hasil : %s",selectedValue));
             }
         }
 
