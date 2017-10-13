@@ -7,9 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class SmsReceiverActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView tvSmsFrom;
-    private TextView tvSmsMessage;
-    private Button btnClose;
+    TextView tvSmsFrom;
+    TextView tvSmsMessage;
+    Button btnClose;
 
     public static final String EXTRA_SMS_NO = "extra_sms_no";
     public static final String EXTRA_SMS_MESSAGE = "extra_sms_message";

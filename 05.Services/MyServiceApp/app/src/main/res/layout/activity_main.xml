@@ -13,11 +13,18 @@
         android:id="@+id/btn_start_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Service"
+        android:text="@string/start_service"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     <Button
         android:id="@+id/btn_start_intent_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Intent Service"/>
+        android:text="@string/start_intent_service"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+    <Button
+        android:id="@+id/btn_start_bound_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_bound_service"/>
+
 </LinearLayout>

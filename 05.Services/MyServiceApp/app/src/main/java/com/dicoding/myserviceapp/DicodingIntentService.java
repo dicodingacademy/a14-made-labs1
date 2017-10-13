@@ -8,7 +8,7 @@ import android.util.Log;
 
 public class DicodingIntentService extends IntentService {
     public static String EXTRA_DURATION = "extra_duration";
-    public static final String TAG = "DicodingIntentService";
+    public static final String TAG = DicodingIntentService.class.getSimpleName();
 
     public DicodingIntentService() {
         super("DicodingIntentService");

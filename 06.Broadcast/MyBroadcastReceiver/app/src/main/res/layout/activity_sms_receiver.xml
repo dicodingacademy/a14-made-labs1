@@ -14,13 +14,13 @@
         android:id="@+id/tv_no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Coming From"
+        android:text="@string/coming_from"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Woy, main kesini jadi ngga? sekarang yak."
+        android:text="@string/oii_main_kesini_jadi_ngga_sekarang_yak"
         android:textSize="18sp"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     <Button
@@ -28,6 +28,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:layout_gravity="right"
-        android:text="Tutup"/>
+        android:layout_gravity="end"
+        android:text="@string/tutup"/>
 </LinearLayout>

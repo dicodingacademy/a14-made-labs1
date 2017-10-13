@@ -8,14 +8,13 @@ import android.util.Log;
 
 public class OriginService extends Service {
 
-    public static final String ORIGIN_SERVICE = "OriginService";
+    public static final String ORIGIN_SERVICE = OriginService.class.getSimpleName();
 
     public OriginService() {
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 

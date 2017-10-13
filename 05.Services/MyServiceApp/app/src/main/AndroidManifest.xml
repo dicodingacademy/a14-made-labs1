@@ -18,11 +18,14 @@
 
         <service
             android:name=".OriginService"
-            android:enabled="true"
-            android:exported="true" />
+            android:enabled="true" />
         <service
             android:name=".DicodingIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
+        <service
+            android:name=".BoundService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

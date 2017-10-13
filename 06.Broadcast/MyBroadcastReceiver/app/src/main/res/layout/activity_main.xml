@@ -13,11 +13,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ini Aplikasi Sms Receiver"
+        android:text="@string/ini_aplikasi_sms_receiver"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     <Button
         android:id="@+id/btn_download"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Download a File"/>
+        android:text="@string/download_a_file"/>
+
+    <Button
+        android:id="@+id/btn_permission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/check_sms_permission"/>
 </LinearLayout>

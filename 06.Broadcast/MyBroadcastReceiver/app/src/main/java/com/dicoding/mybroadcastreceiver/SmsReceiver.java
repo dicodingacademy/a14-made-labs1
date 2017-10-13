@@ -10,6 +10,8 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 
 public class SmsReceiver extends BroadcastReceiver {
+
+    final String TAG = SmsReceiver.class.getSimpleName();
     final SmsManager sms = SmsManager.getDefault();
 
     public SmsReceiver() {
@@ -26,26 +28,28 @@ public class SmsReceiver extends BroadcastReceiver {
 
                 final Object[] pdusObj = (Object[]) bundle.get("pdus");
 
-                for (int i = 0; i < pdusObj.length; i++) {
+                if (pdusObj != null) {
+                    for (int i = 0; i < pdusObj.length; i++) {
 
-                    SmsMessage currentMessage = getIncomingMessage(pdusObj[i], bundle);
-                    String phoneNumber = currentMessage.getDisplayOriginatingAddress();
+                        SmsMessage currentMessage = getIncomingMessage(pdusObj[i], bundle);
+                        String senderNum = currentMessage.getDisplayOriginatingAddress();
 
-                    String senderNum = phoneNumber;
-                    String message = currentMessage.getDisplayMessageBody();
+                        String message = currentMessage.getDisplayMessageBody();
 
-                    Log.i("SmsReceiver", "senderNum: "+ senderNum + "; message: " + message);
+                        Log.i(TAG, "senderNum: " + senderNum + "; message: " + message);
 
-                    Intent showSmsIntent = new Intent(context, SmsReceiverActivity.class);
-                    showSmsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    showSmsIntent.putExtra(SmsReceiverActivity.EXTRA_SMS_NO, phoneNumber);
-                    showSmsIntent.putExtra(SmsReceiverActivity.EXTRA_SMS_MESSAGE, message);
-                    context.startActivity(showSmsIntent);
+                        Intent showSmsIntent = new Intent(context, SmsReceiverActivity.class);
+                        showSmsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        showSmsIntent.putExtra(SmsReceiverActivity.EXTRA_SMS_NO, senderNum);
+                        showSmsIntent.putExtra(SmsReceiverActivity.EXTRA_SMS_MESSAGE, message);
+                        context.startActivity(showSmsIntent);
+                    }
+                }else {
+                    Log.e(TAG, "onReceive: SMS is null" );
                 }
             }
-
         } catch (Exception e) {
-            Log.e("SmsReceiver", "Exception smsReceiver" +e);
+            Log.e(TAG, "Exception smsReceiver" +e);
 
         }
     }

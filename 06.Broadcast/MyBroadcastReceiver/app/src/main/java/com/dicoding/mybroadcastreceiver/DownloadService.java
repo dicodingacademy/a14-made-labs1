@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class DownloadService extends IntentService {
 
-    public static final String TAG = "DownloadService";
+    public static final String TAG = DownloadService.class.getSimpleName();
 
     public DownloadService() {
         super("DownloadService");
