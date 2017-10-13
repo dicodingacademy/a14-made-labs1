@@ -14,10 +14,10 @@ import android.widget.RadioGroup;
 
 public class OptionDialogFragment extends DialogFragment implements View.OnClickListener{
 
-    private Button btnChoose, btnClose;
-    private RadioGroup rgOptions;
-    private RadioButton rbSaf, rbMou, rbLvg, rbMoyes;
-    private OnOptionDialogListener onOptionDialogListener;
+    Button btnChoose, btnClose;
+    RadioGroup rgOptions;
+    RadioButton rbSaf, rbMou, rbLvg, rbMoyes;
+    OnOptionDialogListener onOptionDialogListener;
 
     public OptionDialogFragment() {
         // Required empty public constructor

@@ -10,13 +10,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ini halaman Category"
+        android:text="@string/ini_halaman_category"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
     <Button
         android:id="@+id/btn_detail_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kategory Lifestyle"
+        android:text="@string/kategory_lifestyle"
         />
 
 </LinearLayout>

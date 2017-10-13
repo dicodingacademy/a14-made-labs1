@@ -20,10 +20,10 @@ import android.widget.Toast;
  */
 public class DetilCategoryFragment extends Fragment implements View.OnClickListener{
 
-    private TextView tvCategoryName;
-    private TextView tvCategoryDescription;
-    private Button btnProfile;
-    private Button btnShowDialog;
+    TextView tvCategoryName;
+    TextView tvCategoryDescription;
+    Button btnProfile;
+    Button btnShowDialog;
 
     public static String EXTRA_NAME = "extra_name";
     private String description;

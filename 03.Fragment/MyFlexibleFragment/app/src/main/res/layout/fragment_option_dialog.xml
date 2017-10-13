@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Siapa pelatih tersukses Machester United?"
+        android:text="@string/siapa_pelatih_tersukses_machester_united"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     <RadioGroup
         android:id="@+id/rg_options"
@@ -19,25 +19,25 @@
             android:id="@+id/rb_saf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sir Alex Ferguson"
+            android:text="@string/sir_alex_ferguson"
             android:layout_marginBottom="@dimen/activity_vertical_margin"/>
         <RadioButton
             android:id="@+id/rb_mou"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jose Mourinho"
+            android:text="@string/jose_mourinho"
             android:layout_marginBottom="@dimen/activity_vertical_margin"/>
         <RadioButton
             android:id="@+id/rb_lvg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Louis Van Gaal"
+            android:text="@string/louis_van_gaal"
             android:layout_marginBottom="@dimen/activity_vertical_margin"/>
         <RadioButton
             android:id="@+id/rb_moyes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="David Moyes"
+            android:text="@string/david_moyes"
             android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     </RadioGroup>
     <LinearLayout
@@ -49,14 +49,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="Tutup"
-            android:layout_marginRight="4dp"/>
+            android:text="@string/tutup"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            style="?android:attr/buttonBarButtonStyle"
+            />
         <Button
             android:id="@+id/btn_choose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="Pilih"
-            android:layout_marginLeft="4dp"/>
+            android:text="@string/pilih"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            style="?android:attr/buttonBarButtonStyle"
+            />
     </LinearLayout>
 </LinearLayout>
