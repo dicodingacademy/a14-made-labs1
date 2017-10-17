@@ -11,9 +11,14 @@ import android.widget.Chronometer;
 
 public class BoundService extends Service {
 
+    final String TAG = BoundService.class.getSimpleName();
     MyBinder mBinder = new MyBinder();
-
     final long startTime = System.currentTimeMillis();
+
+    /*
+    Countdown timer akan berjalan sampai 1000000 milisecond,
+    dengan interval setiap 1000 milisecond akan menampilkan log
+     */
     CountDownTimer mTimer = new CountDownTimer(1000000, 1000) {
         @Override
         public void onTick(long l) {
@@ -28,7 +33,6 @@ public class BoundService extends Service {
         }
     };
 
-    final String TAG = BoundService.class.getSimpleName();
     public BoundService() {
     }
 
@@ -38,15 +42,20 @@ public class BoundService extends Service {
 
         Log.e(TAG, "onCreate: " );
         mTimer.start();
-
     }
 
+    /*
+    Method yang akan dipanggil ketika service di ikatkan ke activity
+     */
     @Override
     public IBinder onBind(Intent intent) {
         Log.e(TAG, "onBind: " );
         return mBinder;
     }
 
+    /*
+    Ketika semua ikatan sudah di lepas maka ondestroy akan secara otomatis dipanggil
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -54,12 +63,18 @@ public class BoundService extends Service {
         mTimer.cancel();
     }
 
+    /*
+    Method yang akan dipanggil ketika service di lepas dari activity
+     */
     @Override
     public boolean onUnbind(Intent intent) {
         Log.e(TAG, "onUnbind: ");
         return super.onUnbind(intent);
     }
 
+    /*
+    Method yang akan dipanggil ketika service di ikatkan kembali
+     */
     @Override
     public void onRebind(Intent intent) {
         super.onRebind(intent);

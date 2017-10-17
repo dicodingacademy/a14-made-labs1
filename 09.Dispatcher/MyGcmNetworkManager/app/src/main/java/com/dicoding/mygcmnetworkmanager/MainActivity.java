@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button btnSetScheduler, btnCancelScheduler;
+    Button btnSetScheduler, btnCancelScheduler;
     private SchedulerTask mSchedulerTask;
 
     @Override
