@@ -8,9 +8,10 @@ import android.util.Log;
 
 public class OriginService extends Service {
 
-    public static final String ORIGIN_SERVICE = OriginService.class.getSimpleName();
+    static final String TAG = OriginService.class.getSimpleName();
 
     public OriginService() {
+
     }
 
     @Override
@@ -20,7 +21,7 @@ public class OriginService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(ORIGIN_SERVICE, "OriginService dijalankan");
+        Log.e(TAG, "onStartCommand: " );
 
         ProcessAsync mProcessAsync = new ProcessAsync();
         mProcessAsync.execute();
@@ -32,6 +33,7 @@ public class OriginService extends Service {
 
         @Override
         protected Void doInBackground(Void... params) {
+            Log.e(TAG, "doInBackground: " );
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -43,7 +45,7 @@ public class OriginService extends Service {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Log.d(ORIGIN_SERVICE, "StopService");
+            Log.e(TAG, "onPostExecute: " );
             stopSelf();
         }
     }
@@ -51,6 +53,6 @@ public class OriginService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(ORIGIN_SERVICE, "onDestroy()");
+        Log.e(TAG, "onDestroy: " );
     }
 }
