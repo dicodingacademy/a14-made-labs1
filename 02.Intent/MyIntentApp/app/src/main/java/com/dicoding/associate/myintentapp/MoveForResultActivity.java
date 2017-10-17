@@ -9,8 +9,8 @@ import android.widget.RadioGroup;
 
 public class MoveForResultActivity extends AppCompatActivity
         implements View.OnClickListener{
-    private Button btnChoose;
-    private RadioGroup rgNumber;
+    Button btnChoose;
+    RadioGroup rgNumber;
 
     public static String EXTRA_SELECTED_VALUE = "extra_selected_value";
     public static int RESULT_CODE = 110;

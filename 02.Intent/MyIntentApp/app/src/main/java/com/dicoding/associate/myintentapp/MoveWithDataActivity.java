@@ -8,7 +8,7 @@ public class MoveWithDataActivity extends AppCompatActivity {
     public static String EXTRA_AGE = "extra_age";
     public static String EXTRA_NAME = "extra_name";
 
-    private TextView tvDataReceived;
+    TextView tvDataReceived;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
