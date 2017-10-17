@@ -23,15 +23,15 @@ import cz.msebera.android.httpclient.Header;
 
 public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> {
     private ArrayList<WeatherItems> mData;
-    private boolean hasResult = false;
+    private boolean mHasResult = false;
 
-    String kumpulanKota;
+    private String mKumpulanKota;
 
     public MyAsyncTaskLoader(final Context context,String kumpulanKota) {
         super(context);
 
         onContentChanged();
-        this.kumpulanKota = kumpulanKota;
+        this.mKumpulanKota = kumpulanKota;
     }
 
     //Ketika data loading,
@@ -39,14 +39,14 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     protected void onStartLoading() {
         if (takeContentChanged())
             forceLoad();
-        else if (hasResult)
+        else if (mHasResult)
             deliverResult(mData);
     }
 
     @Override
     public void deliverResult(final ArrayList<WeatherItems> data) {
         mData = data;
-        hasResult = true;
+        mHasResult = true;
         super.deliverResult(data);
     }
 
@@ -54,18 +54,18 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     protected void onReset() {
         super.onReset();
         onStopLoading();
-        if (hasResult) {
+        if (mHasResult) {
             onReleaseResources(mData);
             mData = null;
-            hasResult = false;
+            mHasResult = false;
         }
     }
 
-    private static String API_KEY = "ISIKAN DENGAN API KEY MU";
+    private static final String API_KEY = "Isikan API KEY anda...";
 
 
     // Format search kota url JAKARTA = 1642911 ,BANDUNG = 1650357, SEMARANG = 1627896
-    // http://api.openweathermap.org/data/2.5/group?id=1642911,1650357,1627896&units=metric&appid=694e890a8ba8a09429fadd5361f4a163
+    // http://api.openweathermap.org/data/2.5/group?id=1642911,1650357,1627896&units=metric&appid=API_KEY
 
     @Override
     public ArrayList<WeatherItems> loadInBackground() {
@@ -74,7 +74,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
 
         final ArrayList<WeatherItems> weatherItemses = new ArrayList<>();
         String url = "http://api.openweathermap.org/data/2.5/group?id=" +
-                kumpulanKota+ "&units=metric&appid=" + API_KEY;
+                mKumpulanKota+ "&units=metric&appid=" + API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override

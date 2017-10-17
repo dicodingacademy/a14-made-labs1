@@ -22,8 +22,6 @@ public class WeatherAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private Context context;
 
-    private String urlConfig ;
-
     public WeatherAdapter(Context context) {
         this.context = context;
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -85,10 +83,10 @@ public class WeatherAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public static class ViewHolder {
-        public TextView textViewNamaKota;
-        public TextView textViewTemperature;
-        public TextView textViewDescription;
+    private static class ViewHolder {
+        TextView textViewNamaKota;
+        TextView textViewTemperature;
+        TextView textViewDescription;
     }
 
 }
