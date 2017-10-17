@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements
     ListView lvContact;
     ProgressBar progressBar;
 
-    private ContactAdapter adapter;
+    private ContactAdapter mAdapter;
 
     private final int CONTACT_LOAD_ID = 110;
     private final int CONTACT_PHONE_ID = 120;
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements
 
         lvContact.setVisibility(View.INVISIBLE);
 
-        adapter = new ContactAdapter(MainActivity.this, null, true);
-        lvContact.setAdapter(adapter);
+        mAdapter = new ContactAdapter(MainActivity.this, null, true);
+        lvContact.setAdapter(mAdapter);
         lvContact.setOnItemClickListener(this);
 
         if(PermissionManager.isGranted(this, Manifest.permission.READ_CONTACTS,CONTACT_REQUEST_CODE))
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements
             if (data.getCount() > 0){
                 lvContact.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
-                adapter.swapCursor(data);
+                mAdapter.swapCursor(data);
             }
         }
 
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements
         if (loader.getId() == CONTACT_LOAD_ID){
             lvContact.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            adapter.swapCursor(null);
+            mAdapter.swapCursor(null);
             Log.d(TAG, "LoaderReset");
         }
     }
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Cursor cursor = adapter.getCursor();
+        Cursor cursor = mAdapter.getCursor();
         // Posisi dari cursor pindah ke position
         cursor.moveToPosition(position);
         // Ambil data dari index 0 yaitu contactId
