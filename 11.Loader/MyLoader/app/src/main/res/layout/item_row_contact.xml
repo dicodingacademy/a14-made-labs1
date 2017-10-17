@@ -10,14 +10,18 @@
         android:id="@+id/img_item_user"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        />
     <TextView
         android:id="@+id/tv_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:text="@string/name"
         android:layout_marginBottom="8dp"
         android:layout_toRightOf="@id/img_item_user"
+        android:layout_toEndOf="@id/img_item_user"
         android:layout_centerVertical="true"
         android:textSize="16sp"/>
 </RelativeLayout>

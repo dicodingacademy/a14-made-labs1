@@ -20,6 +20,10 @@ public class MainPresenterTest {
     private MainPresenter presenter;
     private MainView view;
 
+    /*
+    Inisiasi kelas
+    Mocking digunakan untuk membuat object tiruan
+     */
     @Before
     public void setUp() throws Exception {
         view = mock(MainView.class);

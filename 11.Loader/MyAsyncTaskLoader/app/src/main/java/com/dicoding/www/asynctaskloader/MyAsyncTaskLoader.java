@@ -25,10 +25,13 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     private ArrayList<WeatherItems> mData;
     private boolean hasResult = false;
 
+    String kumpulanKota;
 
-    public MyAsyncTaskLoader(final Context context) {
+    public MyAsyncTaskLoader(final Context context,String kumpulanKota) {
         super(context);
+
         onContentChanged();
+        this.kumpulanKota = kumpulanKota;
     }
 
     //Ketika data loading,
@@ -58,18 +61,20 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
         }
     }
 
-    private static String ID_JAKARTA = "1642911";
-    private static String ID_BANDUNG ="1650357" ;
-    private static String ID_SEMARANG = "1627896" ;
-
     private static String API_KEY = "ISIKAN DENGAN API KEY MU";
+
+
+    // Format search kota url JAKARTA = 1642911 ,BANDUNG = 1650357, SEMARANG = 1627896
+    // http://api.openweathermap.org/data/2.5/group?id=1642911,1650357,1627896&units=metric&appid=694e890a8ba8a09429fadd5361f4a163
 
     @Override
     public ArrayList<WeatherItems> loadInBackground() {
-         SyncHttpClient client = new SyncHttpClient();
+        SyncHttpClient client = new SyncHttpClient();
+
 
         final ArrayList<WeatherItems> weatherItemses = new ArrayList<>();
-        String url = "http://api.openweathermap.org/data/2.5/group?id=" + ID_BANDUNG + "," + ID_JAKARTA + "," + ID_SEMARANG + "&units=metric&appid=" + API_KEY;
+        String url = "http://api.openweathermap.org/data/2.5/group?id=" +
+                kumpulanKota+ "&units=metric&appid=" + API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -117,10 +122,6 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
 
     protected void onReleaseResources(ArrayList<WeatherItems> data) {
         //nothing to do.
-    }
-
-    public ArrayList<WeatherItems> getResult() {
-        return mData;
     }
 
 }

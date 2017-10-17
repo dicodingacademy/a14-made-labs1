@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button btnStart, btnCancel;
+    Button btnStart, btnCancel;
     private int jobId = 10;
 
     @Override

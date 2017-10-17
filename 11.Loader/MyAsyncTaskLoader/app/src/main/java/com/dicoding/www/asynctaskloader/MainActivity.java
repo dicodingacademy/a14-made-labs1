@@ -1,10 +1,15 @@
 package com.dicoding.www.asynctaskloader;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.dicoding.www.asynctaskloader.Adapter.WeatherAdapter;
@@ -15,7 +20,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     ListView listView ;
     WeatherAdapter adapter;
+    EditText editKota;
+    Button buttonCari;
 
+    static final String EXTRAS_CITY = "EXTRAS_CITY";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,15 +35,29 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         listView.setAdapter(adapter);
 
+        editKota = (EditText)findViewById(R.id.edit_kota);
+        buttonCari = (Button)findViewById(R.id.btn_kota);
+
+        buttonCari.setOnClickListener(myListener);
+
+        String kota = editKota.getText().toString();
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRAS_CITY,kota);
+
         //Inisiasi dari Loader, dimasukkan ke dalam onCreate
-        getLoaderManager().initLoader(0, null, this);
+        getLoaderManager().initLoader(0, bundle, this);
     }
 
     //Fungsi ini yang akan menjalankan proses myasynctaskloader
     @Override
     public Loader<ArrayList<WeatherItems>> onCreateLoader(int id, Bundle args) {
 
-        return new MyAsyncTaskLoader(this);
+        String kumpulanKota = "";
+        if (args != null){
+            kumpulanKota = args.getString(EXTRAS_CITY);
+        }
+
+        return new MyAsyncTaskLoader(this,kumpulanKota);
     }
 
     //Fungsi ini dipanggil ketika proses load sudah selesai
@@ -53,4 +75,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
+    View.OnClickListener myListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String kota = editKota.getText().toString();
+
+            // Jika edit text-nya kosong maka do nothing
+            if (TextUtils.isEmpty(kota))return;
+
+            Bundle bundle = new Bundle();
+            bundle.putString(EXTRAS_CITY,kota);
+            getLoaderManager().restartLoader(0,bundle,MainActivity.this);
+        }
+    };
 }

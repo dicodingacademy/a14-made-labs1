@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_text"
-        android:text="Set Nilai"/>
+        android:text="@string/set_nilai"/>
 
     <ImageView
         android:id="@+id/img_preview"

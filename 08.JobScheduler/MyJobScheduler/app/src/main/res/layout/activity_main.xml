@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Click the start button to start the weather task or click the cancel button to cancel the weather task"
+        android:text="@string/description"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,12 +24,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="Start"/>
+            android:text="@string/start"/>
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="Cancel"/>
+            android:text="@string/cancel"/>
     </LinearLayout>
 </LinearLayout>

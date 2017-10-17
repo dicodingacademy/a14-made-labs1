@@ -8,12 +8,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.dicoding.mytestingapp.MainActivity">
+    tools:context=".MainActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Panjang"
+        android:text="@string/panjang"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     <EditText
@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lebar"
+        android:text="@string/lebar"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     <EditText
@@ -41,7 +41,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tinggi"
+        android:text="@string/tinggi"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     <EditText
@@ -56,14 +56,14 @@
         android:id="@+id/btn_calculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hitung"
+        android:text="@string/hitung"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hasil"
+        android:text="@string/hasil"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"

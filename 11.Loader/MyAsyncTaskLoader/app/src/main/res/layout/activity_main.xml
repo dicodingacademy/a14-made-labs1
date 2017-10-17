@@ -10,8 +10,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="com.dicoding.www.asynctaskloader.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="1"
+        >
+        <EditText
+            android:id="@+id/edit_kota"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/ID_JAKARTA_BANDUNG_SEMARARANG"
+            android:hint="@string/masukkan_nama_kota"
+            android:layout_weight="0.8"/>
+        <Button
+            android:id="@+id/btn_kota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Cari"
+            android:layout_weight="0.2"
+            />
+    </LinearLayout>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView"></ListView>
+        android:id="@+id/listView"/>
 </LinearLayout>

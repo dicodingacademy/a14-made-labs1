@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AsyncTaskLoader</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="temperatur">Temperatur</string>
+    <string name="nama_kota">Nama Kota</string>
+    <string name="masukkan_nama_kota">Masukkan id kota misal Jakarta = 1642911</string>
+    <string name="Cari">Cari</string>
+    <string name="jakarta">Jakarta</string>
+    <string name="ID_JAKARTA_BANDUNG_SEMARARANG">1642911,1650357,1627896</string>
 </resources>

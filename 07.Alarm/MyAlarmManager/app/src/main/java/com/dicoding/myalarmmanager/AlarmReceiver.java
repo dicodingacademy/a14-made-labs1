@@ -71,8 +71,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]));
         calendar.set(Calendar.SECOND, 0);
 
-        int requestCode = NOTIF_ID_ONETIME;
-        PendingIntent pendingIntent =  PendingIntent.getBroadcast(context, requestCode, intent, 0);
+        PendingIntent pendingIntent =  PendingIntent.getBroadcast(context, NOTIF_ID_ONETIME, intent, 0);
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
         Toast.makeText(context, "One time alarm set up", Toast.LENGTH_SHORT).show();
@@ -92,8 +91,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]));
         calendar.set(Calendar.SECOND, 0);
 
-        int requestCode = NOTIF_ID_REPEATING;
-        PendingIntent pendingIntent =  PendingIntent.getBroadcast(context, requestCode, intent, 0);
+        PendingIntent pendingIntent =  PendingIntent.getBroadcast(context, NOTIF_ID_REPEATING, intent, 0);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
         Toast.makeText(context, "Repeating alarm set up", Toast.LENGTH_SHORT).show();

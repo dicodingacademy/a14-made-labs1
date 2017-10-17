@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyUnitTesting</string>
+    <string name="lebar">Lebar</string>
+    <string name="hasil">Hasil</string>
+    <string name="hitung">Hitung</string>
+    <string name="tinggi">Tinggi</string>
+    <string name="panjang">Panjang</string>
 </resources>

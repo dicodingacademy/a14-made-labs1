@@ -15,6 +15,7 @@ public class MainPresenter {
         return panjang * lebar * tinggi;
     }
 
+
     public void hitungVolume(double panjang, double lebar, double tinggi) {
         double volume = volume(panjang, lebar, tinggi);
         MainModel model = new MainModel(volume);

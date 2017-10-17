@@ -20,10 +20,10 @@ public class AlarmPreference {
 
     public AlarmPreference(Context context){
         mSharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        editor = mSharedPreferences.edit();
     }
 
     public void setOneTimeDate(String date){
+        editor = mSharedPreferences.edit();
         editor.putString(KEY_ONE_TIME_DATE, date);
         editor.commit();
     }
@@ -33,6 +33,7 @@ public class AlarmPreference {
     }
 
     public void setOneTimeTime(String time){
+        editor = mSharedPreferences.edit();
         editor.putString(KEY_ONE_TIME_TIME, time);
         editor.commit();
     }
@@ -42,6 +43,8 @@ public class AlarmPreference {
     }
 
     public void setOneTimeMessage(String message){
+        editor = mSharedPreferences.edit();
+
         editor.putString(KEY_ONE_TIME_MESSAGE, message);
         editor.commit();
     }
@@ -51,6 +54,7 @@ public class AlarmPreference {
     }
 
     public void setRepeatingTime(String time){
+        editor = mSharedPreferences.edit();
         editor.putString(KEY_REPEATING_TIME, time);
         editor.commit();
     }
@@ -60,6 +64,7 @@ public class AlarmPreference {
     }
 
     public void setRepeatingMessage(String message){
+        editor = mSharedPreferences.edit();
         editor.putString(KEY_REPEATING_MESSAGE, message);
         editor.commit();
     }
@@ -69,6 +74,7 @@ public class AlarmPreference {
     }
 
     public void clear(){
+        editor = mSharedPreferences.edit();
         editor.clear();
         editor.commit();
     }

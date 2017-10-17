@@ -15,13 +15,14 @@ import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView tvOneTimeDate, tvOneTimeTime ;
-    private TextView tvRepeatingTime;
-    private EditText edtOneTimeMessage , edtRepeatingMessage;
-    private Button btnOneTimeDate, btnOneTimeTime, btnOneTime ,btnRepeatingTime ,btnRepeating,  btnCancelRepeatingAlarm;
+    TextView tvOneTimeDate, tvOneTimeTime ;
+    TextView tvRepeatingTime;
+    EditText edtOneTimeMessage , edtRepeatingMessage;
+    Button btnOneTimeDate, btnOneTimeTime, btnOneTime ,btnRepeatingTime ,btnRepeating,  btnCancelRepeatingAlarm;
 
     private Calendar calOneTimeDate, calOneTimeTime,calRepeatTimeTime;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("MyAlarmManager");
+        // Inisiasi view untuk one time alarm
         tvOneTimeDate = (TextView)findViewById(R.id.tv_one_time_alarm_date);
         tvOneTimeTime = (TextView)findViewById(R.id.tv_one_time_alarm_time);
         edtOneTimeMessage = (EditText)findViewById(R.id.edt_one_time_alarm_message);
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnOneTimeTime = (Button)findViewById(R.id.btn_one_time_alarm_time);
         btnOneTime = (Button)findViewById(R.id.btn_set_one_time_alarm);
 
+        // Inisiasi view untuk repeating alarm
         tvRepeatingTime = (TextView)findViewById(R.id.tv_repeating_alarm_time);
         edtRepeatingMessage = (EditText)findViewById(R.id.edt_repeating_alarm_message);
         btnRepeatingTime = (Button)findViewById(R.id.btn_repeating_time_alarm_time);
@@ -47,9 +50,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnCancelRepeatingAlarm = (Button)findViewById(R.id.btn_cancel_repeating_alarm);
 
+        // Listener one time alarm
         btnOneTimeDate.setOnClickListener(this);
         btnOneTimeTime.setOnClickListener(this);
         btnOneTime.setOnClickListener(this);
+
+        // Listener repeating alarm
         btnRepeatingTime.setOnClickListener(this);
         btnRepeating.setOnClickListener(this);
         btnCancelRepeatingAlarm.setOnClickListener(this);
@@ -61,10 +67,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alarmPreference = new AlarmPreference(this);
         alarmReceiver = new AlarmReceiver();
 
+        // Ambil data dari preference one time
         if (!TextUtils.isEmpty(alarmPreference.getOneTimeDate())){
             setOneTimeText();
         }
 
+        // Ambil data dari preference repeat
         if (!TextUtils.isEmpty(alarmPreference.getRepeatingTime())){
             setRepeatingText();
         }
@@ -79,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     calOneTimeDate.set(year, monthOfYear, dayOfMonth);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
                     tvOneTimeDate.setText(dateFormat.format(calOneTimeDate.getTime()));
                 }
             }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
@@ -91,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     calOneTimeTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     calOneTimeTime.set(Calendar.MINUTE, minute);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm",Locale.getDefault());
                     tvOneTimeTime.setText(dateFormat.format(calOneTimeTime.getTime()));
                 }
             }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), true).show();
@@ -103,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     calRepeatTimeTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     calRepeatTimeTime.set(Calendar.MINUTE, minute);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm",Locale.getDefault());
                     tvRepeatingTime.setText(dateFormat.format(calRepeatTimeTime.getTime()));
 
                 }
@@ -111,10 +119,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (v.getId() == R.id.btn_set_one_time_alarm) {
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
             String oneTimeDate = dateFormat.format(calOneTimeDate.getTime());
 
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm",Locale.getDefault());
             String oneTimeTime = timeFormat.format(calOneTimeTime.getTime());
             String oneTimeMessage = edtOneTimeMessage.getText().toString();
 
@@ -129,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         else if (v.getId() == R.id.btn_repeating_time_alarm){
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
             String repeatTimeTime = timeFormat.format(calRepeatTimeTime.getTime());
             String repeatTimeMessage = edtRepeatingMessage.getText().toString();

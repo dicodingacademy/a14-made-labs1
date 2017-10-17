@@ -1,9 +1,12 @@
 package com.dicoding.myloader;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -21,8 +24,10 @@ public class MainActivity extends AppCompatActivity implements
         AdapterView.OnItemClickListener{
 
     public static final String TAG = "ContactApp";
-    private ListView lvContact;
-    private ProgressBar progressBar;
+
+    ListView lvContact;
+    ProgressBar progressBar;
+
     private ContactAdapter adapter;
 
     private final int CONTACT_LOAD_ID = 110;
@@ -37,13 +42,19 @@ public class MainActivity extends AppCompatActivity implements
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
 
         lvContact.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
 
         adapter = new ContactAdapter(MainActivity.this, null, true);
         lvContact.setAdapter(adapter);
         lvContact.setOnItemClickListener(this);
 
-        getSupportLoaderManager().initLoader(CONTACT_LOAD_ID, null, this);
+        if(PermissionManager.isGranted(this, Manifest.permission.READ_CONTACTS,CONTACT_REQUEST_CODE))
+        {
+            getSupportLoaderManager().initLoader(CONTACT_LOAD_ID, null, this);
+            progressBar.setVisibility(View.VISIBLE);
+
+        }else {
+            PermissionManager.check(this, Manifest.permission.READ_CONTACTS,CONTACT_REQUEST_CODE);
+        }
     }
 
     @Override
@@ -108,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements
             lvContact.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
             adapter.swapCursor(null);
-
             Log.d(TAG, "LoaderReset");
         }
     }
@@ -116,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         getSupportLoaderManager().destroyLoader(CONTACT_LOAD_ID);
         getSupportLoaderManager().destroyLoader(CONTACT_PHONE_ID);
     }
@@ -124,9 +133,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Cursor cursor = adapter.getCursor();
-        // Move to the selected contact
+        // Posisi dari cursor pindah ke position
         cursor.moveToPosition(position);
-        // Get the _ID value
+        // Ambil data dari index 0 yaitu contactId
         long mContactId = cursor.getLong(0);
 
         Log.d(TAG, "Position : "+position+" "+mContactId);
@@ -139,5 +148,22 @@ public class MainActivity extends AppCompatActivity implements
         bundle.putString("id", contactID);
 
         getSupportLoaderManager().restartLoader(CONTACT_PHONE_ID, bundle, this);
+    }
+
+    final int CONTACT_REQUEST_CODE = 101;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == CONTACT_REQUEST_CODE){
+            if(grantResults.length > 0) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getSupportLoaderManager().initLoader(CONTACT_LOAD_ID, null, this);
+                    progressBar.setVisibility(View.VISIBLE);
+                    Toast.makeText(this, "Grant permission contact berhasil", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Contact permission di tolak", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 }

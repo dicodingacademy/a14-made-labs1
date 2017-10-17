@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    final int SMS_REQUEST_CODE = 101;
 
     @Override
     public void onClick(View v) {
@@ -63,6 +62,8 @@ public class MainActivity extends AppCompatActivity
             unregisterReceiver(downloadReceiver);
         }
     }
+
+    final int SMS_REQUEST_CODE = 101;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults) {

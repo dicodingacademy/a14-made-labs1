@@ -25,15 +25,18 @@ import cz.msebera.android.httpclient.Header;
 
 public class GetCurrentWeatherJobService extends JobService{
 
-    public static final String TAG = "GetWeather";
+    public static final String TAG = GetCurrentWeatherJobService.class.getSimpleName();
 
-    private final String APP_ID = "ISIKAN DENGAN APIKEY KAMU";
+    final String APP_ID = "ISIKAN DENGAN APIKEY KAMU";
 
     //private final String CITY = "ISIKAN DENGAN NAMA KOTA KAMU";
 
-    private final String CITY = "Jakarta";
+    final String CITY = "Jakarta";
 
 
+    /**
+     * onStartJob berjalan di dalam mainthread, return true jika ada proses yang membuat thread baru
+     */
     @Override
     public boolean onStartJob(JobParameters params) {
         Log.d(TAG, "onStartJob() Executed");
@@ -42,21 +45,28 @@ public class GetCurrentWeatherJobService extends JobService{
         return true;
     }
 
+    /**
+     * onStopJob akan dipanggil ketika proses belum selesai dikarenakan constraint requirements tidak terpenuhi
+     * return true untuk re-scheduler
+     */
     @Override
     public boolean onStopJob(JobParameters params) {
         Log.d(TAG, "onStopJob() Executed");
-        return false;
+        return true;
     }
 
-    private void getCurrentWeather(final JobParameters jobParameters){
-        Log.d("GetWeather", "Running");
+    /**
+     * Request data ke API weather, jobFinished dipanggil secara manual ketika proses sudah selesai
+     * @param job parameters
+     */
+    private void getCurrentWeather(final JobParameters job){
+        Log.d(TAG, "Running");
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "http://api.openweathermap.org/data/2.5/weather?q="+CITY+"&appid="+APP_ID;
         Log.e(TAG, "getCurrentWeather: "+url );
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                jobFinished(jobParameters, false);
                 String result = new String(responseBody);
                 Log.d(TAG, result);
                 try {
@@ -74,19 +84,31 @@ public class GetCurrentWeatherJobService extends JobService{
 
                     showNotification(getApplicationContext(), title, message, notifId);
 
+                    // ketika proses selesai, maka perlu dipanggil jobFinished dengan parameter false;
+                    jobFinished(job, false);
                 }catch (Exception e){
+                    // ketika terjadi error, maka jobFinished diset dengan parameter true. Yang artinya job perlu di reschedule
+                    jobFinished(job, true);
                     e.printStackTrace();
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Log.d("GetWeather", "Failed");
-                jobFinished(jobParameters, false);
+                // ketika proses gagal, maka jobFinished diset dengan parameter true. Yang artinya job perlu di reschedule
+                jobFinished(job, true);
             }
         });
     }
 
+
+    /**
+     * Menampilkan datanya ke dalam notification
+     * @param context context dari notification
+     * @param title judul notifikasi
+     * @param message isi dari notifikasi
+     * @param notifId id notifikasi
+     */
     private void showNotification(Context context, String title, String message, int notifId){
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

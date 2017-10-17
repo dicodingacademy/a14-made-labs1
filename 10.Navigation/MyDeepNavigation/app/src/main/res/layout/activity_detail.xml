@@ -14,13 +14,13 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="@string/title"
         android:textStyle="bold"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MessageA"
+        android:text="@string/messagea"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 </LinearLayout>

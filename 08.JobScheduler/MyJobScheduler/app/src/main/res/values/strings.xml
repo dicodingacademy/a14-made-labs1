@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MyJobScheduler</string>
+    <string name="start">Start</string>
+    <string name="cancel">Cancel</string>
+    <string name="description">Click the start button to start the weather task or click the cancel button to cancel the weather task</string>
 </resources>

@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements MainView{
-    private EditText edtWidth, edtHeight, edtLength;
-    private TextView tvResult;
+    EditText edtWidth, edtHeight, edtLength;
+    TextView tvResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

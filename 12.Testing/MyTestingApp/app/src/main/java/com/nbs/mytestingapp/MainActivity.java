@@ -16,9 +16,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button btnSetValue;
-    private TextView tvText;
-    private ImageView imgPreview;
+    Button btnSetValue;
+    TextView tvText;
+    ImageView imgPreview;
 
     private ArrayList<String> names;
     private DelayAsync delayAsync;
