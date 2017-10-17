@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
-    private TextView tvTitle, tvMessage;
+    TextView tvTitle, tvMessage;
     public static final String EXTRA_TITLE = "extra_title";
     public static final String EXTRA_MESSAGE = "extra_message";
 
@@ -21,6 +21,9 @@ public class DetailActivity extends AppCompatActivity {
         tvTitle = (TextView)findViewById(R.id.tv_title);
         tvMessage = (TextView)findViewById(R.id.tv_message);
 
+        /*
+        Ambil data dari intent yang dikirimkan oleh notifikasi
+         */
         String title = getIntent().getStringExtra(EXTRA_TITLE);
         String message = getIntent().getStringExtra(EXTRA_MESSAGE);
 

@@ -17,8 +17,7 @@ import com.firebase.jobdispatcher.Trigger;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button btnSetScheduler, btnCancelScheduler;
-
-    FirebaseJobDispatcher dispatcher;
+    FirebaseJobDispatcher mDispatcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSetScheduler.setOnClickListener(this);
         btnCancelScheduler.setOnClickListener(this);
 
-        dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
+        mDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
     }
 
     @Override
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle myExtrasBundle = new Bundle();
         myExtrasBundle.putString(MyJobService.EXTRAS_CITY, CITY);
 
-        Job myJob = dispatcher.newJobBuilder()
+        Job myJob = mDispatcher.newJobBuilder()
                 // kelas service yang akan dipanggil
                 .setService(MyJobService.class)
                 // unique tag untuk identifikasi job
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setExtras(myExtrasBundle)
                 .build();
 
-        dispatcher.mustSchedule(myJob);
+        mDispatcher.mustSchedule(myJob);
     }
 
     /**
@@ -99,6 +98,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     public void cancelDispatcher(){
 
-        dispatcher.cancel(DISPATCHER_TAG);
+        mDispatcher.cancel(DISPATCHER_TAG);
     }
 }

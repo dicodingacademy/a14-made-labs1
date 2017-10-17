@@ -28,7 +28,7 @@ public class MyJobService extends JobService {
 
     public static final String TAG = MyJobService.class.getSimpleName();
 
-    final String APP_ID = "694e890a8ba8a09429fadd5361f4a163";
+    final String APP_ID = "Masukkan API key anda...";
 
     public static String EXTRAS_CITY = "extras_city";
 

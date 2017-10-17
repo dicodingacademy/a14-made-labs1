@@ -21,6 +21,6 @@
         android:id="@+id/tv_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/messagea"
+        android:text="@string/message"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 </LinearLayout>

@@ -34,9 +34,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_open_detail){
+            /*
+            Intent yang akan dikirimkan ke halaman detail
+             */
             Intent detailIntent = new Intent(MainActivity.this, DetailActivity.class);
             detailIntent.putExtra(DetailActivity.EXTRA_TITLE, "Hola, Good News");
             detailIntent.putExtra(DetailActivity.EXTRA_MESSAGE, "Now you can learn android in dicoding");
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /*
+    Flow yang akan dijalankan
+    Flow : Activity->AsyncTask->Notifikasi->HalamanDetail
+     */
     private class DelayAsync extends AsyncTask<Void, Void, Void>{
 
         @Override
@@ -64,8 +72,18 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Tampilan notifikasi dan ditambahkan intent untuk redirect ke halaman detail
+     * @param context context activity
+     * @param title judul notifikasi
+     * @param message pesan notifikasi
+     * @param notifId id dari notifikasi
+     */
     private void showNotification(Context context, String title, String message, int notifId){
         Intent notifDetailIntent = new Intent(this, DetailActivity.class);
+        /*
+        Intent yang akan dikirimkan ke halaman detail
+        */
         notifDetailIntent.putExtra(DetailActivity.EXTRA_TITLE, title);
         notifDetailIntent.putExtra(DetailActivity.EXTRA_MESSAGE, message);
 
