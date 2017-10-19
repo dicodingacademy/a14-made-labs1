@@ -43,14 +43,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ComponentName mServiceComponent = new ComponentName(this, GetCurrentWeatherJobService.class);
 
         JobInfo.Builder builder = new JobInfo.Builder(jobId, mServiceComponent);
-        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED);
-        builder.setRequiresDeviceIdle(true);
+
+        // Kondisi network,
+        // NETWORK_TYPE_ANY, berarti tidak ada ketentuan tertentu
+        // NETWORK_TYPE_UNMETERED, adalah network yang tidak dibatasi misalnya wifi
+        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+
+        // Kondisi device, secara default sudah pada false
+        // false, berarti device tidak perlu idle ketika job ke trigger
+        // true, berarti device perlu dalam kondisi idle ketika job ke trigger
+        builder.setRequiresDeviceIdle(false);
+
+        // Kondisi charging
+        // false, berarti device tidak perlu di charge
+        // true, berarti device perlu dicharge
         builder.setRequiresCharging(false);
 
+        // Periode interval sampai ke trigger
+        // Dalam milisecond, 1000ms = 1detik
         builder.setPeriodic(100);
-
-        //Hidupkan code dibawah untuk force trigger job scheduler, dan matikan fungsi setPeriodic
-        //builder.setOverrideDeadline(500);
 
         JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
         jobScheduler.schedule(builder.build());
