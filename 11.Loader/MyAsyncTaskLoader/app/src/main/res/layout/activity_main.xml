@@ -21,14 +21,14 @@
             android:id="@+id/edit_kota"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/ID_JAKARTA_BANDUNG_SEMARARANG"
+            android:text="@string/id_jakarta_bandung_semararang"
             android:hint="@string/masukkan_nama_kota"
             android:layout_weight="0.8"/>
         <Button
             android:id="@+id/btn_kota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Cari"
+            android:text="@string/cari"
             android:layout_weight="0.2"
             />
     </LinearLayout>

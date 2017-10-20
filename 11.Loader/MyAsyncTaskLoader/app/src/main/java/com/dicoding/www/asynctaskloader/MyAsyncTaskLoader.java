@@ -1,18 +1,15 @@
 package com.dicoding.www.asynctaskloader;
 
 
-import android.content.Context;
 import android.content.AsyncTaskLoader;
-import android.util.Log;
+import android.content.Context;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
@@ -27,7 +24,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
 
     private String mKumpulanKota;
 
-    public MyAsyncTaskLoader(final Context context,String kumpulanKota) {
+    public MyAsyncTaskLoader(final Context context, String kumpulanKota) {
         super(context);
 
         onContentChanged();
@@ -63,7 +60,6 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
 
     private static final String API_KEY = "Isikan API KEY anda...";
 
-
     // Format search kota url JAKARTA = 1642911 ,BANDUNG = 1650357, SEMARANG = 1627896
     // http://api.openweathermap.org/data/2.5/group?id=1642911,1650357,1627896&units=metric&appid=API_KEY
 
@@ -71,19 +67,16 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     public ArrayList<WeatherItems> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
 
-
         final ArrayList<WeatherItems> weatherItemses = new ArrayList<>();
         String url = "http://api.openweathermap.org/data/2.5/group?id=" +
-                mKumpulanKota+ "&units=metric&appid=" + API_KEY;
+                mKumpulanKota + "&units=metric&appid=" + API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 super.onStart();
-
                 //Menggunakan synchronous karena pada dasarnya thread yang digunakan sudah asynchronous dan method
                 //loadInBackground mengembalikan nilai balikan
-
                 setUseSynchronousMode(true);
             }
 
@@ -94,25 +87,19 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
                     JSONObject responseObject = new JSONObject(result);
                     JSONArray list = responseObject.getJSONArray("list");
 
-                    for (int i = 0 ; i < list.length() ; i++){
+                    for (int i = 0; i < list.length(); i++) {
                         JSONObject weather = list.getJSONObject(i);
                         WeatherItems weatherItems = new WeatherItems(weather);
                         weatherItemses.add(weatherItems);
                     }
-
-
-                }catch (Exception e){
-
+                } catch (Exception e) {
                     //Jika terjadi error pada saat parsing maka akan masuk ke catch()
-
                     e.printStackTrace();
-
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
                 //Jika response gagal maka , do nothing
             }
         });
@@ -123,5 +110,4 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     protected void onReleaseResources(ArrayList<WeatherItems> data) {
         //nothing to do.
     }
-
 }
