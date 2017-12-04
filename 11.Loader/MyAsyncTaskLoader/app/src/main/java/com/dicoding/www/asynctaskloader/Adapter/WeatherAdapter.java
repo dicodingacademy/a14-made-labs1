@@ -51,6 +51,11 @@ public class WeatherAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        // Pengecekan null diperlukan agar tidak terjadi force close ketika datanya null
+        // return 0 sehingga adapter tidak akan menampilkan apapun
+        if (mData == null)return 0;
+
+        // Jika tidak null maka return banyaknya jumlah data yang ada
         return mData.size();
     }
 
