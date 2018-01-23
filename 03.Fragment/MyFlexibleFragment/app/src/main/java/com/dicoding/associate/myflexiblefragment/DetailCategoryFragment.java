@@ -56,7 +56,7 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             String descFromBundle = savedInstanceState.getString(EXTRA_DESCRIPTION);
             setDescription(descFromBundle);
         }
@@ -73,7 +73,7 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString(EXTRA_DESCRIPTION,getDescription());
+        outState.putString(EXTRA_DESCRIPTION, getDescription());
     }
 
     @Override

@@ -21,7 +21,6 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
 
     public OptionDialogFragment() {
         // Required empty public constructor
-        setRetainInstance(true);
     }
 
     public OnOptionDialogListener getOnOptionDialogListener() {
