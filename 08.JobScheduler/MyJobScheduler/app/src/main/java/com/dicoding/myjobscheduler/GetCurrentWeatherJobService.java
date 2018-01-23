@@ -23,7 +23,7 @@ import cz.msebera.android.httpclient.Header;
  * Created by sidiqpermana on 9/29/16.
  */
 
-public class GetCurrentWeatherJobService extends JobService{
+public class GetCurrentWeatherJobService extends JobService {
 
     public static final String TAG = GetCurrentWeatherJobService.class.getSimpleName();
 
@@ -57,13 +57,14 @@ public class GetCurrentWeatherJobService extends JobService{
 
     /**
      * Request data ke API weather, jobFinished dipanggil secara manual ketika proses sudah selesai
+     *
      * @param job parameters
      */
-    private void getCurrentWeather(final JobParameters job){
+    private void getCurrentWeather(final JobParameters job) {
         Log.d(TAG, "Running");
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = "http://api.openweathermap.org/data/2.5/weather?q="+CITY+"&appid="+APP_ID;
-        Log.e(TAG, "getCurrentWeather: "+url );
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + CITY + "&appid=" + APP_ID;
+        Log.e(TAG, "getCurrentWeather: " + url);
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -79,14 +80,14 @@ public class GetCurrentWeatherJobService extends JobService{
                     String temprature = new DecimalFormat("##.##").format(tempInCelcius);
 
                     String title = "Current Weather";
-                    String message = currentWeather +", "+description+" with "+temprature+" celcius";
+                    String message = currentWeather + ", " + description + " with " + temprature + " celcius";
                     int notifId = 100;
 
                     showNotification(getApplicationContext(), title, message, notifId);
 
                     // ketika proses selesai, maka perlu dipanggil jobFinished dengan parameter false;
                     jobFinished(job, false);
-                }catch (Exception e){
+                } catch (Exception e) {
                     // ketika terjadi error, maka jobFinished diset dengan parameter true. Yang artinya job perlu di reschedule
                     jobFinished(job, true);
                     e.printStackTrace();
@@ -104,12 +105,13 @@ public class GetCurrentWeatherJobService extends JobService{
 
     /**
      * Menampilkan datanya ke dalam notification
+     *
      * @param context context dari notification
-     * @param title judul notifikasi
+     * @param title   judul notifikasi
      * @param message isi dari notifikasi
      * @param notifId id notifikasi
      */
-    private void showNotification(Context context, String title, String message, int notifId){
+    private void showNotification(Context context, String title, String message, int notifId) {
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
