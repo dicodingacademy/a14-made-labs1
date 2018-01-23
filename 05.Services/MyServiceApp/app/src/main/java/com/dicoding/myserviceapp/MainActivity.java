@@ -3,15 +3,11 @@ package com.dicoding.myserviceapp;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.AsyncTask;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 
 import com.dicoding.myserviceapp.BoundService.MyBinder;
 
@@ -26,39 +22,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnStartService = (Button)findViewById(R.id.btn_start_service);
+        btnStartService = (Button) findViewById(R.id.btn_start_service);
         btnStartService.setOnClickListener(this);
-        btnStartIntentService = (Button)findViewById(R.id.btn_start_intent_service);
+
+        btnStartIntentService = (Button) findViewById(R.id.btn_start_intent_service);
         btnStartIntentService.setOnClickListener(this);
-        btnStartBoundService = (Button)findViewById(R.id.btn_start_bound_service);
+
+        btnStartBoundService = (Button) findViewById(R.id.btn_start_bound_service);
         btnStartBoundService.setOnClickListener(this);
-        btnStopBoundService = (Button)findViewById(R.id.btn_stop_bound_service);
+
+        btnStopBoundService = (Button) findViewById(R.id.btn_stop_bound_service);
         btnStopBoundService.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_start_service:
                 Intent mStartServiceIntent = new Intent(MainActivity.this, OriginService.class);
                 startService(mStartServiceIntent);
                 break;
 
             case R.id.btn_start_intent_service:
-                Intent mStartIntentService = new Intent(MainActivity.this, DicodingIntentService.class);
-                mStartIntentService.putExtra(DicodingIntentService.EXTRA_DURATION, 5000);
+                Intent mStartIntentService = new Intent(MainActivity.this, IntentService.class);
+                mStartIntentService.putExtra(IntentService.EXTRA_DURATION, 5000);
                 startService(mStartIntentService);
                 break;
+
             case R.id.btn_start_bound_service:
                 Intent mBoundServiceIntent = new Intent(MainActivity.this, BoundService.class);
-                bindService(mBoundServiceIntent,mServiceConnection,BIND_AUTO_CREATE);
+                bindService(mBoundServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
                 break;
+
             case R.id.btn_stop_bound_service:
                 unbindService(mServiceConnection);
         }
+
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (mServiceBound){
+            unbindService(mServiceConnection);
+        }
+    }
 
     boolean mServiceBound = false;
     BoundService mBoundService;
@@ -75,5 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mBoundService = myBinder.getService();
             mServiceBound = true;
         }
+
     };
 }

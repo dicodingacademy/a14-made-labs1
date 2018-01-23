@@ -1,17 +1,15 @@
 package com.dicoding.myserviceapp;
 
-import android.app.IntentService;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.util.Log;
 
 
-public class DicodingIntentService extends IntentService {
+public class IntentService extends android.app.IntentService {
     public static String EXTRA_DURATION = "extra_duration";
-    public static final String TAG = DicodingIntentService.class.getSimpleName();
+    public static final String TAG = IntentService.class.getSimpleName();
 
-    public DicodingIntentService() {
-        super("DicodingIntentService");
+    public IntentService() {
+        super("IntentService");
     }
 
     @Override

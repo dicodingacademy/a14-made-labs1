@@ -24,7 +24,7 @@ public class BoundService extends Service {
         public void onTick(long l) {
 
             long elapsedTime = System.currentTimeMillis() - startTime;
-            Log.e(TAG, "onTick: "+elapsedTime );
+            Log.e(TAG, "onTick: " + elapsedTime);
         }
 
         @Override
@@ -40,7 +40,7 @@ public class BoundService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        Log.e(TAG, "onCreate: " );
+        Log.e(TAG, "onCreate: ");
         mTimer.start();
     }
 
@@ -49,7 +49,7 @@ public class BoundService extends Service {
      */
     @Override
     public IBinder onBind(Intent intent) {
-        Log.e(TAG, "onBind: " );
+        Log.e(TAG, "onBind: ");
         return mBinder;
     }
 
@@ -59,7 +59,7 @@ public class BoundService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy: " );
+        Log.e(TAG, "onDestroy: ");
         mTimer.cancel();
     }
 
@@ -78,7 +78,7 @@ public class BoundService extends Service {
     @Override
     public void onRebind(Intent intent) {
         super.onRebind(intent);
-        Log.e(TAG, "onRebind: " );
+        Log.e(TAG, "onRebind: ");
     }
 
     public class MyBinder extends Binder {

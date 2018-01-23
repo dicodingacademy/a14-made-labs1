@@ -21,7 +21,7 @@ public class OriginService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e(TAG, "onStartCommand: " );
+        Log.e(TAG, "onStartCommand: ");
 
         ProcessAsync mProcessAsync = new ProcessAsync();
         mProcessAsync.execute();
@@ -29,11 +29,17 @@ public class OriginService extends Service {
         return START_STICKY;
     }
 
-    private class ProcessAsync extends AsyncTask<Void, Void, Void>{
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: ");
+    }
+
+    private class ProcessAsync extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
-            Log.e(TAG, "doInBackground: " );
+            Log.e(TAG, "doInBackground: ");
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -45,14 +51,10 @@ public class OriginService extends Service {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Log.e(TAG, "onPostExecute: " );
+            Log.e(TAG, "onPostExecute: ");
             stopSelf();
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG, "onDestroy: " );
-    }
+
 }

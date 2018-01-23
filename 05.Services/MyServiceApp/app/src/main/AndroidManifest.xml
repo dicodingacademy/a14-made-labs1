@@ -20,7 +20,7 @@
             android:name=".OriginService"
             android:enabled="true" />
         <service
-            android:name=".DicodingIntentService"
+            android:name=".IntentService"
             android:exported="false" />
         <service
             android:name=".BoundService"
