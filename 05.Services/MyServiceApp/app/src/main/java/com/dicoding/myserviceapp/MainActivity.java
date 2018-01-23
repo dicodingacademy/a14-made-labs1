@@ -61,11 +61,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
+        /*
+        Pemanggilan unbind di dalam ondestroy ditujukan untuk mencegah memory leaks dari bound services
+         */
         if (mServiceBound){
             unbindService(mServiceConnection);
         }
@@ -73,6 +75,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     boolean mServiceBound = false;
     BoundService mBoundService;
+
+    /*
+    Service Connection adalah interface yang digunakan untuk menghubungkan antara boundservice dengan activity
+     */
     private ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
