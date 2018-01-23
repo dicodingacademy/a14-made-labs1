@@ -10,10 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CategoryFragment extends Fragment implements View.OnClickListener {
 
     Button btnDetailCategory;
@@ -36,14 +32,14 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_detail_category){
-            DetilCategoryFragment mDetilCategoryFragment = new DetilCategoryFragment();
+            DetailCategoryFragment mDetailCategoryFragment = new DetailCategoryFragment();
 
             Bundle mBundle = new Bundle();
-            mBundle.putString(DetilCategoryFragment.EXTRA_NAME, "Lifestyle");
+            mBundle.putString(DetailCategoryFragment.EXTRA_NAME, "Lifestyle");
             String description = "Kategori ini akan berisi produk-produk lifestyle";
 
-            mDetilCategoryFragment.setArguments(mBundle);
-            mDetilCategoryFragment.setDescription(description);
+            mDetailCategoryFragment.setArguments(mBundle);
+            mDetailCategoryFragment.setDescription(description);
 
             /*
             Method addToBackStack akan menambahkan fragment ke backstack
@@ -53,8 +49,8 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
              */
             FragmentManager mFragmentManager = getFragmentManager();
             FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
-            mFragmentTransaction.replace(R.id.frame_container, mDetilCategoryFragment,
-                    DetilCategoryFragment.class.getSimpleName());
+            mFragmentTransaction.replace(R.id.frame_container, mDetailCategoryFragment,
+                    DetailCategoryFragment.class.getSimpleName());
             mFragmentTransaction.addToBackStack(null);
             mFragmentTransaction.commit();
         }

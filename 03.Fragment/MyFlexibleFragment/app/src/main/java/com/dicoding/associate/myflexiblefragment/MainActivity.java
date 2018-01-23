@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         mFragmentTransaction.add(R.id.frame_container, mHomeFragment, HomeFragment.class.getSimpleName());
 
-        Log.d("MyFlexibleFragment", "Fragment Name :"+HomeFragment.class.getSimpleName());
+        Log.d("MyFlexibleFragment", "Fragment Name :" + HomeFragment.class.getSimpleName());
 
         mFragmentTransaction.commit();
     }

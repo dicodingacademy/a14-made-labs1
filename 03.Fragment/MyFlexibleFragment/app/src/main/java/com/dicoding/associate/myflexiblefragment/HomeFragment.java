@@ -11,9 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
@@ -36,7 +33,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.btn_category) {
             /*
             Method addToBackStack akan menambahkan fragment ke backstack
-            Behaviour dari back button akan cek fragment dari backstack,
+
+            Behaviour dari back button :
             jika ada fragment di dalam backstack maka fragment yang akan di close / remove
             jika sudah tidak ada fragment di dalam backstack maka activity yang akan di close / finish
              */

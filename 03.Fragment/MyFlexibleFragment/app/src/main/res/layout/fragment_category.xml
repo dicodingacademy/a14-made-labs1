@@ -6,17 +6,16 @@
     android:padding="16dp"
     tools:context="com.dicoding.associate.myflexiblefragment.CategoryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ini_halaman_category"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:text="@string/ini_halaman_category" />
+
     <Button
         android:id="@+id/btn_detail_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/kategory_lifestyle"
-        />
+        android:text="@string/kategory_lifestyle" />
 
 </LinearLayout>

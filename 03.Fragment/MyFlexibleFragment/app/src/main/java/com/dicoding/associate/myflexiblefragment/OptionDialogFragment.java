@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
-public class OptionDialogFragment extends DialogFragment implements View.OnClickListener{
+public class OptionDialogFragment extends DialogFragment implements View.OnClickListener {
 
     Button btnChoose, btnClose;
     RadioGroup rgOptions;
@@ -35,30 +35,30 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_option_dialog, container, false);
-        btnChoose = (Button)view.findViewById(R.id.btn_choose);
+        btnChoose = (Button) view.findViewById(R.id.btn_choose);
         btnChoose.setOnClickListener(this);
-        btnClose = (Button)view.findViewById(R.id.btn_close);
+        btnClose = (Button) view.findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
-        rgOptions = (RadioGroup)view.findViewById(R.id.rg_options);
-        rbSaf = (RadioButton)view.findViewById(R.id.rb_saf);
-        rbLvg = (RadioButton)view.findViewById(R.id.rb_lvg);
-        rbMou = (RadioButton)view.findViewById(R.id.rb_mou);
-        rbMoyes = (RadioButton)view.findViewById(R.id.rb_moyes);
+        rgOptions = (RadioGroup) view.findViewById(R.id.rg_options);
+        rbSaf = (RadioButton) view.findViewById(R.id.rb_saf);
+        rbLvg = (RadioButton) view.findViewById(R.id.rb_lvg);
+        rbMou = (RadioButton) view.findViewById(R.id.rb_mou);
+        rbMoyes = (RadioButton) view.findViewById(R.id.rb_moyes);
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_close:
                 getDialog().cancel();
                 break;
 
             case R.id.btn_choose:
                 int checkedRadioButtonId = rgOptions.getCheckedRadioButtonId();
-                if (checkedRadioButtonId != -1){
+                if (checkedRadioButtonId != -1) {
                     String coach = null;
-                    switch (checkedRadioButtonId){
+                    switch (checkedRadioButtonId) {
                         case R.id.rb_saf:
                             coach = rbSaf.getText().toString().trim();
                             break;
@@ -83,7 +83,7 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
         }
     }
 
-    public interface OnOptionDialogListener{
+    public interface OnOptionDialogListener {
         void onOptionChoosen(String text);
     }
 }
