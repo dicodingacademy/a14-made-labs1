@@ -1,5 +1,6 @@
 package com.dicoding.associate.myflexiblefragment;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +19,14 @@ public class MainActivity extends AppCompatActivity {
 
         HomeFragment mHomeFragment = new HomeFragment();
 
-        mFragmentTransaction.add(R.id.frame_container, mHomeFragment, HomeFragment.class.getSimpleName());
+        Fragment fragment = mFragmentManager.findFragmentByTag(HomeFragment.class.getSimpleName());
 
-        Log.d("MyFlexibleFragment", "Fragment Name :" + HomeFragment.class.getSimpleName());
+        if (!(fragment instanceof HomeFragment)) {
+            mFragmentTransaction.add(R.id.frame_container, mHomeFragment, HomeFragment.class.getSimpleName());
 
-        mFragmentTransaction.commit();
+            Log.d("MyFlexibleFragment", "Fragment Name :" + HomeFragment.class.getSimpleName());
+
+            mFragmentTransaction.commit();
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.dicoding.associate.myflexiblefragment;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
     Button btnShowDialog;
 
     public static String EXTRA_NAME = "extra_name";
+    public static String EXTRA_DESCRIPTION = "extra_description";
     private String description;
 
     public DetailCategoryFragment() {
@@ -54,9 +56,24 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        if (savedInstanceState != null){
+            String descFromBundle = savedInstanceState.getString(EXTRA_DESCRIPTION);
+            setDescription(descFromBundle);
+        }
+
         String categoryName = getArguments().getString(EXTRA_NAME);
         tvCategoryName.setText(categoryName);
         tvCategoryDescription.setText(getDescription());
+    }
+
+    /*
+    Gunakan method ini jika kita ingin menjaga data agar tetap aman ketika terjadi config changes (portrait - landscape)
+     */
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString(EXTRA_DESCRIPTION,getDescription());
     }
 
     @Override
