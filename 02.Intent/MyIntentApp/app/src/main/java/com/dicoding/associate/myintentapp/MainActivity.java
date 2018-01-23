@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnMoveActivity;
     Button btnMoveWithDataActivity;
     Button btnMoveWithObject;
@@ -23,33 +23,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMoveActivity = (Button)findViewById(R.id.btn_move_activity);
+        btnMoveActivity = (Button) findViewById(R.id.btn_move_activity);
         btnMoveActivity.setOnClickListener(this);
 
-        btnMoveWithDataActivity = (Button)findViewById(R.id.btn_move_activity_data);
+        btnMoveWithDataActivity = (Button) findViewById(R.id.btn_move_activity_data);
         btnMoveWithDataActivity.setOnClickListener(this);
 
-        btnMoveWithObject = (Button)findViewById(R.id.btn_move_activity_object);
+        btnMoveWithObject = (Button) findViewById(R.id.btn_move_activity_object);
         btnMoveWithObject.setOnClickListener(this);
 
-        btnDialPhone = (Button)findViewById(R.id.btn_dial_number);
+        btnDialPhone = (Button) findViewById(R.id.btn_dial_number);
         btnDialPhone.setOnClickListener(this);
 
-        btnMoveForResult = (Button)findViewById(R.id.btn_move_for_result);
+        btnMoveForResult = (Button) findViewById(R.id.btn_move_for_result);
         btnMoveForResult.setOnClickListener(this);
 
-        tvResult = (TextView)findViewById(R.id.tv_result);
+        tvResult = (TextView) findViewById(R.id.tv_result);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_move_activity:
+                /*
+                Intent untuk memulai activity baru
+                 */
                 Intent moveIntent = new Intent(MainActivity.this, MoveActivity.class);
                 startActivity(moveIntent);
                 break;
 
             case R.id.btn_move_activity_data:
+                /*
+                Intent untuk mengirimkan data ke activity lain
+                 */
                 Intent moveWithDataIntent = new Intent(MainActivity.this, MoveWithDataActivity.class);
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "DicodingAcademy Boy");
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 5);
@@ -57,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_move_activity_object:
+                /*
+                Intent untuk mengirimkan object ke activity lain, perlu diingat bahwa object Person adalah parcelable
+                 */
                 Person mPerson = new Person();
                 mPerson.setName("DicodingAcademy");
                 mPerson.setAge(5);
@@ -69,26 +78,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_dial_number:
+                /*
+                Intent action untuk menjalankan action dial
+                 */
                 String phoneNumber = "081210841382";
-                Intent dialPhoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+phoneNumber));
+                Intent dialPhoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
                 startActivity(dialPhoneIntent);
                 break;
 
             case R.id.btn_move_for_result:
+                /*
+                Intent for result bermanfaat ketika kita ingin mendapatkan nilai balikan dari activity lainnya
+                 */
                 Intent moveForResultIntent = new Intent(MainActivity.this, MoveForResultActivity.class);
                 startActivityForResult(moveForResultIntent, REQUEST_CODE);
                 break;
         }
     }
 
+
+    /*
+    Callback onActvityResult dipanggil setelah kode finish() di dalam MoveForResultActivity dipanggil
+    Perhatikan pengecekan request code yang diterima
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE){
-            if (resultCode == MoveForResultActivity.RESULT_CODE){
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == MoveForResultActivity.RESULT_CODE) {
                 int selectedValue = data.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0);
-                tvResult.setText(String.format("Hasil : %s",selectedValue));
+                tvResult.setText(String.format("Hasil : %s", selectedValue));
             }
         }
 

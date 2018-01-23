@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 public class MoveForResultActivity extends AppCompatActivity
-        implements View.OnClickListener{
+        implements View.OnClickListener {
     Button btnChoose;
     RadioGroup rgNumber;
 
@@ -20,17 +20,17 @@ public class MoveForResultActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_for_result);
 
-        btnChoose = (Button)findViewById(R.id.btn_choose);
+        btnChoose = (Button) findViewById(R.id.btn_choose);
         btnChoose.setOnClickListener(this);
-        rgNumber = (RadioGroup)findViewById(R.id.rg_number);
+        rgNumber = (RadioGroup) findViewById(R.id.rg_number);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_choose){
-            if (rgNumber.getCheckedRadioButtonId() != 0){
+        if (v.getId() == R.id.btn_choose) {
+            if (rgNumber.getCheckedRadioButtonId() != 0) {
                 int value = 0;
-                switch (rgNumber.getCheckedRadioButtonId()){
+                switch (rgNumber.getCheckedRadioButtonId()) {
                     case R.id.rb_50:
                         value = 50;
                         break;
@@ -48,11 +48,12 @@ public class MoveForResultActivity extends AppCompatActivity
                         break;
                 }
 
+                /*
+                Intent ini digunakan untuk mengirimkan kembali ke activity induk
+                 */
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra(EXTRA_SELECTED_VALUE, value);
-
                 setResult(RESULT_CODE, resultIntent);
-
                 finish();
             }
         }

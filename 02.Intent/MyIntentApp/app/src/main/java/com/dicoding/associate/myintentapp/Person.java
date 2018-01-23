@@ -7,6 +7,7 @@ import android.os.Parcelable;
  * Created by sidiqpermana on 9/11/16.
  */
 public class Person implements Parcelable {
+
     private String name;
     private int age;
     private String email;
