@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     //Fungsi ini dipanggil ketika proses load sudah selesai
     @Override
     public void onLoadFinished(Loader<ArrayList<WeatherItems>> loader, ArrayList<WeatherItems> data) {
-
         adapter.setData(data);
     }
 
