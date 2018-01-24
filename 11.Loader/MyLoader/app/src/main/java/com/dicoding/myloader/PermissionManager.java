@@ -20,7 +20,7 @@ public class PermissionManager {
         }
     }
 
-    public static boolean isGranted(Activity activity, String permission, int requestCode){
+    public static boolean isGranted(Activity activity, String permission){
         return (ActivityCompat.checkSelfPermission(activity,permission) == PackageManager.PERMISSION_GRANTED);
     }
 }
