@@ -1,8 +1,6 @@
 package com.dicoding.mygcmnetworkmanager;
 
-import android.app.Activity;
 import android.content.Context;
-import android.widget.Toast;
 
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.PeriodicTask;
@@ -14,7 +12,7 @@ import com.google.android.gms.gcm.PeriodicTask;
 public class SchedulerTask {
     private GcmNetworkManager mGcmNetworkManager;
 
-    public SchedulerTask(Context context){
+    public SchedulerTask(Context context) {
         mGcmNetworkManager = GcmNetworkManager.getInstance(context);
     }
 
@@ -30,8 +28,8 @@ public class SchedulerTask {
         mGcmNetworkManager.schedule(periodicTask);
     }
 
-    public void cancelPeriodicTask(){
-        if (mGcmNetworkManager != null){
+    public void cancelPeriodicTask() {
+        if (mGcmNetworkManager != null) {
             mGcmNetworkManager.cancelTask(SchedulerService.TAG_TASK_WEATHER_LOG, SchedulerService.class);
         }
     }

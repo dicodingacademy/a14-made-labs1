@@ -12,7 +12,6 @@ import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.SyncHttpClient;
 
 import org.json.JSONObject;
 
@@ -58,14 +57,15 @@ public class MyJobService extends JobService {
 
     /**
      * Request data ke API weather, jobFinished dipanggil secara manual ketika proses sudah selesai
+     *
      * @param job job parameters
      */
-    private void getCurrentWeather(final JobParameters job){
+    private void getCurrentWeather(final JobParameters job) {
 
         String city = job.getExtras().getString(EXTRAS_CITY);
 
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+APP_ID;
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APP_ID;
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -81,16 +81,16 @@ public class MyJobService extends JobService {
                     String temprature = new DecimalFormat("##.##").format(tempInCelcius);
 
                     String title = "Current Weather";
-                    String message = currentWeather +", "+description+" with "+temprature+" celcius";
+                    String message = currentWeather + ", " + description + " with " + temprature + " celcius";
                     int notifId = 100;
 
                     showNotification(getApplicationContext(), title, message, notifId);
 
                     // ketika proses selesai, maka perlu dipanggil jobFinished dengan parameter false;
-                    jobFinished(job,false);
-                }catch (Exception e){
+                    jobFinished(job, false);
+                } catch (Exception e) {
                     // ketika terjadi error, maka jobFinished diset dengan parameter true. Yang artinya job perlu di reschedule
-                    jobFinished(job,true);
+                    jobFinished(job, true);
                     e.printStackTrace();
                 }
             }
@@ -99,19 +99,20 @@ public class MyJobService extends JobService {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
                 // ketika proses gagal, maka jobFinished diset dengan parameter true. Yang artinya job perlu di reschedule
-                jobFinished(job,true);
+                jobFinished(job, true);
             }
         });
     }
 
     /**
      * Menampilkan datanya ke dalam notification
+     *
      * @param context context dari notification
-     * @param title judul notifikasi
+     * @param title   judul notifikasi
      * @param message isi dari notifikasi
      * @param notifId id notifikasi
      */
-    private void showNotification(Context context, String title, String message, int notifId){
+    private void showNotification(Context context, String title, String message, int notifId) {
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)

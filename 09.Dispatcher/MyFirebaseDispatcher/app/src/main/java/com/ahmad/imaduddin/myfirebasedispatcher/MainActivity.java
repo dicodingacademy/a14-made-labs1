@@ -1,7 +1,7 @@
 package com.ahmad.imaduddin.myfirebasedispatcher;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,7 +14,7 @@ import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.RetryStrategy;
 import com.firebase.jobdispatcher.Trigger;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnSetScheduler, btnCancelScheduler;
     FirebaseJobDispatcher mDispatcher;
@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnCancelScheduler = (Button)findViewById(R.id.btn_cancel_scheduler);
-        btnSetScheduler = (Button)findViewById(R.id.btn_set_scheduler);
+        btnCancelScheduler = (Button) findViewById(R.id.btn_cancel_scheduler);
+        btnSetScheduler = (Button) findViewById(R.id.btn_set_scheduler);
 
         btnSetScheduler.setOnClickListener(this);
         btnCancelScheduler.setOnClickListener(this);
@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_set_scheduler){
+        if (v.getId() == R.id.btn_set_scheduler) {
             startDispatcher();
             Toast.makeText(this, "Dispatcher Created", Toast.LENGTH_SHORT).show();
         }
 
-        if (v.getId() == R.id.btn_cancel_scheduler){
+        if (v.getId() == R.id.btn_cancel_scheduler) {
             cancelDispatcher();
             Toast.makeText(this, "Dispatcher Cancelled", Toast.LENGTH_SHORT).show();
         }
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * method untuk menjalankan job
      */
-    public void startDispatcher(){
+    public void startDispatcher() {
 
         Bundle myExtrasBundle = new Bundle();
         myExtrasBundle.putString(MyJobService.EXTRAS_CITY, CITY);
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * method untuk cancel job
      */
-    public void cancelDispatcher(){
+    public void cancelDispatcher() {
 
         mDispatcher.cancel(DISPATCHER_TAG);
     }

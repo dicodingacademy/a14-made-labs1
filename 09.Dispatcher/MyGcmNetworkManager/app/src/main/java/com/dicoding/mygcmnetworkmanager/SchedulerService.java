@@ -1,7 +1,6 @@
 package com.dicoding.mygcmnetworkmanager;
 
 import android.app.NotificationManager;
-import android.app.job.JobParameters;
 import android.content.Context;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -12,7 +11,6 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.TaskParams;
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 
@@ -36,17 +34,17 @@ public class SchedulerService extends GcmTaskService {
     @Override
     public int onRunTask(TaskParams taskParams) {
         int result = 0;
-        if (taskParams.getTag().equals(TAG_TASK_WEATHER_LOG)){
+        if (taskParams.getTag().equals(TAG_TASK_WEATHER_LOG)) {
             getCurrentWeather();
             result = GcmNetworkManager.RESULT_SUCCESS;
         }
         return result;
     }
 
-    private void getCurrentWeather(){
+    private void getCurrentWeather() {
         Log.d("GetWeather", "Running");
         SyncHttpClient client = new SyncHttpClient();
-        String url = "http://api.openweathermap.org/data/2.5/weather?q="+CITY+"&appid="+APP_ID;
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + CITY + "&appid=" + APP_ID;
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -62,12 +60,12 @@ public class SchedulerService extends GcmTaskService {
                     String temprature = new DecimalFormat("##.##").format(tempInCelcius);
 
                     String title = "Current Weather";
-                    String message = currentWeather +", "+description+" with "+temprature+" celcius";
+                    String message = currentWeather + ", " + description + " with " + temprature + " celcius";
                     int notifId = 100;
 
                     showNotification(getApplicationContext(), title, message, notifId);
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -86,7 +84,7 @@ public class SchedulerService extends GcmTaskService {
         mSchedulerTask.createPeriodicTask();
     }
 
-    private void showNotification(Context context, String title, String message, int notifId){
+    private void showNotification(Context context, String title, String message, int notifId) {
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
