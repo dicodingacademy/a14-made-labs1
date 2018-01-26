@@ -18,62 +18,62 @@ public class AlarmPreference {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor editor;
 
-    public AlarmPreference(Context context){
+    public AlarmPreference(Context context) {
         mSharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    public void setOneTimeDate(String date){
+    public void setOneTimeDate(String date) {
         editor = mSharedPreferences.edit();
         editor.putString(KEY_ONE_TIME_DATE, date);
         editor.commit();
     }
 
-    public String getOneTimeDate(){
+    public String getOneTimeDate() {
         return mSharedPreferences.getString(KEY_ONE_TIME_DATE, null);
     }
 
-    public void setOneTimeTime(String time){
+    public void setOneTimeTime(String time) {
         editor = mSharedPreferences.edit();
         editor.putString(KEY_ONE_TIME_TIME, time);
         editor.commit();
     }
 
-    public String getOneTimeTime(){
+    public String getOneTimeTime() {
         return mSharedPreferences.getString(KEY_ONE_TIME_TIME, null);
     }
 
-    public void setOneTimeMessage(String message){
+    public void setOneTimeMessage(String message) {
         editor = mSharedPreferences.edit();
 
         editor.putString(KEY_ONE_TIME_MESSAGE, message);
         editor.commit();
     }
 
-    public String getOneTimeMessage(){
+    public String getOneTimeMessage() {
         return mSharedPreferences.getString(KEY_ONE_TIME_MESSAGE, null);
     }
 
-    public void setRepeatingTime(String time){
+    public void setRepeatingTime(String time) {
         editor = mSharedPreferences.edit();
         editor.putString(KEY_REPEATING_TIME, time);
         editor.commit();
     }
 
-    public String getRepeatingTime(){
+    public String getRepeatingTime() {
         return mSharedPreferences.getString(KEY_REPEATING_TIME, null);
     }
 
-    public void setRepeatingMessage(String message){
+    public void setRepeatingMessage(String message) {
         editor = mSharedPreferences.edit();
         editor.putString(KEY_REPEATING_MESSAGE, message);
         editor.commit();
     }
 
-    public String getRepeatingMessage(){
+    public String getRepeatingMessage() {
         return mSharedPreferences.getString(KEY_REPEATING_MESSAGE, null);
     }
 
-    public void clear(){
+    public void clear() {
         editor = mSharedPreferences.edit();
         editor.clear();
         editor.commit();
