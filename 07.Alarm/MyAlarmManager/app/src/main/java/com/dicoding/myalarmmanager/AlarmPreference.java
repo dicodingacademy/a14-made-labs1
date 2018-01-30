@@ -9,9 +9,9 @@ import android.content.SharedPreferences;
 
 public class AlarmPreference {
     private final String PREF_NAME = "AlarmPreference";
-    private final String KEY_ONE_TIME_DATE = "oneTimDate";
-    private final String KEY_ONE_TIME_TIME = "oneTimeTime";
-    private final String KEY_ONE_TIME_MESSAGE = "oneTimeMessage";
+    private final String KEY_ONE_TIME_DATE = "oneDate";
+    private final String KEY_ONE_TIME_TIME = "oneTime";
+    private final String KEY_ONE_TIME_MESSAGE = "oneMessage";
     private final String KEY_REPEATING_TIME = "repeatingTime";
     private final String KEY_REPEATING_MESSAGE = "repeatingMessage";
 

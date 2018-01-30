@@ -103,8 +103,17 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent intent = new Intent(context, AlarmReceiver.class);
         int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? NOTIF_ID_ONETIME : NOTIF_ID_REPEATING;
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
+        pendingIntent.cancel();
         alarmManager.cancel(pendingIntent);
 
         Toast.makeText(context, "Repeating alarm dibatalkan", Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean isAlarmSet(Context context, String type){
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? NOTIF_ID_ONETIME : NOTIF_ID_REPEATING;
+        boolean isSet = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE) != null;
+
+        return isSet;
     }
 }
