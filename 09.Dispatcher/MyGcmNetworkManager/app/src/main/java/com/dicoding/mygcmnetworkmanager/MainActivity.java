@@ -6,6 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
+/*
+*  GCMNetworkManager sudah deprecated, gunakanlah FirebaseDispatcher untuk membuat scheduled job di bawah api 21
+*/
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnSetScheduler, btnCancelScheduler;
     private SchedulerTask mSchedulerTask;
