@@ -1,4 +1,4 @@
-package com.dicoding.associate.barvolume;
+package com.dicoding.picodiploma.barvolume;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

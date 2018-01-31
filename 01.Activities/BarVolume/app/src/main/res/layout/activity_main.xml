@@ -3,62 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="com.dicoding.associate.barvolume.MainActivity">
+    tools:context="com.dicoding.picodiploma.barvolume.MainActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/panjang"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:text="@string/panjang" />
+
     <EditText
         android:id="@+id/edt_length"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:lines="1"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:lines="1" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lebar"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:text="@string/lebar" />
+
     <EditText
         android:id="@+id/edt_width"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:lines="1"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:lines="1" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tinggi"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:text="@string/tinggi" />
+
     <EditText
         android:id="@+id/edt_height"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:lines="1"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:lines="1" />
+
     <Button
         android:id="@+id/btn_calculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hitung"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:text="@string/hitung" />
+
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hasil"
         android:gravity="center"
+        android:text="@string/hasil"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:textStyle="bold" />
 </LinearLayout>

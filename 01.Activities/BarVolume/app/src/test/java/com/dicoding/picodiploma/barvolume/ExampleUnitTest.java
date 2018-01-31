@@ -1,4 +1,4 @@
-package com.dicoding.associate.barvolume;
+package com.dicoding.picodiploma.barvolume;
 
 import org.junit.Test;
 
