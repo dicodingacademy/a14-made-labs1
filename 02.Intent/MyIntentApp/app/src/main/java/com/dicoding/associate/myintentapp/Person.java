@@ -45,6 +45,9 @@ public class Person implements Parcelable {
         this.city = city;
     }
 
+    /*
+    Beberapa kode di bawah ini hasil generate dari plugins parcelable
+     */
     @Override
     public int describeContents() {
         return 0;

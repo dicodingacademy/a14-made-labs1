@@ -51,6 +51,7 @@ public class MoveForResultActivity extends AppCompatActivity
                 /*
                 Intent ini digunakan untuk mengirimkan kembali ke activity induk
                  */
+
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra(EXTRA_SELECTED_VALUE, value);
                 setResult(RESULT_CODE, resultIntent);
