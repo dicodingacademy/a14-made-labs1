@@ -24,14 +24,14 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_category, container, false);
-        btnDetailCategory = (Button)view.findViewById(R.id.btn_detail_category);
+        btnDetailCategory = (Button) view.findViewById(R.id.btn_detail_category);
         btnDetailCategory.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_detail_category){
+        if (v.getId() == R.id.btn_detail_category) {
             DetailCategoryFragment mDetailCategoryFragment = new DetailCategoryFragment();
 
             Bundle mBundle = new Bundle();

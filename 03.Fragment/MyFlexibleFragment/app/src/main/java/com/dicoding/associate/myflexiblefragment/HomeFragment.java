@@ -13,7 +13,6 @@ import android.widget.Button;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
-
     public HomeFragment() {
         // Required empty public constructor
     }
