@@ -1,4 +1,4 @@
-package com.dicoding.myasynctask;
+package com.dicoding.picodiploma.myasynctask;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.dicoding.myasynctask;
+package com.dicoding.picodiploma.myasynctask;
 
 import org.junit.Test;
 

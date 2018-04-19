@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.3"
 
     defaultConfig {
-        applicationId "com.dicoding.myasynctask"
+        applicationId "com.dicoding.picodiploma.myasynctask"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1

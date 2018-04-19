@@ -1,4 +1,4 @@
-package com.dicoding.myasynctask;
+package com.dicoding.picodiploma.myasynctask;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
