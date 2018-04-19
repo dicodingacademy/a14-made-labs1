@@ -1,10 +1,15 @@
 package com.dicoding.myasynctask;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
     public static final String DEMO_ASYNC = "DemoAsync";
@@ -16,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvStatus = (TextView)findViewById(R.id.tv_status);
+        tvStatus = (TextView) findViewById(R.id.tv_status);
 
-        DemoAsync demoAsync = new DemoAsync();
+        DemoAsync demoAsync = new DemoAsync(tvStatus);
 
         // Execute asynctask dengan parameter string 'Halo Ini Demo AsyncTask'
         demoAsync.execute("Halo Ini Demo AsyncTask");
@@ -30,16 +35,27 @@ public class MainActivity extends AppCompatActivity {
      * 2. Progress, digunakan untuk publish informasi sudah sampai mana proses background berjalan
      * 3. Result, object yang dikirimkan ke onPostExecute / hasil dari proses doInBackground
      */
-    private class DemoAsync extends AsyncTask<String, Void, String> {
+    private static class DemoAsync extends AsyncTask<String, Void, String> {
+
+        // Penggunaan weakreference disarankan untuk menghindari memory leaks
+        WeakReference<TextView> tvStatus;
+
+        DemoAsync(TextView tvStatus) {
+            this.tvStatus = new WeakReference<>(tvStatus);
+        }
 
         /*
         onPreExecute digunakan untuk persiapan asynctask
         berjalan di Main Thread, bisa akses ke view karena masih di dalam Main Thread
          */
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            tvStatus.setText("status : onPreExecute");
+            TextView tvStatus = this.tvStatus.get();
+            if (tvStatus != null) {
+                tvStatus.setText("status : onPreExecute");
+            }
         }
 
         /*
@@ -50,9 +66,10 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             Log.d(DEMO_ASYNC, "status : doInBackground");
 
-            try{
+            // 5000 miliseconds = 5 detik
+            try {
                 Thread.sleep(5000);
-            }catch (Exception e){
+            } catch (Exception e) {
                 Log.d(DEMO_ASYNC, e.getMessage());
             }
 
@@ -70,7 +87,10 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            tvStatus.setText("status : onPostExecute : "+s);
+            TextView tvStatus = this.tvStatus.get();
+            if (tvStatus != null) {
+                tvStatus.setText("status : onPostExecute : " + s);
+            }
         }
     }
 
