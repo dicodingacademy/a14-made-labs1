@@ -1,18 +1,16 @@
 package com.dicoding.myasynctask;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String DEMO_ASYNC = "DemoAsync";
+    static final String DEMO_ASYNC = "DemoAsync";
 
     TextView tvStatus;
 
