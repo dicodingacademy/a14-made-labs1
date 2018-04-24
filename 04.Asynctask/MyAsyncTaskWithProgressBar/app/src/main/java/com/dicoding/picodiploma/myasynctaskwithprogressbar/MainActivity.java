@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button buttonStart;
     ProgressBar progressBar;
+    DemoAsync demoAsync;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,46 @@ public class MainActivity extends AppCompatActivity {
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Execute asynctask dengan parameter string 'Halo Ini Demo AsyncTask'
-                new DemoAsync(progressBar).execute();
+
+                // Pengecekan apakah demoasync null?
+                if (demoAsync != null) {
+
+                    // Ambil status dari async
+                    AsyncTask.Status status = demoAsync.getStatus();
+
+                    /**
+                     * Di sini dilakukan pengecekan status dari async
+                     * 1. PENDING, berarti asynctask belum berjalan
+                     * 2. RUNNING, berarti asynctask sedang berjalan
+                     * 3. FINISHED, berarti asynctask sudah selesai
+                     */
+
+                    switch (status) {
+                        case PENDING:
+                            // Jika PENDING, maka langsung jalankan asynctask
+                            demoAsync.execute();
+                            break;
+                        case RUNNING:
+                            // Jika RUNNING, maka infokan untuk tunggu sampai selesai
+                            Toast.makeText(MainActivity.this, "Async masih berjalan, silakan tunggu sampai selesai..", Toast.LENGTH_SHORT).show();
+                            break;
+                        case FINISHED:
+                            // Jika FINISHED, maka buat asynctask baru kemudian jalankkan
+                            // Perlu diingat bahwa asynctask bersifat fire & forget,
+                            // Fire & forget membatasi execute asynctask yang kedua kalinya, oleh karena itu perlu objek baru
+                            demoAsync = new DemoAsync(progressBar);
+                            demoAsync.execute();
+                            break;
+                    }
+                } else {
+
+                    // Buat async baru
+                    demoAsync = new DemoAsync(progressBar);
+
+                    // Execute asynctask dengan parameter string 'Halo Ini Demo AsyncTask'
+                    demoAsync.execute();
+                }
+
 
             }
         });
@@ -67,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Do nothing
+            // Reset progress dari 0
+            ProgressBar progressBar = this.progressBar.get();
+            progressBar.setProgress(0);
         }
 
         /*
