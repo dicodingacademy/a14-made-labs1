@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.dicoding.myjobscheduler", appContext.getPackageName());
+        assertEquals("com.dicoding.picodiploma.myjobscheduler", appContext.getPackageName());
     }
 }

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "26.0.3"
     defaultConfig {
-        applicationId "com.dicoding.myjobscheduler"
+        applicationId "com.dicoding.picodiploma.myjobscheduler"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1

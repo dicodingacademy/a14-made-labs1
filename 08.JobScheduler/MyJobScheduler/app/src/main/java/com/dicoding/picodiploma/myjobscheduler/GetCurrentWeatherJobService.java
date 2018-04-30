@@ -1,4 +1,4 @@
-package com.dicoding.myjobscheduler;
+package com.dicoding.picodiploma.myjobscheduler;
 
 import android.app.NotificationManager;
 import android.app.job.JobParameters;

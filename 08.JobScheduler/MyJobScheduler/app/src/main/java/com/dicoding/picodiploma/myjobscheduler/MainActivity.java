@@ -1,4 +1,4 @@
-package com.dicoding.myjobscheduler;
+package com.dicoding.picodiploma.myjobscheduler;
 
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -79,17 +79,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Periode interval sampai ke trigger
         Dalam milisecond, 1000ms = 1detik
         */
-        builder.setPeriodic(100);
+        builder.setPeriodic(180000);
 
-        JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        jobScheduler.schedule(builder.build());
-
+        JobScheduler scheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (scheduler != null) {
+            scheduler.schedule(builder.build());
+        }
         Toast.makeText(this, "Job Service started", Toast.LENGTH_SHORT).show();
     }
 
     private void cancelJob() {
-        JobScheduler tm = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        tm.cancel(JOB_ID);
+        JobScheduler scheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (scheduler != null) {
+            scheduler.cancel(JOB_ID);
+        }
         Toast.makeText(this, "Job Service canceled", Toast.LENGTH_SHORT).show();
     }
 
@@ -101,11 +104,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
 
-
-        for (JobInfo jobInfo : scheduler.getAllPendingJobs()) {
-            if (jobInfo.getId() == JOB_ID) {
-                isScheduled = true;
-                break;
+        if (scheduler != null) {
+            for (JobInfo jobInfo : scheduler.getAllPendingJobs()) {
+                if (jobInfo.getId() == JOB_ID) {
+                    isScheduled = true;
+                    break;
+                }
             }
         }
 
