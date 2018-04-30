@@ -71,7 +71,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void setOneTimeAlarm(Context context, String type, String date, String time, String message) {
 
         // Validasi inputan date dan time terlebih dahulu
-        if (!isDateValid(date, DATE_FORMAT) || !isDateValid(time, TIME_FORMAT)) return;
+        if (isDateInvalid(date, DATE_FORMAT) || isDateInvalid(time, TIME_FORMAT)) return;
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
@@ -102,7 +102,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void setRepeatingAlarm(Context context, String type, String time, String message) {
 
         // Validasi inputan waktu terlebih dahulu
-        if (!isDateValid(time, TIME_FORMAT)) return;
+        if (isDateInvalid(time, TIME_FORMAT)) return;
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
@@ -152,16 +152,15 @@ public class AlarmReceiver extends BroadcastReceiver {
     private String TIME_FORMAT = "HH:mm";
 
     // Metode ini digunakan untuk validasi date dan time
-    public boolean isDateValid(String date, String format) {
+    public boolean isDateInvalid(String date, String format) {
         try {
             DateFormat df = new SimpleDateFormat(format, Locale.getDefault());
             df.setLenient(false);
             df.parse(date);
-            return true;
-        } catch (ParseException e) {
             return false;
+        } catch (ParseException e) {
+            return true;
         }
     }
-
 
 }
