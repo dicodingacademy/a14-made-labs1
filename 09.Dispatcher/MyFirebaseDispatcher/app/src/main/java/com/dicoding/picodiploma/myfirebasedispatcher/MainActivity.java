@@ -1,4 +1,4 @@
-package com.ahmad.imaduddin.myfirebasedispatcher;
+package com.dicoding.picodiploma.myfirebasedispatcher;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String CITY = "Jakarta";
 
     /**
-     * method untuk menjalankan job
+     * Method untuk menjalankan job
      */
     public void startDispatcher() {
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * method untuk cancel job
+     * Method untuk cancel job
      */
     public void cancelDispatcher() {
 

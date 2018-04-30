@@ -1,4 +1,4 @@
-package com.ahmad.imaduddin.myfirebasedispatcher;
+package com.dicoding.picodiploma.myfirebasedispatcher;
 
 import org.junit.Test;
 
