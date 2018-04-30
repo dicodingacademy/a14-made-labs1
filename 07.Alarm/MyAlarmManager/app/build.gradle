@@ -4,8 +4,8 @@ android {
     compileSdkVersion 25
     buildToolsVersion "26.0.3"
     defaultConfig {
-        applicationId "com.dicoding.myalarmmanager"
-        minSdkVersion 15
+        applicationId "com.dicoding.picodiploma.myalarmmanager"
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:support-v4:25.4.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

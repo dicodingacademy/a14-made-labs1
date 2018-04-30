@@ -1,4 +1,4 @@
-package com.dicoding.myalarmmanager;
+package com.dicoding.picodiploma.myalarmmanager;
 
 import android.app.AlarmManager;
 import android.app.NotificationManager;
@@ -43,7 +43,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.ic_access_alarm_black_36dp)
+                .setSmallIcon(R.drawable.ic_access_time_black)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setColor(ContextCompat.getColor(context, android.R.color.transparent))
@@ -109,7 +109,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Toast.makeText(context, "Repeating alarm dibatalkan", Toast.LENGTH_SHORT).show();
     }
 
-    public boolean isAlarmSet(Context context, String type){
+    public boolean isAlarmSet(Context context, String type) {
         Intent intent = new Intent(context, AlarmReceiver.class);
         int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? NOTIF_ID_ONETIME : NOTIF_ID_REPEATING;
         boolean isSet = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE) != null;

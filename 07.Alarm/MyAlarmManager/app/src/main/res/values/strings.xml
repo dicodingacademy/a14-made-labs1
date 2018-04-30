@@ -8,4 +8,7 @@
     <string name="set_repeating_alarm">Set Repeating Alarm</string>
     <string name="batalkan_alarm">Batalkan Alarm</string>
     <string name="waktu_alarm">Waktu Alarm</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

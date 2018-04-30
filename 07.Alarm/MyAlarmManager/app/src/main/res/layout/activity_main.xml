@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.dicoding.myalarmmanager.MainActivity">
+    tools:context="com.dicoding.picodiploma.myalarmmanager.MainActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -22,50 +22,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_one_date"
+        <ImageButton
+            android:id="@+id/btn_once_date"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="..." />
+            android:src="@drawable/ic_date_range_black"
+            style="@style/Base.Widget.AppCompat.ImageButton"/>
 
         <TextView
-            android:id="@+id/tv_one_date"
+            android:id="@+id/tv_once_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/tanggal_alarm" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_one_time"
+        <ImageButton
+            android:id="@+id/btn_once_time"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="..." />
+            android:src="@drawable/ic_access_time_black" />
 
         <TextView
-            android:id="@+id/tv_one_time"
+            android:id="@+id/tv_once_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/waktu_alarm" />
     </LinearLayout>
 
     <EditText
-        android:id="@+id/edt_one_message"
+        android:id="@+id/edt_once_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:hint="@string/pesan_alarm" />
+        android:hint="@string/pesan_alarm"
+        android:inputType="text" />
 
     <Button
-        android:id="@+id/btn_set_one_alarm"
+        android:id="@+id/btn_set_once_alarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -82,19 +84,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_repeating_time"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="..." />
+            android:src="@drawable/ic_access_time_black" />
 
         <TextView
             android:id="@+id/tv_repeating_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/waktu_alarm" />
     </LinearLayout>
 
@@ -103,11 +105,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:hint="@string/pesan_alarm" />
+        android:hint="@string/pesan_alarm"
+        android:inputType="text" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
