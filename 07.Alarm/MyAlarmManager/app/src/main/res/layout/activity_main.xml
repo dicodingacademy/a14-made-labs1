@@ -27,10 +27,10 @@
 
         <ImageButton
             android:id="@+id/btn_once_date"
+            style="@style/Base.Widget.AppCompat.ImageButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_date_range_black"
-            style="@style/Base.Widget.AppCompat.ImageButton"/>
+            android:src="@drawable/ic_date_range_black" />
 
         <TextView
             android:id="@+id/tv_once_date"
@@ -115,17 +115,17 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_set_repeating_alarm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/set_repeating_alarm" />
-
-        <Button
             android:id="@+id/btn_cancel_repeating_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="@string/batalkan_alarm" />
+
+        <Button
+            android:id="@+id/btn_set_repeating_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/set_repeating_alarm" />
     </LinearLayout>
 </LinearLayout>

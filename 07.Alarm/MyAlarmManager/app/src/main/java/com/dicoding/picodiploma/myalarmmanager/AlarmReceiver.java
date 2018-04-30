@@ -13,7 +13,11 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class AlarmReceiver extends BroadcastReceiver {
     public static final String TYPE_ONE_TIME = "OneTimeAlarm";
@@ -21,8 +25,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     public static final String EXTRA_MESSAGE = "message";
     public static final String EXTRA_TYPE = "type";
 
-    private final int NOTIF_ID_ONETIME = 100;
-    private final int NOTIF_ID_REPEATING = 101;
+    // Siapkan 2 id untuk 2 macam alarm, onetime dna repeating
+    private final int ID_ONETIME = 100;
+    private final int ID_REPEATING = 101;
 
     public AlarmReceiver() {
     }
@@ -32,13 +37,19 @@ public class AlarmReceiver extends BroadcastReceiver {
         String type = intent.getStringExtra(EXTRA_TYPE);
         String message = intent.getStringExtra(EXTRA_MESSAGE);
 
-        String title = type.equalsIgnoreCase(TYPE_ONE_TIME) ? "One Time Alarm" : "Repeating Alarm";
-        int notifId = type.equalsIgnoreCase(TYPE_ONE_TIME) ? NOTIF_ID_ONETIME : NOTIF_ID_REPEATING;
+        String title = type.equalsIgnoreCase(TYPE_ONE_TIME) ? TYPE_ONE_TIME : TYPE_REPEATING;
+        int notifId = type.equalsIgnoreCase(TYPE_ONE_TIME) ? ID_ONETIME : ID_REPEATING;
 
-        Log.v("ON RECIEVE", title + " " + notifId);
-        showAlarmNotification(context, title, message, notifId);
+        showToast(context, title, message);
+
+        // showAlarmNotification(context, title, message, notifId);
     }
 
+    private void showToast(Context context, String title, String message) {
+        Toast.makeText(context, title + " : " + message, Toast.LENGTH_LONG).show();
+    }
+
+    // Gunakan metode ini untuk menampilkan notifikasi
     private void showAlarmNotification(Context context, String title, String message, int notifId) {
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -50,10 +61,18 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
                 .setSound(alarmSound);
 
-        notificationManagerCompat.notify(notifId, builder.build());
+        if (notificationManagerCompat != null) {
+            notificationManagerCompat.notify(notifId, builder.build());
+        }
     }
 
+    // Metode ini digunakan untuk menjalankan alarm one time
+
     public void setOneTimeAlarm(Context context, String type, String date, String time, String message) {
+
+        // Validasi inputan date dan time terlebih dahulu
+        if (!isDateValid(date, DATE_FORMAT) || !isDateValid(time, TIME_FORMAT)) return;
+
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(EXTRA_MESSAGE, message);
@@ -71,18 +90,24 @@ public class AlarmReceiver extends BroadcastReceiver {
         calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]));
         calendar.set(Calendar.SECOND, 0);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, NOTIF_ID_ONETIME, intent, 0);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, ID_ONETIME, intent, 0);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        }
 
         Toast.makeText(context, "One time alarm set up", Toast.LENGTH_SHORT).show();
     }
 
+    // Metode ini digunakan untuk menjalankan alarm repeating
     public void setRepeatingAlarm(Context context, String type, String time, String message) {
+
+        // Validasi inputan waktu terlebih dahulu
+        if (!isDateValid(time, TIME_FORMAT)) return;
+
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(EXTRA_MESSAGE, message);
         intent.putExtra(EXTRA_TYPE, type);
-        Log.e("REPEAT", time);
 
         String timeArray[] = time.split(":");
 
@@ -91,8 +116,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]));
         calendar.set(Calendar.SECOND, 0);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, NOTIF_ID_REPEATING, intent, 0);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0);
+        if (alarmManager != null) {
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        }
 
         Toast.makeText(context, "Repeating alarm set up", Toast.LENGTH_SHORT).show();
     }
@@ -101,19 +128,40 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void cancelAlarm(Context context, String type) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
-        int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? NOTIF_ID_ONETIME : NOTIF_ID_REPEATING;
+        int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? ID_ONETIME : ID_REPEATING;
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
         pendingIntent.cancel();
-        alarmManager.cancel(pendingIntent);
+
+        if (alarmManager != null) {
+            alarmManager.cancel(pendingIntent);
+        }
 
         Toast.makeText(context, "Repeating alarm dibatalkan", Toast.LENGTH_SHORT).show();
     }
 
+
+    // Gunakan metode ini untuk mengecek apakah alarm tersebut sudah terdaftar di alarm manager
     public boolean isAlarmSet(Context context, String type) {
         Intent intent = new Intent(context, AlarmReceiver.class);
-        int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? NOTIF_ID_ONETIME : NOTIF_ID_REPEATING;
-        boolean isSet = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE) != null;
+        int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? ID_ONETIME : ID_REPEATING;
 
-        return isSet;
+        return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE) != null;
     }
+
+    private String DATE_FORMAT = "yyyy-MM-dd";
+    private String TIME_FORMAT = "HH:mm";
+
+    // Metode ini digunakan untuk validasi date dan time
+    public boolean isDateValid(String date, String format) {
+        try {
+            DateFormat df = new SimpleDateFormat(format, Locale.getDefault());
+            df.setLenient(false);
+            df.parse(date);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
+
 }

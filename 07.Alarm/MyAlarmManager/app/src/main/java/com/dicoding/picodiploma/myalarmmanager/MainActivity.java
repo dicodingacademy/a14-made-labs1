@@ -96,14 +96,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_set_repeating_alarm:
                 String repeatTime = tvRepeatingTime.getText().toString();
                 String repeatMessage = edtRepeatingMessage.getText().toString();
-
                 alarmReceiver.setRepeatingAlarm(this, AlarmReceiver.TYPE_REPEATING,
                         repeatTime, repeatMessage);
                 break;
             case R.id.btn_cancel_repeating_alarm:
                 alarmReceiver.cancelAlarm(this, AlarmReceiver.TYPE_REPEATING);
                 break;
-
         }
     }
 
