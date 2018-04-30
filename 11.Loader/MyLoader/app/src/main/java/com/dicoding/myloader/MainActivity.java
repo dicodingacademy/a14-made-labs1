@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements
     private ContactAdapter mAdapter;
 
     private final int CONTACT_REQUEST_CODE = 101;
+    private final int CALL_REQUEST_CODE = 102;
     private final int CONTACT_LOAD = 110;
     private final int CONTACT_SELECT = 120;
 
@@ -112,9 +113,13 @@ public class MainActivity extends AppCompatActivity implements
                 contactNumber = data.getString(data.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             }
 
-            Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                    Uri.parse("tel:" + contactNumber));
-            startActivity(dialIntent);
+            if (PermissionManager.isGranted(this, Manifest.permission.CALL_PHONE)) {
+                Intent dialIntent = new Intent(Intent.ACTION_CALL,
+                        Uri.parse("tel:" + contactNumber));
+                startActivity(dialIntent);
+            } else {
+                PermissionManager.check(this, Manifest.permission.CALL_PHONE, CALL_REQUEST_CODE);
+            }
 
         }
     }
@@ -166,6 +171,14 @@ public class MainActivity extends AppCompatActivity implements
                     Toast.makeText(this, "Grant permission contact berhasil", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "Contact permission di tolak", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } else if (requestCode == CALL_REQUEST_CODE) {
+            if (grantResults.length > 0) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Call permission di berhasil", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Call permission di tolak", Toast.LENGTH_SHORT).show();
                 }
             }
         }

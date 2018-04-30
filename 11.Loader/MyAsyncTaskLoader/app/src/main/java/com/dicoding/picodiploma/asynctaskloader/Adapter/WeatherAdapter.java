@@ -1,4 +1,4 @@
-package com.dicoding.www.asynctaskloader.Adapter;
+package com.dicoding.picodiploma.asynctaskloader.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.dicoding.www.asynctaskloader.R;
-import com.dicoding.www.asynctaskloader.WeatherItems;
+import com.dicoding.picodiploma.asynctaskloader.R;
+import com.dicoding.picodiploma.asynctaskloader.WeatherItems;
 
 import java.util.ArrayList;
 
@@ -24,21 +24,23 @@ public class WeatherAdapter extends BaseAdapter {
 
     public WeatherAdapter(Context context) {
         this.context = context;
-        mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = LayoutInflater.from(context);
     }
 
-    public void setData(ArrayList<WeatherItems> items){
+    public void setData(ArrayList<WeatherItems> items) {
         mData = items;
         notifyDataSetChanged();
     }
+
     public void addItem(final WeatherItems item) {
         mData.add(item);
         notifyDataSetChanged();
     }
 
-    public void clearData(){
+    public void clearData() {
         mData.clear();
     }
+
     @Override
     public int getItemViewType(int position) {
         return 0;
@@ -53,7 +55,7 @@ public class WeatherAdapter extends BaseAdapter {
     public int getCount() {
         // Pengecekan null diperlukan agar tidak terjadi force close ketika datanya null
         // return 0 sehingga adapter tidak akan menampilkan apapun
-        if (mData == null)return 0;
+        if (mData == null) return 0;
 
         // Jika tidak null maka return banyaknya jumlah data yang ada
         return mData.size();
@@ -71,13 +73,13 @@ public class WeatherAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.weather_items, null);
-            holder.textViewNamaKota= (TextView)convertView.findViewById(R.id.textKota);
-            holder.textViewTemperature = (TextView)convertView.findViewById(R.id.textTemp);
-            holder.textViewDescription = (TextView)convertView.findViewById(R.id.textDesc);
+            holder.textViewNamaKota = (TextView) convertView.findViewById(R.id.textKota);
+            holder.textViewTemperature = (TextView) convertView.findViewById(R.id.textTemp);
+            holder.textViewDescription = (TextView) convertView.findViewById(R.id.textDesc);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

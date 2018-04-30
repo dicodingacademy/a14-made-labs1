@@ -1,4 +1,4 @@
-package com.dicoding.www.asynctaskloader;
+package com.dicoding.picodiploma.asynctaskloader;
 
 import org.json.JSONObject;
 
@@ -15,7 +15,8 @@ public class WeatherItems {
     private String currentWeather;
     private String description;
     private String temperature;
-    public  WeatherItems(JSONObject object){
+
+    public WeatherItems(JSONObject object) {
 
         try {
             int id = object.getInt("id");
@@ -32,7 +33,7 @@ public class WeatherItems {
             this.description = description;
             this.temperature = temperature;
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             e.printStackTrace();
 

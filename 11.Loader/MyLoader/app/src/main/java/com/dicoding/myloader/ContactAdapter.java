@@ -19,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContactAdapter extends CursorAdapter {
 
-    public ContactAdapter(Context context, Cursor c, boolean autoRequery) {
+    ContactAdapter(Context context, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
     }
 
@@ -30,22 +30,21 @@ public class ContactAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_row_contact, parent, false);
-        return view;
+        return LayoutInflater.from(context).inflate(R.layout.item_row_contact, parent, false);
     }
 
     @Override
     public void bindView(View view, Context context, final Cursor cursor) {
-        if (cursor != null){
-            TextView tvName = (TextView)view.findViewById(R.id.tv_item_name);
+        if (cursor != null) {
+            TextView tvName = (TextView) view.findViewById(R.id.tv_item_name);
             CircleImageView imgUser = (CircleImageView) view.findViewById(R.id.img_item_user);
-            RelativeLayout rlItem = (RelativeLayout)view.findViewById(R.id.rl_item);
+            RelativeLayout rlItem = (RelativeLayout) view.findViewById(R.id.rl_item);
 
             imgUser.setImageResource(R.drawable.ic_person_black_48dp);
             tvName.setText(cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME)));
-            if (cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI)) != null){
+            if (cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI)) != null) {
                 imgUser.setImageURI(Uri.parse(cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI))));
-            }else{
+            } else {
                 imgUser.setImageResource(R.drawable.ic_person_black_48dp);
             }
         }

@@ -1,4 +1,4 @@
-package com.dicoding.www.asynctaskloader;
+package com.dicoding.picodiploma.asynctaskloader;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
