@@ -1,14 +1,14 @@
 package com.dicoding.myserviceapp;
 
+import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-
-public class IntentService extends android.app.IntentService {
+public class CustomIntentService extends IntentService {
     public static String EXTRA_DURATION = "extra_duration";
     public static final String TAG = IntentService.class.getSimpleName();
 
-    public IntentService() {
+    public CustomIntentService() {
         super("IntentService");
     }
 

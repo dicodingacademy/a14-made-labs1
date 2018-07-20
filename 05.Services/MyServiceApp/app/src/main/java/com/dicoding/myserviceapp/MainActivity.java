@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_start_intent_service:
-                Intent mStartIntentService = new Intent(MainActivity.this, IntentService.class);
-                mStartIntentService.putExtra(IntentService.EXTRA_DURATION, 5000);
+                Intent mStartIntentService = new Intent(MainActivity.this, CustomIntentService.class);
+                mStartIntentService.putExtra(CustomIntentService.EXTRA_DURATION, 5000);
                 startService(mStartIntentService);
                 break;
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*
         Pemanggilan unbind di dalam ondestroy ditujukan untuk mencegah memory leaks dari bound services
          */
-        if (mServiceBound){
+        if (mServiceBound) {
             unbindService(mServiceConnection);
         }
     }

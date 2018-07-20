@@ -20,12 +20,12 @@
             android:name=".OriginService"
             android:enabled="true" />
         <service
-            android:name=".IntentService"
+            android:name=".CustomIntentService"
             android:exported="false" />
         <service
             android:name=".BoundService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
     </application>
 
 </manifest>
