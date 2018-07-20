@@ -1,10 +1,9 @@
 package com.nbs.mytestingapp;
 
+import android.app.Fragment;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnSetValue;
     TextView tvText;
     ImageView imgPreview;
@@ -28,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvText = (TextView)findViewById(R.id.tv_text);
-        btnSetValue = (Button)findViewById(R.id.btn_set_nilai);
-        imgPreview = (ImageView)findViewById(R.id.img_preview);
+        tvText = (TextView) findViewById(R.id.tv_text);
+        btnSetValue = (Button) findViewById(R.id.btn_set_nilai);
+        imgPreview = (ImageView) findViewById(R.id.img_preview);
 
         btnSetValue.setOnClickListener(this);
 
@@ -45,19 +44,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_set_nilai){
-            String name = "";
-            for (int i = 0; i < names.size(); i++){
-                name +=names.get(i)+"\n";
+        if (view.getId() == R.id.btn_set_nilai) {
+            StringBuilder name = new StringBuilder();
+            for (int i = 0; i < names.size(); i++) {
+                name.append(names.get(i)).append("\n");
             }
-            tvText.setText(name);
+            tvText.setText(name.toString());
 
             delayAsync = new DelayAsync();
             delayAsync.execute();
         }
     }
 
-    private class DelayAsync extends AsyncTask<Void, Void, Void>{
+
+    private static class DelayAsync extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (delayAsync != null){
-            if (delayAsync.getStatus().equals(AsyncTask.Status.RUNNING)){
+        if (delayAsync != null) {
+            if (delayAsync.getStatus().equals(AsyncTask.Status.RUNNING)) {
                 delayAsync.cancel(true);
             }
         }
