@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
                     // Ambil status dari async
                     AsyncTask.Status status = demoAsync.getStatus();
 
-                    /**
-                     * Di sini dilakukan pengecekan status dari async
-                     * 1. PENDING, berarti asynctask belum berjalan
-                     * 2. RUNNING, berarti asynctask sedang berjalan
-                     * 3. FINISHED, berarti asynctask sudah selesai
+                    /*
+                      Di sini dilakukan pengecekan status dari async
+                      1. PENDING, berarti asynctask belum berjalan
+                      2. RUNNING, berarti asynctask sedang berjalan
+                      3. FINISHED, berarti asynctask sudah selesai
                      */
 
                     switch (status) {
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     Thread.sleep(waitingTime);
 
                     // Update progress dengan memanggil
-                    onProgressUpdate(startingTime += waitingTime);
+                    publishProgress(startingTime += waitingTime);
 
                 } catch (Exception e) {
                     Log.d(DEMO_ASYNC, e.getMessage());
