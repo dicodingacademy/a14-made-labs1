@@ -1,5 +1,7 @@
 package com.dicoding.mydeepnavigation;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -7,29 +9,27 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity
-    implements View.OnClickListener{
+        implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnOpenDetail = (Button)findViewById(R.id.btn_open_detail);
+        Button btnOpenDetail = (Button) findViewById(R.id.btn_open_detail);
         btnOpenDetail.setOnClickListener(this);
 
-        DelayAsync delayAsync =  new DelayAsync();
+        DelayAsync delayAsync = new DelayAsync();
         delayAsync.execute();
 
     }
@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_open_detail){
+        if (v.getId() == R.id.btn_open_detail) {
             /*
             Intent yang akan dikirimkan ke halaman detail
              */
             Intent detailIntent = new Intent(MainActivity.this, DetailActivity.class);
             detailIntent.putExtra(DetailActivity.EXTRA_TITLE, "Hola, Good News");
-            detailIntent.putExtra(DetailActivity.EXTRA_MESSAGE, "Now you can learn android in dicoding");
+            detailIntent.putExtra(DetailActivity.EXTRA_MESSAGE, "Now you can learn android in Dicoding");
             startActivity(detailIntent);
         }
     }
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     Flow yang akan dijalankan
     Flow : Activity->AsyncTask->Notifikasi->HalamanDetail
      */
-    private class DelayAsync extends AsyncTask<Void, Void, Void>{
+    private class DelayAsync extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -74,12 +74,13 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Tampilan notifikasi dan ditambahkan intent untuk redirect ke halaman detail
+     *
      * @param context context activity
-     * @param title judul notifikasi
+     * @param title   judul notifikasi
      * @param message pesan notifikasi
      * @param notifId id dari notifikasi
      */
-    private void showNotification(Context context, String title, String message, int notifId){
+    private void showNotification(Context context, String title, String message, int notifId) {
         Intent notifDetailIntent = new Intent(this, DetailActivity.class);
         /*
         Intent yang akan dikirimkan ke halaman detail
@@ -104,6 +105,30 @@ public class MainActivity extends AppCompatActivity
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        notificationManagerCompat.notify(notifId, builder.build());
+        /*
+        Untuk android Oreo ke atas perlu menambahkan notification channel
+        Materi ini akan dibahas lebih lanjut di modul extended
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            String CHANNEL_ID = "Channel_1";
+            String CHANNEL_NAME = "Navigation channel";
+            /* Create or update. */
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+                    CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_DEFAULT);
+
+            channel.enableVibration(true);
+            channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
+
+            builder.setChannelId(CHANNEL_ID);
+
+            notificationManagerCompat.createNotificationChannel(channel);
+        }
+
+        Notification notification = builder.build();
+
+        notificationManagerCompat.notify(notifId, notification);
+
     }
 }

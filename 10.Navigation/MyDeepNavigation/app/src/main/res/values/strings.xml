@@ -3,7 +3,6 @@
     <string name="activity_home">Home</string>
     <string name="activity_detail">Detail</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title">Title</string>
     <string name="message">Message</string>
