@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-    implements View.OnClickListener{
+        implements View.OnClickListener {
 
     Button btnDownload;
     Button btnCheckPermission;
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnDownload = (Button)findViewById(R.id.btn_download);
-        btnCheckPermission = (Button)findViewById(R.id.btn_permission);
+        btnDownload = (Button) findViewById(R.id.btn_download);
+        btnCheckPermission = (Button) findViewById(R.id.btn_permission);
         btnDownload.setOnClickListener(this);
         btnCheckPermission.setOnClickListener(this);
 
@@ -43,14 +43,12 @@ public class MainActivity extends AppCompatActivity
         registerReceiver(downloadReceiver, downloadIntentFilter);
     }
 
-
-
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_download){
+        if (v.getId() == R.id.btn_download) {
             Intent downloadServiceIntent = new Intent(this, DownloadService.class);
             startService(downloadServiceIntent);
-        }else if (v.getId() == R.id.btn_permission){
+        } else if (v.getId() == R.id.btn_permission) {
             PermissionManager.check(this, Manifest.permission.RECEIVE_SMS, SMS_REQUEST_CODE);
         }
     }
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (downloadReceiver != null){
+        if (downloadReceiver != null) {
             unregisterReceiver(downloadReceiver);
         }
     }
@@ -66,12 +64,12 @@ public class MainActivity extends AppCompatActivity
     final int SMS_REQUEST_CODE = 101;
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults) {
-        if(requestCode == SMS_REQUEST_CODE){
-            if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this,"Grant permission accept sms berhasil",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this,"Sms receiver permission di tolak",Toast.LENGTH_SHORT).show();
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == SMS_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Grant permission accept sms berhasil", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Sms receiver permission di tolak", Toast.LENGTH_SHORT).show();
             }
         }
     }

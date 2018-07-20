@@ -29,9 +29,9 @@ public class SmsReceiver extends BroadcastReceiver {
                 final Object[] pdusObj = (Object[]) bundle.get("pdus");
 
                 if (pdusObj != null) {
-                    for (int i = 0; i < pdusObj.length; i++) {
+                    for (Object aPdusObj : pdusObj) {
 
-                        SmsMessage currentMessage = getIncomingMessage(pdusObj[i], bundle);
+                        SmsMessage currentMessage = getIncomingMessage(aPdusObj, bundle);
                         String senderNum = currentMessage.getDisplayOriginatingAddress();
 
                         String message = currentMessage.getDisplayMessageBody();
@@ -44,12 +44,12 @@ public class SmsReceiver extends BroadcastReceiver {
                         showSmsIntent.putExtra(SmsReceiverActivity.EXTRA_SMS_MESSAGE, message);
                         context.startActivity(showSmsIntent);
                     }
-                }else {
-                    Log.e(TAG, "onReceive: SMS is null" );
+                } else {
+                    Log.e(TAG, "onReceive: SMS is null");
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "Exception smsReceiver" +e);
+            Log.e(TAG, "Exception smsReceiver" + e);
 
         }
     }
