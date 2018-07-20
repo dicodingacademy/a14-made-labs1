@@ -105,6 +105,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        /*
+        Perhatikan bahwa ada 2 kode yaitu request_code dan result_code
+        request_code yaitu code yang dicantumkan ke dalam intent saat memulai
+        result_code yaitu code yang dicantumkan ke dalam intent saat intent-nya selesai
+         */
         if (requestCode == REQUEST_CODE) {
             if (resultCode == MoveForResultActivity.RESULT_CODE) {
                 int selectedValue = data.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0);
