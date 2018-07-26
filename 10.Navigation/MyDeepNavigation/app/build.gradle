@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "27.0.3"
     defaultConfig {
-        applicationId "com.dicoding.mydeepnavigation"
+        applicationId "com.dicoding.picodiploma.mydeepnavigation"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1

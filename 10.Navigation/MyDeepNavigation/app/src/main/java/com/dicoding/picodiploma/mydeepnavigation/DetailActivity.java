@@ -1,11 +1,7 @@
-package com.dicoding.mydeepnavigation;
+package com.dicoding.picodiploma.mydeepnavigation;
 
-import android.content.Intent;
-import android.support.v4.app.NavUtils;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
@@ -18,8 +14,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        tvTitle = (TextView)findViewById(R.id.tv_title);
-        tvMessage = (TextView)findViewById(R.id.tv_message);
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        tvMessage = (TextView) findViewById(R.id.tv_message);
 
         /*
         Ambil data dari intent yang dikirimkan oleh notifikasi

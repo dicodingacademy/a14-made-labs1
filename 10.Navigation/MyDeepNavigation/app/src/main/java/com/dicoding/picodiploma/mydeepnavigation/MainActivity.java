@@ -1,4 +1,4 @@
-package com.dicoding.mydeepnavigation;
+package com.dicoding.picodiploma.mydeepnavigation;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -18,8 +18,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.lang.ref.WeakReference;
+
 public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener {
+        implements View.OnClickListener, AsyncCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         Button btnOpenDetail = (Button) findViewById(R.id.btn_open_detail);
         btnOpenDetail.setOnClickListener(this);
 
-        DelayAsync delayAsync = new DelayAsync();
+        DelayAsync delayAsync = new DelayAsync(this);
         delayAsync.execute();
 
     }
@@ -48,11 +50,27 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    public void postAsync() {
+
+        // Setelah proses selesai maka tampilkan notification
+        showNotification(MainActivity.this, "Hi, how are you?",
+                "Do you have any plan this weekend? Let's hangout", 110);
+    }
+
     /*
     Flow yang akan dijalankan
     Flow : Activity->AsyncTask->Notifikasi->HalamanDetail
      */
-    private class DelayAsync extends AsyncTask<Void, Void, Void> {
+    private static class DelayAsync extends AsyncTask<Void, Void, Void> {
+
+        WeakReference<AsyncCallback> callback;
+
+        DelayAsync(AsyncCallback callback) {
+
+            this.callback = new WeakReference<>(callback);
+
+        }
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -67,8 +85,8 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            showNotification(MainActivity.this, "Hi, how are you?",
-                    "Do you have any plan this weekend? Let's hangout", 110);
+
+            callback.get().postAsync();
         }
     }
 
@@ -81,6 +99,9 @@ public class MainActivity extends AppCompatActivity
      * @param notifId id dari notifikasi
      */
     private void showNotification(Context context, String title, String message, int notifId) {
+        String CHANNEL_ID = "Channel_1";
+        String CHANNEL_NAME = "Navigation channel";
+
         Intent notifDetailIntent = new Intent(this, DetailActivity.class);
         /*
         Intent yang akan dikirimkan ke halaman detail
@@ -95,7 +116,7 @@ public class MainActivity extends AppCompatActivity
 
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.ic_email_black_24dp)
                 .setContentText(message)
@@ -111,8 +132,7 @@ public class MainActivity extends AppCompatActivity
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            String CHANNEL_ID = "Channel_1";
-            String CHANNEL_NAME = "Navigation channel";
+
             /* Create or update. */
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                     CHANNEL_NAME,
@@ -123,12 +143,21 @@ public class MainActivity extends AppCompatActivity
 
             builder.setChannelId(CHANNEL_ID);
 
-            notificationManagerCompat.createNotificationChannel(channel);
+            if (notificationManagerCompat != null) {
+                notificationManagerCompat.createNotificationChannel(channel);
+            }
         }
 
         Notification notification = builder.build();
 
-        notificationManagerCompat.notify(notifId, notification);
+        if (notificationManagerCompat != null) {
+            notificationManagerCompat.notify(notifId, notification);
+        }
 
     }
+}
+
+
+interface AsyncCallback {
+    void postAsync();
 }
