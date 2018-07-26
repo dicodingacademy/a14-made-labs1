@@ -36,7 +36,7 @@
             android:id="@+id/tv_once_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tanggal_alarm" />
+            android:text="@string/alarm_date" />
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +55,7 @@
             android:id="@+id/tv_once_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/waktu_alarm" />
+            android:text="@string/alarm_time" />
     </LinearLayout>
 
     <EditText
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:hint="@string/pesan_alarm"
+        android:hint="@string/alarm_message"
         android:inputType="text" />
 
     <Button
@@ -97,7 +97,7 @@
             android:id="@+id/tv_repeating_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/waktu_alarm" />
+            android:text="@string/alarm_time" />
     </LinearLayout>
 
     <EditText
@@ -105,7 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:hint="@string/pesan_alarm"
+        android:hint="@string/alarm_message"
         android:inputType="text" />
 
     <LinearLayout
@@ -119,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/batalkan_alarm" />
+            android:text="@string/cancel_alarm" />
 
         <Button
             android:id="@+id/btn_set_repeating_alarm"

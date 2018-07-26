@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">MyAlarmManager</string>
     <string name="one_time_alarm">One Time Alarm</string>
-    <string name="tanggal_alarm">Tanggal Alarm</string>
+    <string name="alarm_date">Tanggal Alarm</string>
     <string name="set_one_time_alarm">Set One Time Alarm</string>
-    <string name="pesan_alarm">Pesan Alarm</string>
+    <string name="alarm_message">Pesan Alarm</string>
     <string name="repeating_alarm">Repeating Alarm</string>
     <string name="set_repeating_alarm">Set Repeating Alarm</string>
-    <string name="batalkan_alarm">Batalkan Alarm</string>
-    <string name="waktu_alarm">Waktu Alarm</string>
+    <string name="cancel_alarm">Batalkan Alarm</string>
+    <string name="alarm_time">Waktu Alarm</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
