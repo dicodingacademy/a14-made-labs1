@@ -1,4 +1,4 @@
-package com.dicoding.myserviceapp;
+package com.dicoding.picodiploma.myserviceapp;
 
 import org.junit.Test;
 

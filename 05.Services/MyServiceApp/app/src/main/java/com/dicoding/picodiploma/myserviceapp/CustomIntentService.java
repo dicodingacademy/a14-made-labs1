@@ -1,4 +1,4 @@
-package com.dicoding.myserviceapp;
+package com.dicoding.picodiploma.myserviceapp;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -14,11 +14,12 @@ public class CustomIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.d(TAG, "onHandleIntent()");
+        Log.d(TAG, "onHandleIntent: Mulai.....");
         if (intent != null) {
             int duration = intent.getIntExtra(EXTRA_DURATION, 0);
             try {
                 Thread.sleep(duration);
+                Log.d(TAG, "onHandleIntent: Selesai.....");
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 Thread.currentThread().interrupt();

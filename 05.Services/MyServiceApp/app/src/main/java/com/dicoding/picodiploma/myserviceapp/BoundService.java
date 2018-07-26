@@ -1,13 +1,11 @@
-package com.dicoding.myserviceapp;
+package com.dicoding.picodiploma.myserviceapp;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.CountDownTimer;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.util.Log;
-import android.widget.Chronometer;
 
 public class BoundService extends Service {
 
@@ -24,7 +22,7 @@ public class BoundService extends Service {
         public void onTick(long l) {
 
             long elapsedTime = System.currentTimeMillis() - startTime;
-            Log.e(TAG, "onTick: " + elapsedTime);
+            Log.d(TAG, "onTick: " + elapsedTime);
         }
 
         @Override
@@ -40,7 +38,7 @@ public class BoundService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        Log.e(TAG, "onCreate: ");
+        Log.d(TAG, "onCreate: ");
         mTimer.start();
     }
 
@@ -49,7 +47,7 @@ public class BoundService extends Service {
      */
     @Override
     public IBinder onBind(Intent intent) {
-        Log.e(TAG, "onBind: ");
+        Log.d(TAG, "onBind: ");
         return mBinder;
     }
 
@@ -59,7 +57,7 @@ public class BoundService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy: ");
+        Log.d(TAG, "onDestroy: ");
         mTimer.cancel();
     }
 
@@ -68,7 +66,7 @@ public class BoundService extends Service {
      */
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.e(TAG, "onUnbind: ");
+        Log.d(TAG, "onUnbind: ");
         return super.onUnbind(intent);
     }
 
@@ -78,7 +76,7 @@ public class BoundService extends Service {
     @Override
     public void onRebind(Intent intent) {
         super.onRebind(intent);
-        Log.e(TAG, "onRebind: ");
+        Log.d(TAG, "onRebind: ");
     }
 
     public class MyBinder extends Binder {
