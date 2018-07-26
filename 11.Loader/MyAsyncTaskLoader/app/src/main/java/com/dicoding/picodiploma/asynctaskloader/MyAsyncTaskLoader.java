@@ -22,13 +22,13 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     private ArrayList<WeatherItems> mData;
     private boolean mHasResult = false;
 
-    private String mKumpulanKota;
+    private String cities;
 
-    MyAsyncTaskLoader(final Context context, String kumpulanKota) {
+    MyAsyncTaskLoader(final Context context, String cities) {
         super(context);
 
         onContentChanged();
-        this.mKumpulanKota = kumpulanKota;
+        this.cities = cities;
     }
 
     //Ketika data loading,
@@ -68,7 +68,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
 
         final ArrayList<WeatherItems> weatherItemses = new ArrayList<>();
         String url = "http://api.openweathermap.org/data/2.5/group?id=" +
-                mKumpulanKota + "&units=metric&appid=" + API_KEY;
+                cities + "&units=metric&appid=" + API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override

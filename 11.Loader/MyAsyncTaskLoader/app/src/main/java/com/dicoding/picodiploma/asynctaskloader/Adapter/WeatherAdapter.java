@@ -20,18 +20,27 @@ public class WeatherAdapter extends BaseAdapter {
 
     private ArrayList<WeatherItems> mData = new ArrayList<>();
     private LayoutInflater mInflater;
-    private Context context;
 
     public WeatherAdapter(Context context) {
-        this.context = context;
         mInflater = LayoutInflater.from(context);
     }
 
+    /**
+     * Gunakan method ini jika semua datanya akan diganti
+     *
+     * @param items kumpulan data baru yang akan mengganti semua data yang sudah ada
+     */
     public void setData(ArrayList<WeatherItems> items) {
-        mData = items;
+        mData.clear();
+        mData.addAll(items);
         notifyDataSetChanged();
     }
 
+    /**
+     * Gunakan method ini jika ada 1 data yang ditambahkan
+     *
+     * @param item data baru yang akan ditambahkan
+     */
     public void addItem(final WeatherItems item) {
         mData.add(item);
         notifyDataSetChanged();
@@ -53,11 +62,11 @@ public class WeatherAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        // Pengecekan null diperlukan agar tidak terjadi force close ketika datanya null
+        // Pengecekan null, diperlukan agar tidak terjadi force close ketika datanya null
         // return 0 sehingga adapter tidak akan menampilkan apapun
         if (mData == null) return 0;
 
-        // Jika tidak null maka return banyaknya jumlah data yang ada
+        // Jika tidak null, maka return banyaknya jumlah data yang ada
         return mData.size();
     }
 
@@ -84,7 +93,7 @@ public class WeatherAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.textViewNamaKota.setText(mData.get(position).getNama());
+        holder.textViewNamaKota.setText(mData.get(position).getName());
         holder.textViewTemperature.setText(mData.get(position).getTemperature());
         holder.textViewDescription.setText(mData.get(position).getDescription());
         return convertView;

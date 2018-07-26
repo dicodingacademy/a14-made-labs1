@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     ListView listView;
     WeatherAdapter adapter;
-    EditText editKota;
-    Button buttonCari;
+    EditText edtCity;
+    Button btnSearch;
 
     static final String EXTRAS_CITY = "EXTRAS_CITY";
 
@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         listView.setAdapter(adapter);
 
-        editKota = (EditText) findViewById(R.id.edit_kota);
-        buttonCari = (Button) findViewById(R.id.btn_kota);
+        edtCity = (EditText) findViewById(R.id.edit_kota);
+        btnSearch = (Button) findViewById(R.id.btn_kota);
 
-        buttonCari.setOnClickListener(myListener);
+        btnSearch.setOnClickListener(myListener);
 
-        String kota = editKota.getText().toString();
+        String kota = edtCity.getText().toString();
         Bundle bundle = new Bundle();
         bundle.putString(EXTRAS_CITY, kota);
 
@@ -51,21 +51,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<ArrayList<WeatherItems>> onCreateLoader(int id, Bundle args) {
 
-        String kumpulanKota = "";
+        String cities = "";
         if (args != null) {
-            kumpulanKota = args.getString(EXTRAS_CITY);
+            cities = args.getString(EXTRAS_CITY);
         }
 
-        return new MyAsyncTaskLoader(this, kumpulanKota);
+        return new MyAsyncTaskLoader(this, cities);
     }
 
-    //Fungsi ini dipanggil ketika proses load sudah selesai
+    // Fungsi ini dipanggil ketika proses load sudah selesai
     @Override
     public void onLoadFinished(Loader<ArrayList<WeatherItems>> loader, ArrayList<WeatherItems> data) {
         adapter.setData(data);
     }
 
-    //Fungsi ini dipanggil ketika loader direset
+    // Fungsi ini dipanggil ketika loader direset
     @Override
     public void onLoaderReset(Loader<ArrayList<WeatherItems>> loader) {
         adapter.setData(null);
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     View.OnClickListener myListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String kota = editKota.getText().toString();
+            String kota = edtCity.getText().toString();
 
             // Jika edit text-nya kosong maka do nothing
             if (TextUtils.isEmpty(kota)) return;

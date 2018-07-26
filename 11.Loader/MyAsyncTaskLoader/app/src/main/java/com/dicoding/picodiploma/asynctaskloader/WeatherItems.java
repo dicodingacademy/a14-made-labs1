@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
 public class WeatherItems {
 
     private int id;
-    private String nama;
+    private String name;
     private String currentWeather;
     private String description;
     private String temperature;
@@ -28,7 +28,7 @@ public class WeatherItems {
             double tempInCelcius = tempInKelvin - 273;
             String temperature = new DecimalFormat("##.##").format(tempInCelcius);
             this.id = id;
-            this.nama = name;
+            this.name = name;
             this.currentWeather = currentWeather;
             this.description = description;
             this.temperature = temperature;
@@ -48,12 +48,12 @@ public class WeatherItems {
         this.id = id;
     }
 
-    public String getNama() {
-        return nama;
+    public String getName() {
+        return name;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCurrentWeather() {
