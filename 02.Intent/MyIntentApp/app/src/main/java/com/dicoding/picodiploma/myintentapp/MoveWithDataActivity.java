@@ -1,7 +1,7 @@
-package com.dicoding.associate.myintentapp;
+package com.dicoding.picodiploma.myintentapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class MoveWithDataActivity extends AppCompatActivity {

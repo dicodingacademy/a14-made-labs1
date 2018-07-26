@@ -1,4 +1,4 @@
-package com.dicoding.associate.myintentapp;
+package com.dicoding.picodiploma.myintentapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.dicoding.associate.myintentapp;
+package com.dicoding.picodiploma.myintentapp;
 
 import android.os.Parcel;
 import android.os.Parcelable;

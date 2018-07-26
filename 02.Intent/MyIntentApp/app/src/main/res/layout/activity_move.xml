@@ -7,9 +7,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.dicoding.associate.myintentapp.MoveActivity">
+    tools:context="com.dicoding.picodiploma.myintentapp.MoveActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ini MoveActivity"/>
+        android:text="@string/this_is_moveactivity" />
 </RelativeLayout>

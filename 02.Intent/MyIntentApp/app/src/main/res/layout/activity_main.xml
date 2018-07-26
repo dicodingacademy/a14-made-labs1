@@ -3,52 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="com.dicoding.associate.myintentapp.MainActivity">
+    tools:context="com.dicoding.picodiploma.myintentapp.MainActivity">
+
     <Button
         android:id="@+id/btn_move_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pindah Activity"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/move_activity" />
 
     <Button
         android:id="@+id/btn_move_activity_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pindah Activity dengan Data"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/move_with_data" />
 
     <Button
         android:id="@+id/btn_move_activity_object"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pindah Activity dengan Object"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/move_with_object" />
 
     <Button
         android:id="@+id/btn_dial_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dial a Number"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/dial_number" />
 
     <Button
         android:id="@+id/btn_move_for_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pindah Activity untuk Result"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/move_with_result" />
 
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:gravity="center"
-        android:text="Hasil dari Activity"/>
+        android:text="@string/result_from_activity"
+        android:textSize="24sp" />
 </LinearLayout>

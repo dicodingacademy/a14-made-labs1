@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.dicoding.associate.myintentapp"
+        applicationId "com.dicoding.picodiploma.myintentapp"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
