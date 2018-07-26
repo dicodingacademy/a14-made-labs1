@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.dicoding.associate.myflexiblefragment.DetailCategoryFragment">
+    tools:context="com.dicoding.picodiploma.myflexiblefragment.DetailCategoryFragment">
 
     <TextView
         android:id="@+id/tv_category_name"
@@ -24,12 +24,12 @@
         android:id="@+id/btn_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ke_halaman_profile_activity" />
+        android:text="@string/to_profile" />
 
     <Button
         android:id="@+id/btn_show_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tampilkan_sebuah_dialog" />
+        android:text="@string/show_dialog" />
 
 </LinearLayout>

@@ -7,10 +7,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.dicoding.associate.myflexiblefragment.ProfileActivity">
+    tools:context="com.dicoding.picodiploma.myflexiblefragment.ProfileActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ini_profile_activity" />
+        android:text="@string/this_profile" />
 </RelativeLayout>

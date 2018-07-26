@@ -1,4 +1,4 @@
-package com.dicoding.associate.myflexiblefragment;
+package com.dicoding.picodiploma.myflexiblefragment;
 
 
 import android.os.Bundle;

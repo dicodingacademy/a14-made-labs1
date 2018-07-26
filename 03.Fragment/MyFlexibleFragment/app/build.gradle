@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.dicoding.associate.myflexiblefragment"
+        applicationId "com.dicoding.picodiploma.myflexiblefragment"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
