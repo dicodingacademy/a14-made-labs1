@@ -1,4 +1,4 @@
-package com.dicoding.myloader;
+package com.dicoding.picodiploma.myloader;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.dicoding.myloader", appContext.getPackageName());
+        assertEquals("com.dicoding.picodiploma.myloader", appContext.getPackageName());
     }
 }

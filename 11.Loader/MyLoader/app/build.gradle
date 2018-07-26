@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.dicoding.myloader"
+        applicationId "com.dicoding.picodiploma.myloader"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

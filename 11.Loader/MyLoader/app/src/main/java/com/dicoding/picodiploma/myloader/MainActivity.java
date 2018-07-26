@@ -1,6 +1,7 @@
-package com.dicoding.myloader;
+package com.dicoding.picodiploma.myloader;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements
         return mCursorLoader;
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         Log.d(TAG, "LoadFinished");
@@ -168,17 +170,17 @@ public class MainActivity extends AppCompatActivity implements
             if (grantResults.length > 0) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getSupportLoaderManager().initLoader(CONTACT_LOAD, null, this);
-                    Toast.makeText(this, "Grant permission contact berhasil", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Contact permission diterima", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Contact permission di tolak", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Contact permission ditolak", Toast.LENGTH_SHORT).show();
                 }
             }
         } else if (requestCode == CALL_REQUEST_CODE) {
             if (grantResults.length > 0) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "Call permission di berhasil", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Call permission diterima", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Call permission di tolak", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Call permission ditolak", Toast.LENGTH_SHORT).show();
                 }
             }
         }

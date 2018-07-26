@@ -1,4 +1,4 @@
-package com.dicoding.myloader;
+package com.dicoding.picodiploma.myloader;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;

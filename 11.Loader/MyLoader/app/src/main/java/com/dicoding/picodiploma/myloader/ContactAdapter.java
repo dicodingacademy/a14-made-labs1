@@ -1,4 +1,4 @@
-package com.dicoding.myloader;
+package com.dicoding.picodiploma.myloader;
 
 import android.content.Context;
 import android.database.Cursor;
