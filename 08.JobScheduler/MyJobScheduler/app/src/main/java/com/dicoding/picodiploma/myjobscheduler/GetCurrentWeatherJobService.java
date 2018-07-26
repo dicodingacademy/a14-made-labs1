@@ -36,13 +36,12 @@ public class GetCurrentWeatherJobService extends JobService {
 
     final String CITY = "Jakarta";
 
-
     /**
      * onStartJob berjalan di dalam mainthread, return true jika ada proses yang membuat thread baru
      */
     @Override
     public boolean onStartJob(JobParameters params) {
-        Log.d(TAG, "onStartJob() Executed");
+        Log.d(TAG, "onStartJob()");
         getCurrentWeather(params);
 
         return true;
@@ -54,7 +53,7 @@ public class GetCurrentWeatherJobService extends JobService {
      */
     @Override
     public boolean onStopJob(JobParameters params) {
-        Log.d(TAG, "onStopJob() Executed");
+        Log.d(TAG, "onStopJob()");
         return true;
     }
 
@@ -64,7 +63,7 @@ public class GetCurrentWeatherJobService extends JobService {
      * @param job parameters
      */
     private void getCurrentWeather(final JobParameters job) {
-        Log.d(TAG, "Running");
+        Log.d(TAG, "getCurrentWeather: Mulai.....");
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "http://api.openweathermap.org/data/2.5/weather?q=" + CITY + "&appid=" + APP_ID;
         Log.e(TAG, "getCurrentWeather: " + url);
@@ -75,6 +74,11 @@ public class GetCurrentWeatherJobService extends JobService {
                 Log.d(TAG, result);
                 try {
                     JSONObject responseObject = new JSONObject(result);
+
+                    /*
+                    Perlu diperhatikan bahwa angka 0 pada getJSONObject menunjukkan index ke-0
+                    Jika data yang ingin kita ambil ada lebih dari satu maka gunakanlah looping
+                     */
                     String currentWeather = responseObject.getJSONArray("weather").getJSONObject(0).getString("main");
                     String description = responseObject.getJSONArray("weather").getJSONObject(0).getString("description");
                     double tempInKelvin = responseObject.getJSONObject("main").getDouble("temp");
@@ -88,9 +92,12 @@ public class GetCurrentWeatherJobService extends JobService {
 
                     showNotification(getApplicationContext(), title, message, notifId);
 
+                    Log.d(TAG, "onSuccess: Selesai.....");
                     // ketika proses selesai, maka perlu dipanggil jobFinished dengan parameter false;
                     jobFinished(job, false);
+
                 } catch (Exception e) {
+                    Log.d(TAG, "onSuccess: Gagal.....");
                     // ketika terjadi error, maka jobFinished diset dengan parameter true. Yang artinya job perlu di reschedule
                     jobFinished(job, true);
                     e.printStackTrace();
@@ -99,6 +106,7 @@ public class GetCurrentWeatherJobService extends JobService {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.d(TAG, "onFailure: Gagal.....");
                 // ketika proses gagal, maka jobFinished diset dengan parameter true. Yang artinya job perlu di reschedule
                 jobFinished(job, true);
             }
@@ -115,9 +123,12 @@ public class GetCurrentWeatherJobService extends JobService {
      * @param notifId id notifikasi
      */
     private void showNotification(Context context, String title, String message, int notifId) {
+        String CHANNEL_ID = "Channel_1";
+        String CHANNEL_NAME = "Job scheduler channel";
+
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.ic_replay_30_black_24dp)
                 .setContentText(message)
@@ -131,8 +142,7 @@ public class GetCurrentWeatherJobService extends JobService {
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            String CHANNEL_ID = "Channel_1";
-            String CHANNEL_NAME = "Job scheduler channel";
+
             /* Create or update. */
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                     CHANNEL_NAME,
@@ -143,12 +153,16 @@ public class GetCurrentWeatherJobService extends JobService {
 
             builder.setChannelId(CHANNEL_ID);
 
-            notificationManagerCompat.createNotificationChannel(channel);
+            if (notificationManagerCompat != null) {
+                notificationManagerCompat.createNotificationChannel(channel);
+            }
         }
 
         Notification notification = builder.build();
 
-        notificationManagerCompat.notify(notifId, notification);
+        if (notificationManagerCompat != null) {
+            notificationManagerCompat.notify(notifId, notification);
+        }
 
     }
 }
