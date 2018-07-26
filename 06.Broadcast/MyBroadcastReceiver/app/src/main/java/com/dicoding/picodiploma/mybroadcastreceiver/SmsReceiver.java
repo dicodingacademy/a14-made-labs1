@@ -1,4 +1,4 @@
-package com.dicoding.mybroadcastreceiver;
+package com.dicoding.picodiploma.mybroadcastreceiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -26,6 +26,9 @@ public class SmsReceiver extends BroadcastReceiver {
 
             if (bundle != null) {
 
+                /*
+                Bundle dengan key "pdus" sudah merupakan standar yang digunakan oleh system
+                 */
                 final Object[] pdusObj = (Object[]) bundle.get("pdus");
 
                 if (pdusObj != null) {
@@ -36,7 +39,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
                         String message = currentMessage.getDisplayMessageBody();
 
-                        Log.i(TAG, "senderNum: " + senderNum + "; message: " + message);
+                        Log.d(TAG, "senderNum: " + senderNum + "; message: " + message);
 
                         Intent showSmsIntent = new Intent(context, SmsReceiverActivity.class);
                         showSmsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -45,11 +48,11 @@ public class SmsReceiver extends BroadcastReceiver {
                         context.startActivity(showSmsIntent);
                     }
                 } else {
-                    Log.e(TAG, "onReceive: SMS is null");
+                    Log.d(TAG, "onReceive: SMS is null");
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "Exception smsReceiver" + e);
+            Log.d(TAG, "Exception smsReceiver" + e);
 
         }
     }

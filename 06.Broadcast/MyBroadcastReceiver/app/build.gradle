@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.dicoding.mybroadcastreceiver"
+        applicationId "com.dicoding.picodiploma.mybroadcastreceiver"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1

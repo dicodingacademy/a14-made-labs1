@@ -9,17 +9,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.dicoding.mybroadcastreceiver.MainActivity">
+    tools:context="com.dicoding.picodiploma.mybroadcastreceiver.MainActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ini_aplikasi_sms_receiver"
+        android:text="@string/this_sms_receiver_app"
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     <Button
         android:id="@+id/btn_download"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/download_a_file"/>
+        android:text="@string/download_file"/>
 
     <Button
         android:id="@+id/btn_permission"

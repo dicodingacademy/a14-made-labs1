@@ -1,4 +1,4 @@
-package com.dicoding.mybroadcastreceiver;
+package com.dicoding.picodiploma.mybroadcastreceiver;
 
 import org.junit.Test;
 

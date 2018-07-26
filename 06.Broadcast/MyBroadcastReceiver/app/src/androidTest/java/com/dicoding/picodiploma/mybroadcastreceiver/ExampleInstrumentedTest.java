@@ -1,4 +1,4 @@
-package com.dicoding.mybroadcastreceiver;
+package com.dicoding.picodiploma.mybroadcastreceiver;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.dicoding.mybroadcastreceiver", appContext.getPackageName());
+        assertEquals("com.dicoding.picodiploma.mybroadcastreceiver", appContext.getPackageName());
     }
 }

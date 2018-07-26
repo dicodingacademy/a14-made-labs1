@@ -1,4 +1,4 @@
-package com.dicoding.mybroadcastreceiver;
+package com.dicoding.picodiploma.mybroadcastreceiver;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -14,9 +14,9 @@ import android.support.v4.app.ActivityCompat;
  * grant permission secara run-time diharuskan untuk permission yang termasuk dalam kategori dangerous
  */
 public class PermissionManager {
-    public static void check(Activity activity, String permission, int requestCode){
+    public static void check(Activity activity, String permission, int requestCode) {
         if (ActivityCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity,new String[]{permission},requestCode);
+            ActivityCompat.requestPermissions(activity, new String[]{permission}, requestCode);
         }
     }
 }
