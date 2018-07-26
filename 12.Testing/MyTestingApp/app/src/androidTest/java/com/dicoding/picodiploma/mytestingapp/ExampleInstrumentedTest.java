@@ -1,4 +1,4 @@
-package com.example.dicoding.myunittesting;
+package com.nbs.mytestingapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.dicoding.myunittesting", appContext.getPackageName());
+        assertEquals("com.dicoding.picodiploma.mytestingapp", appContext.getPackageName());
     }
 }

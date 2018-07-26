@@ -1,4 +1,4 @@
-package com.example.dicoding.myunittesting;
+package com.dicoding.picodiploma.myunittesting;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +35,7 @@ public class MainPresenterTest {
         double volume = presenter.volume(2, 8, 1);
         assertEquals(16, volume, 0.0001);
     }
+
     @Test
     public void testVolumeWithDoubleInput() throws Exception {
         double volume = presenter.volume(2.3, 8.1, 2.9);
@@ -44,12 +45,13 @@ public class MainPresenterTest {
     @Test
     public void testVolumeWithZeroInput() throws Exception {
         double volume = presenter.volume(0, 0, 0);
-        assertEquals(0.0, volume , 0.0001);
+        assertEquals(0.0, volume, 0.0001);
     }
+
     @Test
     public void testHitungVolume() throws Exception {
         presenter.hitungVolume(11.1, 2.2, 1);
-        verify(view).tampilVolume(any(MainModel.class));
+        verify(view).showVolume(any(MainModel.class));
     }
 
 }

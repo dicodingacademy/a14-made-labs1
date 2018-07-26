@@ -1,6 +1,6 @@
-package com.nbs.mytestingapp;
+package com.dicoding.picodiploma.mytestingapp;
 
-import android.app.Fragment;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         tvText = (TextView) findViewById(R.id.tv_text);
-        btnSetValue = (Button) findViewById(R.id.btn_set_nilai);
+        btnSetValue = (Button) findViewById(R.id.btn_set_value);
         imgPreview = (ImageView) findViewById(R.id.img_preview);
 
         btnSetValue.setOnClickListener(this);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_set_nilai) {
+        if (view.getId() == R.id.btn_set_value) {
             StringBuilder name = new StringBuilder();
             for (int i = 0; i < names.size(); i++) {
                 name.append(names.get(i)).append("\n");

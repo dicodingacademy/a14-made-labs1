@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">MyTestingApp</string>
-    <string name="set_nilai">Set Nilai</string>
+    <string name="set_value">Set Nilai</string>
 </resources>

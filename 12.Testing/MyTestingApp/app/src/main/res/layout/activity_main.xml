@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.nbs.mytestingapp.MainActivity">
+    tools:context="com.dicoding.picodiploma.mytestingapp.MainActivity">
 
     <TextView
         android:id="@+id/tv_text"
@@ -17,16 +17,16 @@
         android:text="Hello World!" />
 
     <Button
-        android:id="@+id/btn_set_nilai"
+        android:id="@+id/btn_set_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_text"
-        android:text="@string/set_nilai"/>
+        android:text="@string/set_value"/>
 
     <ImageView
         android:id="@+id/img_preview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_set_nilai"/>
+        android:layout_below="@id/btn_set_value"/>
 
 </RelativeLayout>

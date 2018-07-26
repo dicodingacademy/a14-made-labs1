@@ -1,4 +1,4 @@
-package com.example.dicoding.myunittesting;
+package com.dicoding.picodiploma.myunittesting;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void tampilVolume(MainModel model) {
+    public void showVolume(MainModel model) {
         tvResult.setText(String.valueOf(model.getVolume()));
     }
 }
