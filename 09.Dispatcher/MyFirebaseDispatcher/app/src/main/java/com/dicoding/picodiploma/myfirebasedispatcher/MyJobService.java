@@ -7,6 +7,7 @@ import android.content.Context;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -65,7 +66,18 @@ public class MyJobService extends JobService {
      */
     private void getCurrentWeather(final JobParameters job) {
 
-        String city = job.getExtras().getString(EXTRAS_CITY);
+        Bundle extras = job.getExtras();
+
+        // Lakukan pengecekan terlebih dahulu terhadap parameter job
+        if (extras == null) {
+            jobFinished(job, false);
+            return;
+        } else if (extras.isEmpty()) {
+            jobFinished(job, false);
+            return;
+        }
+
+        String city = extras.getString(EXTRAS_CITY);
 
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APP_ID;
@@ -116,9 +128,12 @@ public class MyJobService extends JobService {
      * @param notifId id notifikasi
      */
     private void showNotification(Context context, String title, String message, int notifId) {
+        String CHANNEL_ID = "Channel_1";
+        String CHANNEL_NAME = "Job service channel";
+
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.ic_replay_30_black_24dp)
                 .setContentText(message)
@@ -133,8 +148,6 @@ public class MyJobService extends JobService {
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            String CHANNEL_ID = "Channel_1";
-            String CHANNEL_NAME = "Job service channel";
             /* Create or update. */
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                     CHANNEL_NAME,
@@ -145,12 +158,16 @@ public class MyJobService extends JobService {
 
             builder.setChannelId(CHANNEL_ID);
 
-            notificationManagerCompat.createNotificationChannel(channel);
+            if (notificationManagerCompat != null) {
+                notificationManagerCompat.createNotificationChannel(channel);
+            }
         }
 
         Notification notification = builder.build();
 
-        notificationManagerCompat.notify(notifId, notification);
+        if (notificationManagerCompat != null) {
+            notificationManagerCompat.notify(notifId, notification);
+        }
     }
 
 }
