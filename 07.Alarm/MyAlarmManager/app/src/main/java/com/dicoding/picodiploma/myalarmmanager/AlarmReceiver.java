@@ -56,9 +56,12 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     // Gunakan metode ini untuk menampilkan notifikasi
     private void showAlarmNotification(Context context, String title, String message, int notifId) {
+        String CHANNEL_ID = "Channel_1";
+        String CHANNEL_NAME = "AlarmManager channel";
+
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_access_time_black)
                 .setContentTitle(title)
                 .setContentText(message)
@@ -72,8 +75,6 @@ public class AlarmReceiver extends BroadcastReceiver {
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            String CHANNEL_ID = "Channel_1";
-            String CHANNEL_NAME = "AlarmManager channel";
             /* Create or update. */
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                     CHANNEL_NAME,
@@ -84,12 +85,16 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             builder.setChannelId(CHANNEL_ID);
 
-            notificationManagerCompat.createNotificationChannel(channel);
+            if (notificationManagerCompat != null) {
+                notificationManagerCompat.createNotificationChannel(channel);
+            }
         }
 
         Notification notification = builder.build();
 
-        notificationManagerCompat.notify(notifId, notification);
+        if (notificationManagerCompat != null) {
+            notificationManagerCompat.notify(notifId, notification);
+        }
 
     }
 
