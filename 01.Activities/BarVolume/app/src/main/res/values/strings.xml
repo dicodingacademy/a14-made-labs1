@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">BarVolume</string>
-    <string name="lebar">Lebar</string>
-    <string name="tinggi">Tinggi</string>
-    <string name="hitung">Hitung</string>
-    <string name="hasil">Hasil</string>
-    <string name="panjang">Panjang</string>
+    <string name="width">Lebar</string>
+    <string name="height">Tinggi</string>
+    <string name="calculate">Hitung</string>
+    <string name="result">Hasil</string>
+    <string name="length">Panjang</string>
 </resources>

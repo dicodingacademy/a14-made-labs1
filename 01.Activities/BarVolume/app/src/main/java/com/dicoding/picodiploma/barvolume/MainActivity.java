@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity
     Button btnCalculate;
     TextView tvResult;
 
-    private static String STATE_HASIL = "state_hasil";
+    private static String STATE_RESULT = "state_result";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity
         btnCalculate.setOnClickListener(this);
 
         if (savedInstanceState != null) {
-            String hasil = savedInstanceState.getString(STATE_HASIL);
-            tvResult.setText(hasil);
+            String result = savedInstanceState.getString(STATE_RESULT);
+            tvResult.setText(result);
         }
     }
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
 
         super.onSaveInstanceState(outState);
 
-        outState.putString(STATE_HASIL, tvResult.getText().toString());
+        outState.putString(STATE_RESULT, tvResult.getText().toString());
     }
 
     @Override
