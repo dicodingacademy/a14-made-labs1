@@ -52,11 +52,11 @@ public class MainActivity extends AppCompatActivity
 
             boolean isEmptyFields = false;
             boolean isInvalidDouble = false;
-
+            
             if (TextUtils.isEmpty(length)) {
                 isEmptyFields = true;
                 edtLength.setError("Field ini tidak boleh kosong");
-            } else if (isDouble(length)) {
+            } else if (!isDouble(length)) {
                 isInvalidDouble = true;
                 edtLength.setError("Field ini harus berupa nomer yang valid");
             }
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
             if (TextUtils.isEmpty(width)) {
                 isEmptyFields = true;
                 edtWidth.setError("Field ini tidak boleh kosong");
-            } else if (isDouble(width)) {
+            } else if (!isDouble(width)) {
                 isInvalidDouble = true;
                 edtWidth.setError("Field ini harus berupa nomer yang valid");
             }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
             if (TextUtils.isEmpty(height)) {
                 isEmptyFields = true;
                 edtHeight.setError("Field ini tidak boleh kosong");
-            } else if (isDouble(height)) {
+            } else if (!isDouble(height)) {
                 isInvalidDouble = true;
                 edtHeight.setError("Field ini harus berupa nomer yang valid");
             }
@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity
     boolean isDouble(String str) {
         try {
             Double.parseDouble(str);
-            return false;
-        } catch (NumberFormatException e) {
             return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }

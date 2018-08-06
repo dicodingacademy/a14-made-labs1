@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.dicoding.associate.barvolume"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
