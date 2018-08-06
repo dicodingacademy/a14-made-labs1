@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity
     Button btnCalculate;
     TextView tvResult;
 
-    private static String STATE_RESULT = "state_result";
+    private static final String STATE_RESULT = "state_result";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
 
             boolean isEmptyFields = false;
             boolean isInvalidDouble = false;
-            
+
             if (TextUtils.isEmpty(length)) {
                 isEmptyFields = true;
                 edtLength.setError("Field ini tidak boleh kosong");
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity
                 isInvalidDouble = true;
                 edtHeight.setError("Field ini harus berupa nomer yang valid");
             }
-
 
             if (!isEmptyFields && !isInvalidDouble) {
                 double l = Double.parseDouble(length);
