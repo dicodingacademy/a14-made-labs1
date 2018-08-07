@@ -50,6 +50,7 @@ public class MoveForResultActivity extends AppCompatActivity
 
                 /*
                 Intent ini digunakan untuk mengirimkan kembali ke activity induk
+                Perhatikan bahwa kita mencantumkan RESULT_CODE ke dalam metode setResult
                  */
 
                 Intent resultIntent = new Intent();

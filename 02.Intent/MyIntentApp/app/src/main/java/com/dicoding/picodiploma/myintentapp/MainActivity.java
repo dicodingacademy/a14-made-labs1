@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_move_for_result:
                 /*
                 Intent for result bermanfaat ketika kita ingin mendapatkan nilai balikan dari activity lainnya
+                Perhatikan bahwa kita mengirimkan intent beserta REQUEST_CODE
                  */
                 Intent moveForResultIntent = new Intent(MainActivity.this, MoveForResultActivity.class);
                 startActivityForResult(moveForResultIntent, REQUEST_CODE);
@@ -107,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         /*
         Perhatikan bahwa ada 2 kode yaitu request_code dan result_code
-        request_code yaitu code yang dicantumkan ke dalam intent saat memulai
-        result_code yaitu code yang dicantumkan ke dalam intent saat intent-nya selesai
+        request_code yaitu code yang dicantumkan ke dalam intent saat memulai (pada saat startactivity)
+        result_code yaitu code yang dicantumkan ke dalam intent di activity yang dibuka (biasanya pada saat sebelum activity ditutup)
          */
         if (requestCode == REQUEST_CODE) {
             if (resultCode == MoveForResultActivity.RESULT_CODE) {
