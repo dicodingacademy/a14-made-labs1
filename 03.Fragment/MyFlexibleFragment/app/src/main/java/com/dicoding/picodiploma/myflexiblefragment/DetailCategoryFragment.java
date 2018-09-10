@@ -2,7 +2,6 @@ package com.dicoding.picodiploma.myflexiblefragment;
 
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -86,16 +85,20 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
 
             case R.id.btn_show_dialog:
                 OptionDialogFragment mOptionDialogFragment = new OptionDialogFragment();
-                mOptionDialogFragment.setOnOptionDialogListener(new OptionDialogFragment.OnOptionDialogListener() {
-                    @Override
-                    public void onOptionChoosen(String text) {
-                        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
-                    }
-                });
 
                 FragmentManager mFragmentManager = getChildFragmentManager();
                 mOptionDialogFragment.show(mFragmentManager, OptionDialogFragment.class.getSimpleName());
                 break;
         }
     }
+
+    /*
+    Kode yang akan dijalankan ketika option dialog dipilih ok
+     */
+    OptionDialogFragment.OnOptionDialogListener optionDialogListener = new OptionDialogFragment.OnOptionDialogListener() {
+        @Override
+        public void onOptionChoosen(String text) {
+            Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+        }
+    };
 }
