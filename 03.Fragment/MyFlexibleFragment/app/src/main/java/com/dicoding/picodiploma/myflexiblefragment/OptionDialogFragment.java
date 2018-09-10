@@ -1,8 +1,10 @@
 package com.dicoding.picodiploma.myflexiblefragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +18,10 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
     Button btnChoose, btnClose;
     RadioGroup rgOptions;
     RadioButton rbSaf, rbMou, rbLvg, rbMoyes;
-    OnOptionDialogListener onOptionDialogListener;
+    OnOptionDialogListener optionDialogListener;
 
     public OptionDialogFragment() {
         // Required empty public constructor
-    }
-
-    public OnOptionDialogListener getOnOptionDialogListener() {
-        return onOptionDialogListener;
-    }
-
-    public void setOnOptionDialogListener(OnOptionDialogListener onOptionDialogListener) {
-        this.onOptionDialogListener = onOptionDialogListener;
     }
 
     @Override
@@ -44,6 +38,31 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
         rbMou = (RadioButton) view.findViewById(R.id.rb_mou);
         rbMoyes = (RadioButton) view.findViewById(R.id.rb_moyes);
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        /*
+        Saat attach maka set optionDialogListener dengan listener dari detailCategoryFragment
+         */
+        Fragment fragment = getParentFragment();
+
+        if (fragment instanceof DetailCategoryFragment) {
+            DetailCategoryFragment detailCategoryFragment = (DetailCategoryFragment) fragment;
+            this.optionDialogListener = detailCategoryFragment.optionDialogListener;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        /*
+        Saat detach maka set null pada optionDialogListener
+         */
+        this.optionDialogListener = null;
     }
 
     @Override
@@ -75,7 +94,9 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
                             break;
                     }
 
-                    getOnOptionDialogListener().onOptionChoosen(coach);
+                    if (optionDialogListener != null) {
+                        optionDialogListener.onOptionChoosen(coach);
+                    }
                     getDialog().dismiss();
                 }
                 break;
