@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class MoveWithObjectActivity extends AppCompatActivity {
-    public static String EXTRA_PERSON = "extra_person";
+    public static final String EXTRA_PERSON = "extra_person";
     TextView tvObject;
 
     @Override

@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class MoveWithDataActivity extends AppCompatActivity {
-    public static String EXTRA_AGE = "extra_age";
-    public static String EXTRA_NAME = "extra_name";
+    public static final String EXTRA_AGE = "extra_age";
+    public static final String EXTRA_NAME = "extra_name";
 
     TextView tvDataReceived;
 
