@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = mFragmentManager.findFragmentByTag(HomeFragment.class.getSimpleName());
 
         /*
-
+        Kode di bawah ini digunakan untuk memvalidasi apakah suatu fragment adalah instance dari suatu kelas
          */
         if (!(fragment instanceof HomeFragment)) {
             mFragmentTransaction.add(R.id.frame_container, mHomeFragment, HomeFragment.class.getSimpleName());
