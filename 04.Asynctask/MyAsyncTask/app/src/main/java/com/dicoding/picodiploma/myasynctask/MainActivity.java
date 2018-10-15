@@ -1,18 +1,19 @@
 package com.dicoding.picodiploma.myasynctask;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-
 import java.lang.ref.WeakReference;
 
-public class MainActivity extends AppCompatActivity {
-    static final String DEMO_ASYNC = "DemoAsync";
+public class MainActivity extends AppCompatActivity implements MyAsyncCallback {
 
     TextView tvStatus;
+    TextView tvDesc;
+
+    final static String INPUT_STRING = "Halo Ini Demo AsyncTask!!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +21,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tvStatus = (TextView) findViewById(R.id.tv_status);
+        tvDesc = (TextView) findViewById(R.id.tv_desc);
 
-        DemoAsync demoAsync = new DemoAsync(tvStatus);
+        DemoAsync demoAsync = new DemoAsync(this);
 
         // Execute asynctask dengan parameter string 'Halo Ini Demo AsyncTask'
-        demoAsync.execute("Halo Ini Demo AsyncTask");
+        demoAsync.execute(INPUT_STRING);
     }
+
+
+    @Override
+    public void onPreExecute() {
+        tvStatus.setText(R.string.status_pre);
+        tvDesc.setText(INPUT_STRING);
+    }
+
+    @Override
+    public void onPostExecute(String result) {
+        tvStatus.setText(R.string.status_post);
+        if (result != null) {
+            tvDesc.setText(result);
+        }
+    }
+
 
     /**
      * 3 parameter generic <String, Void, String>
@@ -35,11 +53,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private static class DemoAsync extends AsyncTask<String, Void, String> {
 
-        // Penggunaan weakreference disarankan untuk menghindari memory leaks
-        WeakReference<TextView> tvStatus;
+        static final String LOG_ASYNC = "DemoAsync";
 
-        DemoAsync(TextView tvStatus) {
-            this.tvStatus = new WeakReference<>(tvStatus);
+        // Penggunaan weakreference disarankan untuk menghindari memory leaks
+        WeakReference<MyAsyncCallback> myListener;
+
+        DemoAsync(MyAsyncCallback myListener) {
+
+            this.myListener = new WeakReference<>(myListener);
+
         }
 
         /*
@@ -50,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            TextView tvStatus = this.tvStatus.get();
-            if (tvStatus != null) {
-                tvStatus.setText("status : onPreExecute");
+            Log.d(LOG_ASYNC, "status : onPreExecute");
+            MyAsyncCallback myListener = this.myListener.get();
+            if (myListener != null) {
+                myListener.onPreExecute();
             }
         }
 
@@ -62,19 +85,33 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         protected String doInBackground(String... params) {
-            Log.d(DEMO_ASYNC, "status : doInBackground");
+            Log.d(LOG_ASYNC, "status : doInBackground");
 
-            // 5000 miliseconds = 5 detik
+            String output = null;
+
             try {
+
+                /*
+                params[0] adalah 'Halo Ini Demo AsyncTask'
+                */
+
+                String input = params[0];
+
+                // Input stringnya ditambahkan dengan string ' Selamat Belajar!!"
+                output = input + " Selamat Belajar!!";
+
+
+                /*
+                Sleep thread digunakan untuk simulasi bahwa ada proses yang sedang berjalan selama 5 detik
+                5000 miliseconds = 5 detik
+                */
                 Thread.sleep(5000);
+
             } catch (Exception e) {
-                Log.d(DEMO_ASYNC, e.getMessage());
+                Log.d(LOG_ASYNC, e.getMessage());
             }
 
-            /*
-            params[0] adalah 'Halo Ini Demo AsyncTask'
-             */
-            return params[0];
+            return output;
         }
 
         /*
@@ -82,12 +119,13 @@ public class MainActivity extends AppCompatActivity {
         berjalan di Main Thread
          */
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            Log.d(LOG_ASYNC, "status : onPostExecute");
 
-            TextView tvStatus = this.tvStatus.get();
-            if (tvStatus != null) {
-                tvStatus.setText("status : onPostExecute : " + s);
+            MyAsyncCallback myListener = this.myListener.get();
+            if (myListener != null) {
+                myListener.onPostExecute(result);
             }
         }
     }
