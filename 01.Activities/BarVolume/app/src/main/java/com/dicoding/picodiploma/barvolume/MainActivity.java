@@ -46,55 +46,72 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_calculate) {
-            String length = edtLength.getText().toString().trim();
-            String width = edtWidth.getText().toString().trim();
-            String height = edtHeight.getText().toString().trim();
+            String inputLength = edtLength.getText().toString().trim();
+            String inputWidth = edtWidth.getText().toString().trim();
+            String inputHeight = edtHeight.getText().toString().trim();
 
             boolean isEmptyFields = false;
             boolean isInvalidDouble = false;
 
-            if (TextUtils.isEmpty(length)) {
+            /*
+            Validasi apakah inputan masih ada yang kosong
+             */
+            if (TextUtils.isEmpty(inputLength)) {
                 isEmptyFields = true;
                 edtLength.setError("Field ini tidak boleh kosong");
-            } else if (!isDouble(length)) {
+            }
+
+            if (TextUtils.isEmpty(inputWidth)) {
+                isEmptyFields = true;
+                edtWidth.setError("Field ini tidak boleh kosong");
+            }
+
+            if (TextUtils.isEmpty(inputHeight)) {
+                isEmptyFields = true;
+                edtHeight.setError("Field ini tidak boleh kosong");
+            }
+
+            /*
+            Validasi apakah inputan berupa double
+             */
+
+            Double length = toDouble(inputLength, null);
+            Double width = toDouble(inputWidth, null);
+            Double height = toDouble(inputHeight, null);
+
+            if (length == null) {
                 isInvalidDouble = true;
                 edtLength.setError("Field ini harus berupa nomer yang valid");
             }
 
-            if (TextUtils.isEmpty(width)) {
-                isEmptyFields = true;
-                edtWidth.setError("Field ini tidak boleh kosong");
-            } else if (!isDouble(width)) {
+            if (width == null) {
                 isInvalidDouble = true;
                 edtWidth.setError("Field ini harus berupa nomer yang valid");
             }
 
-            if (TextUtils.isEmpty(height)) {
-                isEmptyFields = true;
-                edtHeight.setError("Field ini tidak boleh kosong");
-            } else if (!isDouble(height)) {
+            if (height == null) {
                 isInvalidDouble = true;
                 edtHeight.setError("Field ini harus berupa nomer yang valid");
             }
 
-            if (!isEmptyFields && !isInvalidDouble) {
-                double l = Double.parseDouble(length);
-                double w = Double.parseDouble(width);
-                double h = Double.parseDouble(height);
 
-                double volume = l * w * h;
+            /*
+            Jika semua inputan valid maka tampilkan hasilnya
+             */
+            if (!isEmptyFields && !isInvalidDouble) {
+
+                double volume = length * width * height;
 
                 tvResult.setText(String.valueOf(volume));
             }
         }
     }
 
-    boolean isDouble(String str) {
+    Double toDouble(String str, final Double defaultValue) {
         try {
-            Double.parseDouble(str);
-            return true;
+            return Double.valueOf(str);
         } catch (NumberFormatException e) {
-            return false;
+            return defaultValue;
         }
     }
 }
