@@ -3,6 +3,7 @@ package com.dicoding.picodiploma.myflexiblefragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,15 +39,15 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail_category, container, false);
-        tvCategoryName = (TextView) view.findViewById(R.id.tv_category_name);
-        tvCategoryDescription = (TextView) view.findViewById(R.id.tv_category_description);
-        btnProfile = (Button) view.findViewById(R.id.btn_profile);
+        tvCategoryName = view.findViewById(R.id.tv_category_name);
+        tvCategoryDescription = view.findViewById(R.id.tv_category_description);
+        btnProfile = view.findViewById(R.id.btn_profile);
         btnProfile.setOnClickListener(this);
-        btnShowDialog = (Button) view.findViewById(R.id.btn_show_dialog);
+        btnShowDialog = view.findViewById(R.id.btn_show_dialog);
         btnShowDialog.setOnClickListener(this);
         return view;
     }
@@ -60,16 +61,19 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
             setDescription(descFromBundle);
         }
 
-        String categoryName = getArguments().getString(EXTRA_NAME);
-        tvCategoryName.setText(categoryName);
-        tvCategoryDescription.setText(getDescription());
+        if (getArguments() != null) {
+            String categoryName = getArguments().getString(EXTRA_NAME);
+            tvCategoryName.setText(categoryName);
+            tvCategoryDescription.setText(getDescription());
+
+        }
     }
 
     /*
     Gunakan method ini jika kita ingin menjaga data agar tetap aman ketika terjadi config changes (portrait - landscape)
      */
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putString(EXTRA_DESCRIPTION, getDescription());

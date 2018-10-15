@@ -1,8 +1,8 @@
 package com.dicoding.picodiploma.myflexiblefragment;
 
-
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
 
 public class OptionDialogFragment extends DialogFragment implements View.OnClickListener {
 
@@ -25,18 +24,18 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_option_dialog, container, false);
-        btnChoose = (Button) view.findViewById(R.id.btn_choose);
+        btnChoose = view.findViewById(R.id.btn_choose);
         btnChoose.setOnClickListener(this);
-        btnClose = (Button) view.findViewById(R.id.btn_close);
+        btnClose = view.findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
-        rgOptions = (RadioGroup) view.findViewById(R.id.rg_options);
-        rbSaf = (RadioButton) view.findViewById(R.id.rb_saf);
-        rbLvg = (RadioButton) view.findViewById(R.id.rb_lvg);
-        rbMou = (RadioButton) view.findViewById(R.id.rb_mou);
-        rbMoyes = (RadioButton) view.findViewById(R.id.rb_moyes);
+        rgOptions = view.findViewById(R.id.rg_options);
+        rbSaf = view.findViewById(R.id.rb_saf);
+        rbLvg = view.findViewById(R.id.rb_lvg);
+        rbMou = view.findViewById(R.id.rb_mou);
+        rbMoyes = view.findViewById(R.id.rb_moyes);
         return view;
     }
 
