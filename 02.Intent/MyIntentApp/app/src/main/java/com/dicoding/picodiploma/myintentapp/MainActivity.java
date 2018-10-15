@@ -66,15 +66,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 /*
                 Intent untuk mengirimkan object ke activity lain, perlu diingat bahwa object Person adalah parcelable
                  */
-                Person mPerson = new Person();
-                mPerson.setName("DicodingAcademy");
-                mPerson.setAge(5);
-                mPerson.setEmail("academy@dicoding.com");
-                mPerson.setCity("Bandung");
+                Person person = new Person();
+                person.setName("DicodingAcademy");
+                person.setAge(5);
+                person.setEmail("academy@dicoding.com");
+                person.setCity("Bandung");
 
                 Intent moveWithObjectIntent = new Intent(MainActivity.this, MoveWithObjectActivity.class);
-                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, mPerson);
+                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person);
                 startActivity(moveWithObjectIntent);
+
                 break;
 
             case R.id.btn_dial_number:
