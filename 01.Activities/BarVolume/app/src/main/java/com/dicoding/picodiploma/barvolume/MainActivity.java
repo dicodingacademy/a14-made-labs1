@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edtWidth = (EditText) findViewById(R.id.edt_width);
-        edtHeight = (EditText) findViewById(R.id.edt_height);
-        edtLength = (EditText) findViewById(R.id.edt_length);
-        btnCalculate = (Button) findViewById(R.id.btn_calculate);
-        tvResult = (TextView) findViewById(R.id.tv_result);
+        edtWidth = findViewById(R.id.edt_width);
+        edtHeight = findViewById(R.id.edt_height);
+        edtLength = findViewById(R.id.edt_length);
+        btnCalculate = findViewById(R.id.btn_calculate);
+        tvResult = findViewById(R.id.tv_result);
 
         btnCalculate.setOnClickListener(this);
 
