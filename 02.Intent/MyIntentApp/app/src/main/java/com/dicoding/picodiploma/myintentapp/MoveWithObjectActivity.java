@@ -13,7 +13,7 @@ public class MoveWithObjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_with_object);
 
-        tvObject = (TextView) findViewById(R.id.tv_object_received);
+        tvObject = findViewById(R.id.tv_object_received);
 
         /*
         Object parcelable bisa kita dapatkan dengan memanggil getParcelableExtra

@@ -23,22 +23,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMoveActivity = (Button) findViewById(R.id.btn_move_activity);
+        btnMoveActivity = findViewById(R.id.btn_move_activity);
         btnMoveActivity.setOnClickListener(this);
 
-        btnMoveWithDataActivity = (Button) findViewById(R.id.btn_move_activity_data);
+        btnMoveWithDataActivity = findViewById(R.id.btn_move_activity_data);
         btnMoveWithDataActivity.setOnClickListener(this);
 
-        btnMoveWithObject = (Button) findViewById(R.id.btn_move_activity_object);
+        btnMoveWithObject = findViewById(R.id.btn_move_activity_object);
         btnMoveWithObject.setOnClickListener(this);
 
-        btnDialPhone = (Button) findViewById(R.id.btn_dial_number);
+        btnDialPhone = findViewById(R.id.btn_dial_number);
         btnDialPhone.setOnClickListener(this);
 
-        btnMoveForResult = (Button) findViewById(R.id.btn_move_for_result);
+        btnMoveForResult = findViewById(R.id.btn_move_for_result);
         btnMoveForResult.setOnClickListener(this);
 
-        tvResult = (TextView) findViewById(R.id.tv_result);
+        tvResult = findViewById(R.id.tv_result);
     }
 
     @Override

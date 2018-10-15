@@ -20,9 +20,9 @@ public class MoveForResultActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_for_result);
 
-        btnChoose = (Button) findViewById(R.id.btn_choose);
+        btnChoose = findViewById(R.id.btn_choose);
         btnChoose.setOnClickListener(this);
-        rgNumber = (RadioGroup) findViewById(R.id.rg_number);
+        rgNumber = findViewById(R.id.rg_number);
     }
 
     @Override

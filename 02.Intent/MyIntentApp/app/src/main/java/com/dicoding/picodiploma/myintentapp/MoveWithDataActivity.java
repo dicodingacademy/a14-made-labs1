@@ -15,7 +15,7 @@ public class MoveWithDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_with_data);
 
-        tvDataReceived = (TextView) findViewById(R.id.tv_data_received);
+        tvDataReceived = findViewById(R.id.tv_data_received);
 
         /*
         Data dari intent bisa kita dapatkan dengan memanggil get dan disesuaikan dengan tipe datanya
