@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
 
     static final String DEMO_ASYNC = "DemoAsyncWithProgress";
 
@@ -72,6 +72,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onPreExecute() {
+
+    }
+
+    @Override
+    public void onUpdateProgress() {
+        
+    }
+
+    @Override
+    public void onPostExecute(String text) {
+
     }
 
     /**
