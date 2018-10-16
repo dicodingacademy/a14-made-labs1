@@ -70,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
                     // Execute asynctask dengan parameter string 'Halo Ini Demo AsyncTask'
                     demoAsync.execute();
                 }
-
-
             }
         });
     }
