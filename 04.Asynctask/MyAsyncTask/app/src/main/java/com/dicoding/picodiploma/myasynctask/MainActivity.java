@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvStatus = (TextView) findViewById(R.id.tv_status);
-        tvDesc = (TextView) findViewById(R.id.tv_desc);
+        tvStatus = findViewById(R.id.tv_status);
+        tvDesc = findViewById(R.id.tv_desc);
 
         DemoAsync demoAsync = new DemoAsync(this);
 
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback {
         protected void onPreExecute() {
             super.onPreExecute();
             Log.d(LOG_ASYNC, "status : onPreExecute");
+
             MyAsyncCallback myListener = this.myListener.get();
             if (myListener != null) {
                 myListener.onPreExecute();
