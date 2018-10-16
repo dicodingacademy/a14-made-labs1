@@ -1,18 +1,17 @@
 package com.dicoding.picodiploma.myasynctaskwithprogressbar;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
-public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
+public class MainActivity extends AppCompatActivity implements MyAsyncCallback {
 
     static final String DEMO_ASYNC = "DemoAsyncWithProgress";
 
@@ -25,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        buttonStart = (Button) findViewById(R.id.btn_start);
+        progressBar = findViewById(R.id.progress_bar);
+        buttonStart = findViewById(R.id.btn_start);
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +57,14 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
                             // Jika FINISHED, maka buat asynctask baru kemudian jalankkan
                             // Perlu diingat bahwa asynctask bersifat fire & forget,
                             // Fire & forget membatasi execute asynctask yang kedua kalinya, oleh karena itu perlu objek baru
-                            demoAsync = new DemoAsync(progressBar);
+                            demoAsync = new DemoAsync(MainActivity.this);
                             demoAsync.execute();
                             break;
                     }
                 } else {
 
                     // Buat async baru
-                    demoAsync = new DemoAsync(progressBar);
+                    demoAsync = new DemoAsync(MainActivity.this);
 
                     // Execute asynctask dengan parameter string 'Halo Ini Demo AsyncTask'
                     demoAsync.execute();
@@ -77,11 +76,25 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
     @Override
     public void onPreExecute() {
 
+        // Reset progress dari 0
+        progressBar.setProgress(0);
+
     }
 
     @Override
-    public void onUpdateProgress() {
-        
+    public void onUpdateProgress(long value) {
+
+        // Maksimum nilai dari progress nya 10000
+        final Double MAX_PROGRESS = 10000.0;
+
+            /*
+            Karena maksimal nilai pada view ProgressBar adalah 100,
+            maka kita harus mengkonversi value ke dalam skala 100
+            */
+
+        double progress = 100 * (value / MAX_PROGRESS);
+
+        progressBar.setProgress((int) progress);
     }
 
     @Override
@@ -103,13 +116,12 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
     private static class DemoAsync extends AsyncTask<Void, Long, Void> {
 
         // Penggunaan weakreference disarankan untuk menghindari memory leaks
-        WeakReference<ProgressBar> progressBar;
+        WeakReference<MyAsyncCallback> myListener;
 
-        // Maximal nilai dari progress nya 10000
-        final Double MAX_PROGRESS = 10000.0;
+        DemoAsync(MyAsyncCallback myListener) {
 
-        DemoAsync(ProgressBar progressBar) {
-            this.progressBar = new WeakReference<>(progressBar);
+            this.myListener = new WeakReference<>(myListener);
+
         }
 
         /*
@@ -120,9 +132,9 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Reset progress dari 0
-            ProgressBar progressBar = this.progressBar.get();
-            progressBar.setProgress(0);
+
+            this.myListener.get().onPreExecute();
+
         }
 
         /*
@@ -141,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
 
                     Thread.sleep(waitingTime);
 
-                    // Update progress dengan memanggil
+                    // Update progress dengan memanggil publishProgress
                     publishProgress(startingTime += waitingTime);
 
                 } catch (Exception e) {
@@ -158,15 +170,8 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback{
 
             long value = values[0];
 
-            /*
-            Karena maksimal nilai pda view ProgressBar adalah 100,
-            maka kita harus mengkonversi value ke dalam skala 100
-            */
+            this.myListener.get().onUpdateProgress(value);
 
-            double progress = 100 * (value / MAX_PROGRESS);
-
-            ProgressBar progressBar = this.progressBar.get();
-            progressBar.setProgress((int) progress);
         }
 
         /*
