@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnDownload = (Button) findViewById(R.id.btn_download);
-        btnCheckPermission = (Button) findViewById(R.id.btn_permission);
+        btnDownload = findViewById(R.id.btn_download);
+        btnCheckPermission = findViewById(R.id.btn_permission);
         btnDownload.setOnClickListener(this);
         btnCheckPermission.setOnClickListener(this);
 
