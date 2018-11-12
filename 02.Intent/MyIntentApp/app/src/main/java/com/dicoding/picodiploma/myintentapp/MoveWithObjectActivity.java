@@ -18,10 +18,9 @@ public class MoveWithObjectActivity extends AppCompatActivity {
         /*
         Object parcelable bisa kita dapatkan dengan memanggil getParcelableExtra
          */
-        Person mPerson = getIntent().getParcelableExtra(EXTRA_PERSON);
+        Person person = getIntent().getParcelableExtra(EXTRA_PERSON);
 
-        String text = "Name : " + mPerson.getName() + ", Email : " + mPerson.getEmail() + ", Age : " + mPerson.getAge()
-                + ", Location : " + mPerson.getCity();
+        String text = "Name : " + person.getName() + ",\nEmail : " + person.getEmail() + ",\nAge : " + person.getAge() + ",\nLocation : " + person.getCity();
         tvObject.setText(text);
     }
 }
