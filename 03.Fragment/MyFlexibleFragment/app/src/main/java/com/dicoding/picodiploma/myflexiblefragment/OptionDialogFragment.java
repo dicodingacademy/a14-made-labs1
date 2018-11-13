@@ -3,6 +3,7 @@ package com.dicoding.picodiploma.myflexiblefragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,7 +27,12 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_option_dialog, container, false);
+        return inflater.inflate(R.layout.fragment_option_dialog, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         btnChoose = view.findViewById(R.id.btn_choose);
         btnChoose.setOnClickListener(this);
         btnClose = view.findViewById(R.id.btn_close);
@@ -36,7 +42,6 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
         rbLvg = view.findViewById(R.id.rb_lvg);
         rbMou = view.findViewById(R.id.rb_mou);
         rbMoyes = view.findViewById(R.id.rb_moyes);
-        return view;
     }
 
     @Override
@@ -94,7 +99,7 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
                     }
 
                     if (optionDialogListener != null) {
-                        optionDialogListener.onOptionChoosen(coach);
+                        optionDialogListener.onOptionChosen(coach);
                     }
                     getDialog().dismiss();
                 }
@@ -103,6 +108,6 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
     }
 
     public interface OnOptionDialogListener {
-        void onOptionChoosen(String text);
+        void onOptionChosen(String text);
     }
 }

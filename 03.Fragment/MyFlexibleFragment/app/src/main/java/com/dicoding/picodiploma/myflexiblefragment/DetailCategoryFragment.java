@@ -42,14 +42,18 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_detail_category, container, false);
+        return inflater.inflate(R.layout.fragment_detail_category, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         tvCategoryName = view.findViewById(R.id.tv_category_name);
         tvCategoryDescription = view.findViewById(R.id.tv_category_description);
         btnProfile = view.findViewById(R.id.btn_profile);
         btnProfile.setOnClickListener(this);
         btnShowDialog = view.findViewById(R.id.btn_show_dialog);
         btnShowDialog.setOnClickListener(this);
-        return view;
     }
 
     @Override
@@ -101,7 +105,7 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
      */
     OptionDialogFragment.OnOptionDialogListener optionDialogListener = new OptionDialogFragment.OnOptionDialogListener() {
         @Override
-        public void onOptionChoosen(String text) {
+        public void onOptionChosen(String text) {
             Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
         }
     };
