@@ -3,6 +3,7 @@ package com.dicoding.picodiploma.myflexiblefragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,10 +23,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         Button btnCategory = view.findViewById(R.id.btn_category);
         btnCategory.setOnClickListener(this);
-        return view;
     }
 
     @Override
@@ -38,12 +43,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             jika ada fragment di dalam backstack maka fragment yang akan di close / remove
             jika sudah tidak ada fragment di dalam backstack maka activity yang akan di close / finish
              */
-            CategoryFragment mCategoryFragment = new CategoryFragment();
             FragmentManager mFragmentManager = getFragmentManager();
-            FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
-            mFragmentTransaction.replace(R.id.frame_container, mCategoryFragment, CategoryFragment.class.getSimpleName());
-            mFragmentTransaction.addToBackStack(null);
-            mFragmentTransaction.commit();
+            if (mFragmentManager != null) {
+                CategoryFragment mCategoryFragment = new CategoryFragment();
+                FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+                mFragmentTransaction.replace(R.id.frame_container, mCategoryFragment, CategoryFragment.class.getSimpleName());
+                mFragmentTransaction.addToBackStack(null);
+                mFragmentTransaction.commit();
+            }
         }
     }
 }
