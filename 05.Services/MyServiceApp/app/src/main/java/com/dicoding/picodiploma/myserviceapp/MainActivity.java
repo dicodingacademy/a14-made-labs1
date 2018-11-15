@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_stop_bound_service:
                 unbindService(mServiceConnection);
+                break;
         }
 
     }
