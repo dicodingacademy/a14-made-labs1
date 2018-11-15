@@ -5,14 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
 public class SmsReceiver extends BroadcastReceiver {
 
     final String TAG = SmsReceiver.class.getSimpleName();
-    final SmsManager sms = SmsManager.getDefault();
 
     public SmsReceiver() {
     }
