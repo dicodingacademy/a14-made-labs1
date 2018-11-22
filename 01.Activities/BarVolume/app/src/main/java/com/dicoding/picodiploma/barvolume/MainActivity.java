@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity
             Validasi apakah inputan berupa double
              */
 
-            Double length = toDouble(inputLength, null);
-            Double width = toDouble(inputWidth, null);
-            Double height = toDouble(inputHeight, null);
+            Double length = toDouble(inputLength);
+            Double width = toDouble(inputWidth);
+            Double height = toDouble(inputHeight);
 
             if (length == null) {
                 isInvalidDouble = true;
@@ -94,24 +94,21 @@ public class MainActivity extends AppCompatActivity
                 edtHeight.setError("Field ini harus berupa nomer yang valid");
             }
 
-
             /*
             Jika semua inputan valid maka tampilkan hasilnya
              */
             if (!isEmptyFields && !isInvalidDouble) {
-
                 double volume = length * width * height;
-
                 tvResult.setText(String.valueOf(volume));
             }
         }
     }
 
-    Double toDouble(String str, final Double defaultValue) {
+    Double toDouble(String str) {
         try {
             return Double.valueOf(str);
         } catch (NumberFormatException e) {
-            return defaultValue;
+            return null;
         }
     }
 }

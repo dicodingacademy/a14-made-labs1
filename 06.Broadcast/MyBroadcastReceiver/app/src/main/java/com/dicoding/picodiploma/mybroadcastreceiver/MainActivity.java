@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         downloadReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                Log.d(DownloadService.TAG, "Download Selesai");
                 Toast.makeText(context, "Download Selesai", Toast.LENGTH_SHORT).show();
             }
         };
@@ -45,11 +47,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_download) {
+        if (v.getId() == R.id.btn_permission) {
+            PermissionManager.check(this, Manifest.permission.RECEIVE_SMS, SMS_REQUEST_CODE);
+        } else if (v.getId() == R.id.btn_download) {
             Intent downloadServiceIntent = new Intent(this, DownloadService.class);
             startService(downloadServiceIntent);
-        } else if (v.getId() == R.id.btn_permission) {
-            PermissionManager.check(this, Manifest.permission.RECEIVE_SMS, SMS_REQUEST_CODE);
         }
     }
 
