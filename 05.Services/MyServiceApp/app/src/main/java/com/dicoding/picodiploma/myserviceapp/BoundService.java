@@ -14,10 +14,10 @@ public class BoundService extends Service {
     final long startTime = System.currentTimeMillis();
 
     /*
-    Countdown timer akan berjalan sampai 1000000 milisecond,
+    Countdown timer akan berjalan sampai 100000 milisecond,
     dengan interval setiap 1000 milisecond akan menampilkan log
      */
-    CountDownTimer mTimer = new CountDownTimer(1000000, 1000) {
+    CountDownTimer mTimer = new CountDownTimer(100000, 1000) {
         @Override
         public void onTick(long l) {
 
@@ -37,9 +37,7 @@ public class BoundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
         Log.d(TAG, "onCreate: ");
-        mTimer.start();
     }
 
     /*
@@ -48,6 +46,7 @@ public class BoundService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "onBind: ");
+        mTimer.start();
         return mBinder;
     }
 
@@ -58,7 +57,6 @@ public class BoundService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: ");
-        mTimer.cancel();
     }
 
     /*
@@ -67,6 +65,7 @@ public class BoundService extends Service {
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(TAG, "onUnbind: ");
+        mTimer.cancel();
         return super.onUnbind(intent);
     }
 
@@ -79,7 +78,7 @@ public class BoundService extends Service {
         Log.d(TAG, "onRebind: ");
     }
 
-    public class MyBinder extends Binder {
+    class MyBinder extends Binder {
         BoundService getService() {
             return BoundService.this;
         }
