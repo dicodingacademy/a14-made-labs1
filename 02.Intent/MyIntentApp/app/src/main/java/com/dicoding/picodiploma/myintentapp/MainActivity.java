@@ -23,22 +23,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMoveActivity = (Button) findViewById(R.id.btn_move_activity);
+        btnMoveActivity = findViewById(R.id.btn_move_activity);
         btnMoveActivity.setOnClickListener(this);
 
-        btnMoveWithDataActivity = (Button) findViewById(R.id.btn_move_activity_data);
+        btnMoveWithDataActivity = findViewById(R.id.btn_move_activity_data);
         btnMoveWithDataActivity.setOnClickListener(this);
 
-        btnMoveWithObject = (Button) findViewById(R.id.btn_move_activity_object);
+        btnMoveWithObject = findViewById(R.id.btn_move_activity_object);
         btnMoveWithObject.setOnClickListener(this);
 
-        btnDialPhone = (Button) findViewById(R.id.btn_dial_number);
+        btnDialPhone = findViewById(R.id.btn_dial_number);
         btnDialPhone.setOnClickListener(this);
 
-        btnMoveForResult = (Button) findViewById(R.id.btn_move_for_result);
+        btnMoveForResult = findViewById(R.id.btn_move_for_result);
         btnMoveForResult.setOnClickListener(this);
 
-        tvResult = (TextView) findViewById(R.id.tv_result);
+        tvResult = findViewById(R.id.tv_result);
     }
 
     @Override
@@ -66,15 +66,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 /*
                 Intent untuk mengirimkan object ke activity lain, perlu diingat bahwa object Person adalah parcelable
                  */
-                Person mPerson = new Person();
-                mPerson.setName("DicodingAcademy");
-                mPerson.setAge(5);
-                mPerson.setEmail("academy@dicoding.com");
-                mPerson.setCity("Bandung");
+                Person person = new Person();
+                person.setName("DicodingAcademy");
+                person.setAge(5);
+                person.setEmail("academy@dicoding.com");
+                person.setCity("Bandung");
 
                 Intent moveWithObjectIntent = new Intent(MainActivity.this, MoveWithObjectActivity.class);
-                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, mPerson);
+                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person);
                 startActivity(moveWithObjectIntent);
+
                 break;
 
             case R.id.btn_dial_number:
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_move_for_result:
                 /*
                 Intent for result bermanfaat ketika kita ingin mendapatkan nilai balikan dari activity lainnya
+                Perhatikan bahwa kita mengirimkan intent beserta REQUEST_CODE
                  */
                 Intent moveForResultIntent = new Intent(MainActivity.this, MoveForResultActivity.class);
                 startActivityForResult(moveForResultIntent, REQUEST_CODE);
@@ -107,8 +109,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         /*
         Perhatikan bahwa ada 2 kode yaitu request_code dan result_code
-        request_code yaitu code yang dicantumkan ke dalam intent saat memulai
-        result_code yaitu code yang dicantumkan ke dalam intent saat intent-nya selesai
+        request_code yaitu code yang dicantumkan ke dalam intent saat memulai (pada saat startactivity)
+        result_code yaitu code yang dicantumkan ke dalam intent di activity yang dibuka (biasanya pada saat sebelum activity ditutup)
          */
         if (requestCode == REQUEST_CODE) {
             if (resultCode == MoveForResultActivity.RESULT_CODE) {

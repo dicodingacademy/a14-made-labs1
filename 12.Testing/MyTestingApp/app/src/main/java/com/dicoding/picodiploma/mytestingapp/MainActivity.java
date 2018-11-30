@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvText = (TextView) findViewById(R.id.tv_text);
-        btnSetValue = (Button) findViewById(R.id.btn_set_value);
-        imgPreview = (ImageView) findViewById(R.id.img_preview);
+        tvText = findViewById(R.id.tv_text);
+        btnSetValue = findViewById(R.id.btn_set_value);
+        imgPreview = findViewById(R.id.img_preview);
 
         btnSetValue.setOnClickListener(this);
 

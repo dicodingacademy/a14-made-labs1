@@ -17,11 +17,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edtWidth = (EditText) findViewById(R.id.edt_width);
-        edtHeight = (EditText) findViewById(R.id.edt_height);
-        edtLength = (EditText) findViewById(R.id.edt_length);
-        Button btnCalculate = (Button) findViewById(R.id.btn_calculate);
-        tvResult = (TextView) findViewById(R.id.tv_result);
+        edtWidth = findViewById(R.id.edt_width);
+        edtHeight = findViewById(R.id.edt_height);
+        edtLength = findViewById(R.id.edt_length);
+        Button btnCalculate = findViewById(R.id.btn_calculate);
+        tvResult = findViewById(R.id.tv_result);
 
         final MainPresenter presenter = new MainPresenter(this);
         btnCalculate.setOnClickListener(new View.OnClickListener() {

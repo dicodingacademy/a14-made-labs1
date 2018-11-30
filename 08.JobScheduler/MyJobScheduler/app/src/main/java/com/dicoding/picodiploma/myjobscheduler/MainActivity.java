@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnStart = (Button) findViewById(R.id.btn_start);
-        btnCancel = (Button) findViewById(R.id.btn_cancel);
+        btnStart = findViewById(R.id.btn_start);
+        btnCancel = findViewById(R.id.btn_cancel);
 
         btnStart.setOnClickListener(this);
         btnCancel.setOnClickListener(this);

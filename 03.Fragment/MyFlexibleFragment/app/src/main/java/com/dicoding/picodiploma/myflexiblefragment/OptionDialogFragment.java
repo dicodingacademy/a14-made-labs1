@@ -1,8 +1,11 @@
 package com.dicoding.picodiploma.myflexiblefragment;
 
-
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,40 +13,60 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-
 public class OptionDialogFragment extends DialogFragment implements View.OnClickListener {
 
     Button btnChoose, btnClose;
     RadioGroup rgOptions;
     RadioButton rbSaf, rbMou, rbLvg, rbMoyes;
-    OnOptionDialogListener onOptionDialogListener;
+    OnOptionDialogListener optionDialogListener;
 
     public OptionDialogFragment() {
         // Required empty public constructor
     }
 
-    public OnOptionDialogListener getOnOptionDialogListener() {
-        return onOptionDialogListener;
-    }
-
-    public void setOnOptionDialogListener(OnOptionDialogListener onOptionDialogListener) {
-        this.onOptionDialogListener = onOptionDialogListener;
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_option_dialog, container, false);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_option_dialog, container, false);
-        btnChoose = (Button) view.findViewById(R.id.btn_choose);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        btnChoose = view.findViewById(R.id.btn_choose);
         btnChoose.setOnClickListener(this);
-        btnClose = (Button) view.findViewById(R.id.btn_close);
+        btnClose = view.findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
-        rgOptions = (RadioGroup) view.findViewById(R.id.rg_options);
-        rbSaf = (RadioButton) view.findViewById(R.id.rb_saf);
-        rbLvg = (RadioButton) view.findViewById(R.id.rb_lvg);
-        rbMou = (RadioButton) view.findViewById(R.id.rb_mou);
-        rbMoyes = (RadioButton) view.findViewById(R.id.rb_moyes);
-        return view;
+        rgOptions = view.findViewById(R.id.rg_options);
+        rbSaf = view.findViewById(R.id.rb_saf);
+        rbLvg = view.findViewById(R.id.rb_lvg);
+        rbMou = view.findViewById(R.id.rb_mou);
+        rbMoyes = view.findViewById(R.id.rb_moyes);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        /*
+        Saat attach maka set optionDialogListener dengan listener dari detailCategoryFragment
+         */
+        Fragment fragment = getParentFragment();
+
+        if (fragment instanceof DetailCategoryFragment) {
+            DetailCategoryFragment detailCategoryFragment = (DetailCategoryFragment) fragment;
+            this.optionDialogListener = detailCategoryFragment.optionDialogListener;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        /*
+        Saat detach maka set null pada optionDialogListener
+         */
+        this.optionDialogListener = null;
     }
 
     @Override
@@ -75,7 +98,9 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
                             break;
                     }
 
-                    getOnOptionDialogListener().onOptionChoosen(coach);
+                    if (optionDialogListener != null) {
+                        optionDialogListener.onOptionChosen(coach);
+                    }
                     getDialog().dismiss();
                 }
                 break;
@@ -83,6 +108,6 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
     }
 
     public interface OnOptionDialogListener {
-        void onOptionChoosen(String text);
+        void onOptionChosen(String text);
     }
 }

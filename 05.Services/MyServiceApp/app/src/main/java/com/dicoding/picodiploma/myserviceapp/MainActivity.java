@@ -22,16 +22,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnStartService = (Button) findViewById(R.id.btn_start_service);
+        btnStartService = findViewById(R.id.btn_start_service);
         btnStartService.setOnClickListener(this);
 
-        btnStartIntentService = (Button) findViewById(R.id.btn_start_intent_service);
+        btnStartIntentService = findViewById(R.id.btn_start_intent_service);
         btnStartIntentService.setOnClickListener(this);
 
-        btnStartBoundService = (Button) findViewById(R.id.btn_start_bound_service);
+        btnStartBoundService = findViewById(R.id.btn_start_bound_service);
         btnStartBoundService.setOnClickListener(this);
 
-        btnStopBoundService = (Button) findViewById(R.id.btn_stop_bound_service);
+        btnStopBoundService = findViewById(R.id.btn_stop_bound_service);
         btnStopBoundService.setOnClickListener(this);
 
     }
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_stop_bound_service:
                 unbindService(mServiceConnection);
+                break;
         }
 
     }

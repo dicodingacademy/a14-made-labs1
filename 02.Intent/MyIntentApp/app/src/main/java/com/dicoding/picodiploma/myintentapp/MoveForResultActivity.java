@@ -20,9 +20,9 @@ public class MoveForResultActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_for_result);
 
-        btnChoose = (Button) findViewById(R.id.btn_choose);
+        btnChoose = findViewById(R.id.btn_choose);
         btnChoose.setOnClickListener(this);
-        rgNumber = (RadioGroup) findViewById(R.id.rg_number);
+        rgNumber = findViewById(R.id.rg_number);
     }
 
     @Override
@@ -50,6 +50,7 @@ public class MoveForResultActivity extends AppCompatActivity
 
                 /*
                 Intent ini digunakan untuk mengirimkan kembali ke activity induk
+                Perhatikan bahwa kita mencantumkan RESULT_CODE ke dalam metode setResult
                  */
 
                 Intent resultIntent = new Intent();

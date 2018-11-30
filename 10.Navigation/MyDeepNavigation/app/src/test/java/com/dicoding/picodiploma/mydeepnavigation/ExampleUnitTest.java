@@ -1,4 +1,4 @@
-package com.dicoding.mydeepnavigation;
+package com.dicoding.picodiploma.mydeepnavigation;
 
 import org.junit.Test;
 

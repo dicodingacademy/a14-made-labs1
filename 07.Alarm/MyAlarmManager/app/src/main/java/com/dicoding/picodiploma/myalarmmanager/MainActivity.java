@@ -31,24 +31,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // Inisiasi view untuk one time alarm
-        tvOnceDate = (TextView) findViewById(R.id.tv_once_date);
-        btnOnceDate = (ImageButton) findViewById(R.id.btn_once_date);
+        tvOnceDate = findViewById(R.id.tv_once_date);
+        btnOnceDate = findViewById(R.id.btn_once_date);
 
-        tvOnceTime = (TextView) findViewById(R.id.tv_once_time);
-        btnOnceTime = (ImageButton) findViewById(R.id.btn_once_time);
+        tvOnceTime = findViewById(R.id.tv_once_time);
+        btnOnceTime = findViewById(R.id.btn_once_time);
 
-        edtOnceMessage = (EditText) findViewById(R.id.edt_once_message);
+        edtOnceMessage = findViewById(R.id.edt_once_message);
 
-        btnSetOnce = (Button) findViewById(R.id.btn_set_once_alarm);
+        btnSetOnce = findViewById(R.id.btn_set_once_alarm);
 
         // Inisiasi view untuk repeating alarm
-        tvRepeatingTime = (TextView) findViewById(R.id.tv_repeating_time);
-        btnRepeatingTime = (ImageButton) findViewById(R.id.btn_repeating_time);
+        tvRepeatingTime = findViewById(R.id.tv_repeating_time);
+        btnRepeatingTime = findViewById(R.id.btn_repeating_time);
 
-        edtRepeatingMessage = (EditText) findViewById(R.id.edt_repeating_message);
+        edtRepeatingMessage = findViewById(R.id.edt_repeating_message);
 
-        btnSetRepeating = (Button) findViewById(R.id.btn_set_repeating_alarm);
-        btnCancelRepeating = (Button) findViewById(R.id.btn_cancel_repeating_alarm);
+        btnSetRepeating = findViewById(R.id.btn_set_repeating_alarm);
+        btnCancelRepeating = findViewById(R.id.btn_cancel_repeating_alarm);
 
         // Listener one time alarm
         btnOnceDate.setOnClickListener(this);

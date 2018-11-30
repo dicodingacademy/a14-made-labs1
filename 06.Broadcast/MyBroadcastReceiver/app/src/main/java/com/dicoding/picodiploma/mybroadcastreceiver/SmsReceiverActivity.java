@@ -21,15 +21,15 @@ public class SmsReceiverActivity extends AppCompatActivity implements View.OnCli
 
         setTitle("Incoming Message");
 
-        tvSmsFrom = (TextView) findViewById(R.id.tv_no);
-        tvSmsMessage = (TextView) findViewById(R.id.tv_message);
-        btnClose = (Button) findViewById(R.id.btn_close);
+        tvSmsFrom = findViewById(R.id.tv_no);
+        tvSmsMessage = findViewById(R.id.tv_message);
+        btnClose = findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
 
         String senderNo = getIntent().getStringExtra(EXTRA_SMS_NO);
         String senderMessage = getIntent().getStringExtra(EXTRA_SMS_MESSAGE);
 
-        tvSmsFrom.setText("from : " + senderNo);
+        tvSmsFrom.setText(String.format("from : %s", senderNo));
         tvSmsMessage.setText(senderMessage);
     }
 

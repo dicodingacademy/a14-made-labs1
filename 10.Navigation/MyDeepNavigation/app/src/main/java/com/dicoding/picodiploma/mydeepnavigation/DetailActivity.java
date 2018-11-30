@@ -14,8 +14,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        tvMessage = (TextView) findViewById(R.id.tv_message);
+        tvTitle = findViewById(R.id.tv_title);
+        tvMessage = findViewById(R.id.tv_message);
 
         /*
         Ambil data dari intent yang dikirimkan oleh notifikasi

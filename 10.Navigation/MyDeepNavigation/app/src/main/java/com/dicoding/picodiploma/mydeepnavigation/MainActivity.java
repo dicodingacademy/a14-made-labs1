@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnOpenDetail = (Button) findViewById(R.id.btn_open_detail);
+        Button btnOpenDetail = findViewById(R.id.btn_open_detail);
         btnOpenDetail.setOnClickListener(this);
 
         DelayAsync delayAsync = new DelayAsync(this);
