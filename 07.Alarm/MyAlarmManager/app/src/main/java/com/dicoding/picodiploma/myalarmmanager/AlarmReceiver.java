@@ -45,7 +45,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         showToast(context, title, message);
 
-        showAlarmNotification(context, title, message, notifId);
+		//Jika Anda ingin menampilkan dengan Notif anda bisa menghilangkan komentar pada baris dibawah ini.
+        //showAlarmNotification(context, title, message, notifId);
     }
 
     // Gunakan metode ini untuk menampilkan toast
