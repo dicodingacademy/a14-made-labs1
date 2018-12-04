@@ -29,8 +29,8 @@ public class AlarmReceiver extends BroadcastReceiver {
     public static final String EXTRA_TYPE = "type";
 
     // Siapkan 2 id untuk 2 macam alarm, onetime dna repeating
-    private final int ID_ONETIME = 100;
-    private final int ID_REPEATING = 101;
+    private final static int ID_ONETIME = 100;
+    private final static int ID_REPEATING = 101;
 
     public AlarmReceiver() {
     }
@@ -181,8 +181,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE) != null;
     }
 
-    private String DATE_FORMAT = "yyyy-MM-dd";
-    private String TIME_FORMAT = "HH:mm";
+    private final static String DATE_FORMAT = "yyyy-MM-dd";
+    private final static String TIME_FORMAT = "HH:mm";
 
     // Metode ini digunakan untuk validasi date dan time
     public boolean isDateInvalid(String date, String format) {
