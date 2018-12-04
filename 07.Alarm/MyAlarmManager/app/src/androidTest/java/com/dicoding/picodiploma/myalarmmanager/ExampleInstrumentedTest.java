@@ -1,4 +1,4 @@
-package com.dicoding.myalarmmanager;
+package com.dicoding.picodiploma.myalarmmanager;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -17,11 +17,18 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, DatePickerFragment.DialogDateListener, TimePickerFragment.DialogTimeListener {
 
-    TextView tvOnceDate, tvOnceTime;
+    TextView tvOnceDate;
+    TextView tvOnceTime;
+    EditText edtOnceMessage;
+    ImageButton btnOnceDate;
+    ImageButton btnOnceTime;
+    Button btnSetOnce;
+
     TextView tvRepeatingTime;
-    EditText edtOnceMessage, edtRepeatingMessage;
-    ImageButton btnOnceDate, btnOnceTime, btnRepeatingTime;
-    Button btnSetOnce, btnSetRepeating, btnCancelRepeating;
+    EditText edtRepeatingMessage;
+    ImageButton  btnRepeatingTime;
+    Button btnSetRepeating;
+    Button btnCancelRepeating;
 
     private AlarmReceiver alarmReceiver;
 
@@ -33,27 +40,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Inisiasi view untuk one time alarm
         tvOnceDate = findViewById(R.id.tv_once_date);
         btnOnceDate = findViewById(R.id.btn_once_date);
-
         tvOnceTime = findViewById(R.id.tv_once_time);
         btnOnceTime = findViewById(R.id.btn_once_time);
-
         edtOnceMessage = findViewById(R.id.edt_once_message);
-
         btnSetOnce = findViewById(R.id.btn_set_once_alarm);
-
-        // Inisiasi view untuk repeating alarm
-        tvRepeatingTime = findViewById(R.id.tv_repeating_time);
-        btnRepeatingTime = findViewById(R.id.btn_repeating_time);
-
-        edtRepeatingMessage = findViewById(R.id.edt_repeating_message);
-
-        btnSetRepeating = findViewById(R.id.btn_set_repeating_alarm);
-        btnCancelRepeating = findViewById(R.id.btn_cancel_repeating_alarm);
 
         // Listener one time alarm
         btnOnceDate.setOnClickListener(this);
         btnOnceTime.setOnClickListener(this);
         btnSetOnce.setOnClickListener(this);
+
+        // Inisiasi view untuk repeating alarm
+        tvRepeatingTime = findViewById(R.id.tv_repeating_time);
+        btnRepeatingTime = findViewById(R.id.btn_repeating_time);
+        edtRepeatingMessage = findViewById(R.id.edt_repeating_message);
+        btnSetRepeating = findViewById(R.id.btn_set_repeating_alarm);
+        btnCancelRepeating = findViewById(R.id.btn_cancel_repeating_alarm);
 
         // Listener repeating alarm
         btnRepeatingTime.setOnClickListener(this);
@@ -61,12 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCancelRepeating.setOnClickListener(this);
 
         alarmReceiver = new AlarmReceiver();
-
     }
 
-    final String DATE_PICKER_TAG = "DatePicker";
-    final String TIME_PICKER_ONCE_TAG = "TimePickerOnce";
-    final String TIME_PICKER_REPEAT_TAG = "TimePickerRepeat";
+    private final static String DATE_PICKER_TAG = "DatePicker";
+    private final static String TIME_PICKER_ONCE_TAG = "TimePickerOnce";
+    private final static String TIME_PICKER_REPEAT_TAG = "TimePickerRepeat";
 
     @Override
     public void onClick(View v) {
@@ -79,10 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TimePickerFragment timePickerFragmentOne = new TimePickerFragment();
                 timePickerFragmentOne.show(getSupportFragmentManager(), TIME_PICKER_ONCE_TAG);
                 break;
-            case R.id.btn_repeating_time:
-                TimePickerFragment timePickerFragmentRepeat = new TimePickerFragment();
-                timePickerFragmentRepeat.show(getSupportFragmentManager(), TIME_PICKER_REPEAT_TAG);
-                break;
             case R.id.btn_set_once_alarm:
                 String onceDate = tvOnceDate.getText().toString();
                 String onceTime = tvOnceTime.getText().toString();
@@ -92,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         onceDate,
                         onceTime,
                         onceMessage);
+                break;
+            case R.id.btn_repeating_time:
+                TimePickerFragment timePickerFragmentRepeat = new TimePickerFragment();
+                timePickerFragmentRepeat.show(getSupportFragmentManager(), TIME_PICKER_REPEAT_TAG);
                 break;
             case R.id.btn_set_repeating_alarm:
                 String repeatTime = tvRepeatingTime.getText().toString();
