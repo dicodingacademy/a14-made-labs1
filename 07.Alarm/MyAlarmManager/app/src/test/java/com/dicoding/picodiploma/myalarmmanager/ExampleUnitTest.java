@@ -1,4 +1,4 @@
-package com.dicoding.myalarmmanager;
+package com.dicoding.picodiploma.myalarmmanager;
 
 import org.junit.Test;
 
