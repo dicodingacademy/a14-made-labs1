@@ -41,7 +41,7 @@ public class BoundService extends Service {
     }
 
     /*
-    Method yang akan dipanggil ketika service di ikatkan ke activity
+    Method yang akan dipanggil ketika service diikatkan ke activity
      */
     @Override
     public IBinder onBind(Intent intent) {
@@ -51,7 +51,7 @@ public class BoundService extends Service {
     }
 
     /*
-    Ketika semua ikatan sudah di lepas maka ondestroy akan secara otomatis dipanggil
+    Ketika semua ikatan sudah dilepas maka ondestroy akan secara otomatis dipanggil
      */
     @Override
     public void onDestroy() {
@@ -60,7 +60,7 @@ public class BoundService extends Service {
     }
 
     /*
-    Method yang akan dipanggil ketika service di lepas dari activity
+    Method yang akan dipanggil ketika service dilepas dari activity
      */
     @Override
     public boolean onUnbind(Intent intent) {
@@ -70,7 +70,7 @@ public class BoundService extends Service {
     }
 
     /*
-    Method yang akan dipanggil ketika service di ikatkan kembali
+    Method yang akan dipanggil ketika service diikatkan kembali
      */
     @Override
     public void onRebind(Intent intent) {

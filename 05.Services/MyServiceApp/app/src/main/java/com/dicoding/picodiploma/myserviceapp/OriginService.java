@@ -86,8 +86,6 @@ public class OriginService extends Service implements DummyAsyncCallback {
             callback.get().postAsync();
         }
     }
-
-
 }
 
 
