@@ -8,8 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edtWidth, edtHeight, edtLength;
     Button btnCalculate;
     TextView tvResult;
@@ -37,9 +36,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-
         super.onSaveInstanceState(outState);
-
         outState.putString(STATE_RESULT, tvResult.getText().toString());
     }
 
