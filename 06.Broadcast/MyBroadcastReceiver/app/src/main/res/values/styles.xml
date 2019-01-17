@@ -8,6 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SmsReceiverTheme" parent="Theme.AppCompat.Light.Dialog"></style>
+    <style name="SmsReceiverTheme" parent="Theme.AppCompat.Light.Dialog" />
 
 </resources>
