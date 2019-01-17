@@ -1,4 +1,4 @@
-package com.dicoding.myjobscheduler;
+package com.dicoding.picodiploma.myjobscheduler;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
