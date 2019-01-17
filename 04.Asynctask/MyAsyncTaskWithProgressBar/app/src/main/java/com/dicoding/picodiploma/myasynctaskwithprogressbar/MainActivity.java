@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback {
 
     @Override
     public void onPostExecute(String text) {
-
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback {
             super.onPreExecute();
 
             this.myListener.get().onPreExecute();
-
         }
 
         /*
@@ -171,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback {
             long value = values[0];
 
             this.myListener.get().onUpdateProgress(value);
-
         }
 
         /*
@@ -181,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements MyAsyncCallback {
         @Override
         protected void onPostExecute(Void s) {
             super.onPostExecute(s);
-            // Do nothing
+            this.myListener.get().onPostExecute("Finish");
         }
     }
 }
