@@ -1,4 +1,4 @@
-package com.dicoding.mygcmnetworkmanager;
+package com.dicoding.picodiploma.mygcmnetworkmanager;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnCancelScheduler = (Button) findViewById(R.id.btn_cancel_scheduler);
-        btnSetScheduler = (Button) findViewById(R.id.btn_set_scheduler);
+        btnCancelScheduler = findViewById(R.id.btn_cancel_scheduler);
+        btnSetScheduler = findViewById(R.id.btn_set_scheduler);
 
         btnSetScheduler.setOnClickListener(this);
         btnCancelScheduler.setOnClickListener(this);

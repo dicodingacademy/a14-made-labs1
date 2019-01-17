@@ -1,4 +1,4 @@
-package com.dicoding.mygcmnetworkmanager;
+package com.dicoding.picodiploma.mygcmnetworkmanager;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -17,10 +17,10 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-    public void useAppContext() throws Exception {
+    public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.dicoding.mygcmnetworkmanager", appContext.getPackageName());
+        assertEquals("com.dicoding.picodiploma.mygcmnetworkmanager", appContext.getPackageName());
     }
 }
