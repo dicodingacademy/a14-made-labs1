@@ -1,4 +1,4 @@
-package com.dicoding.mygcmnetworkmanager;
+package com.dicoding.picodiploma.mygcmnetworkmanager;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
