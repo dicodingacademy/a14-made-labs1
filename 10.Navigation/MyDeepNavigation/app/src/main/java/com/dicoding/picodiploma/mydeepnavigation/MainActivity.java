@@ -20,8 +20,7 @@ import android.widget.Button;
 
 import java.lang.ref.WeakReference;
 
-public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener, AsyncCallback {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AsyncCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
