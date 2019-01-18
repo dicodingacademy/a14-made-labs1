@@ -29,8 +29,8 @@ import cz.msebera.android.httpclient.Header;
 
 public class SchedulerService extends GcmTaskService {
     final String TAG = SchedulerService.class.getSimpleName();
-    final String APP_ID = "Masukkan API KEY anda...";
-    final String CITY = "Jakarta";
+    final String APP_ID = "ISI DENGAN APP ID ANDA";
+    final String CITY = "ISI DENGAN KOTA ANDA";
 
     static String TAG_TASK_WEATHER_LOG = "WeatherTask";
 
@@ -42,6 +42,14 @@ public class SchedulerService extends GcmTaskService {
             result = GcmNetworkManager.RESULT_SUCCESS;
         }
         return result;
+    }
+
+
+    @Override
+    public void onInitializeTasks() {
+        super.onInitializeTasks();
+        SchedulerTask mSchedulerTask = new SchedulerTask(this);
+        mSchedulerTask.createPeriodicTask();
     }
 
     private void getCurrentWeather() {
@@ -78,13 +86,6 @@ public class SchedulerService extends GcmTaskService {
                 Log.d("GetWeather", "Failed");
             }
         });
-    }
-
-    @Override
-    public void onInitializeTasks() {
-        super.onInitializeTasks();
-        SchedulerTask mSchedulerTask = new SchedulerTask(this);
-        mSchedulerTask.createPeriodicTask();
     }
 
     private void showNotification(Context context, String title, String message, int notifId) {
