@@ -17,5 +17,5 @@
         android:id="@+id/tv_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Description" />
+        tools:text="@string/desc" />
 </LinearLayout>
