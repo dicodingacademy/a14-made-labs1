@@ -15,7 +15,7 @@ public class MainPresenter {
         return length * width * height;
     }
 
-    public void hitungVolume(double length, double width, double height) {
+    public void calculateVolume(double length, double width, double height) {
         double volume = volume(length, width, height);
         MainModel model = new MainModel(volume);
         view.showVolume(model);
