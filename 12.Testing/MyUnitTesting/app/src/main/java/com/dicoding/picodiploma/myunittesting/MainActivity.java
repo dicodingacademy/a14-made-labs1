@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
                     double w = Double.parseDouble(width);
                     double h = Double.parseDouble(height);
 
-                    presenter.hitungVolume(l, w, h);
+                    presenter.calculateVolume(l, w, h);
                 }
             }
         });

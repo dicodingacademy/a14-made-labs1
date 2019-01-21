@@ -26,5 +26,5 @@ dependencies {
     })
     implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.10.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.23.4'
 }
