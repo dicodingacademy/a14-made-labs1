@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 
-/**
- * Created by dicoding on 10/13/2017.
+/*
+  Created by dicoding on 10/13/2017.
  */
 
 /**
