@@ -24,11 +24,6 @@ public class ContactAdapter extends CursorAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return super.getItem(position);
-    }
-
-    @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return LayoutInflater.from(context).inflate(R.layout.item_row_contact, parent, false);
     }
@@ -36,11 +31,9 @@ public class ContactAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, final Cursor cursor) {
         if (cursor != null) {
-            TextView tvName = (TextView) view.findViewById(R.id.tv_item_name);
-            CircleImageView imgUser = (CircleImageView) view.findViewById(R.id.img_item_user);
-            RelativeLayout rlItem = (RelativeLayout) view.findViewById(R.id.rl_item);
+            TextView tvName = view.findViewById(R.id.tv_item_name);
+            CircleImageView imgUser = view.findViewById(R.id.img_item_user);
 
-            imgUser.setImageResource(R.drawable.ic_person_black_48dp);
             tvName.setText(cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME)));
             if (cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI)) != null) {
                 imgUser.setImageURI(Uri.parse(cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI))));

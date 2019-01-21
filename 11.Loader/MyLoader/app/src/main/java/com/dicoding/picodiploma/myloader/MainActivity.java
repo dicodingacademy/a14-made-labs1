@@ -20,9 +20,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor>,
-        AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
 
     public static final String TAG = "ContactApp";
 
@@ -41,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        lvContact = (ListView) findViewById(R.id.lv_contact);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        lvContact = findViewById(R.id.lv_contact);
+        progressBar = findViewById(R.id.progress_bar);
 
         lvContact.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.GONE);
@@ -133,11 +131,6 @@ public class MainActivity extends AppCompatActivity implements
             mAdapter.swapCursor(null);
             Log.d(TAG, "LoaderReset");
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
