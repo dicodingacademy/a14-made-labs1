@@ -58,6 +58,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     }
 
     private static final String API_KEY = "cb744b309dbc7c577fe57bde64e8cf3a";
+    // private static final String API_KEY = "MASUKAN API KEY ANDA";
 
     // Format search kota url JAKARTA = 1642911 ,BANDUNG = 1650357, SEMARANG = 1627896
     // http://api.openweathermap.org/data/2.5/group?id=1642911,1650357,1627896&units=metric&appid=API_KEY

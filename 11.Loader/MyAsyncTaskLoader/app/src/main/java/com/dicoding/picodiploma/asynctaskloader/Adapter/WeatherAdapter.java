@@ -1,10 +1,10 @@
 package com.dicoding.picodiploma.asynctaskloader.Adapter;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.dicoding.picodiploma.asynctaskloader.R;
@@ -16,13 +16,10 @@ import java.util.ArrayList;
  * Created by Emeth on 10/31/2016.
  */
 
-public class WeatherAdapter extends BaseAdapter {
-
+public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
     private ArrayList<WeatherItems> mData = new ArrayList<>();
-    private LayoutInflater mInflater;
 
-    public WeatherAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
+    public WeatherAdapter() {
     }
 
     /**
@@ -50,61 +47,37 @@ public class WeatherAdapter extends BaseAdapter {
         mData.clear();
     }
 
+    @NonNull
     @Override
-    public int getItemViewType(int position) {
-        return 0;
+    public WeatherViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
+        View mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.weather_items, viewGroup, false);
+        return new WeatherViewHolder(mView);
     }
 
     @Override
-    public int getViewTypeCount() {
-        return 1;
+    public void onBindViewHolder(@NonNull WeatherViewHolder weatherViewHolder, int position) {
+        weatherViewHolder.textViewNamaKota.setText(mData.get(position).getName());
+        weatherViewHolder.textViewTemperature.setText(mData.get(position).getTemperature());
+        weatherViewHolder.textViewDescription.setText(mData.get(position).getDescription());
     }
 
     @Override
-    public int getCount() {
-        // Pengecekan null, diperlukan agar tidak terjadi force close ketika datanya null
-        // return 0 sehingga adapter tidak akan menampilkan apapun
-        if (mData == null) return 0;
-
-        // Jika tidak null, maka return banyaknya jumlah data yang ada
+    public int getItemCount() {
         return mData.size();
     }
 
-    @Override
-    public WeatherItems getItem(int position) {
-        return mData.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            holder = new ViewHolder();
-            convertView = mInflater.inflate(R.layout.weather_items, null);
-            holder.textViewNamaKota = (TextView) convertView.findViewById(R.id.textKota);
-            holder.textViewTemperature = (TextView) convertView.findViewById(R.id.textTemp);
-            holder.textViewDescription = (TextView) convertView.findViewById(R.id.textDesc);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-        holder.textViewNamaKota.setText(mData.get(position).getName());
-        holder.textViewTemperature.setText(mData.get(position).getTemperature());
-        holder.textViewDescription.setText(mData.get(position).getDescription());
-        return convertView;
-    }
-
-    private static class ViewHolder {
+    public class WeatherViewHolder extends RecyclerView.ViewHolder {
         TextView textViewNamaKota;
         TextView textViewTemperature;
         TextView textViewDescription;
-    }
 
+        public WeatherViewHolder(@NonNull View itemView) {
+            super(itemView);
+            textViewNamaKota = itemView.findViewById(R.id.textKota);
+            textViewTemperature = itemView.findViewById(R.id.textTemp);
+            textViewDescription = itemView.findViewById(R.id.textDesc);
+        }
+    }
 }
 
 

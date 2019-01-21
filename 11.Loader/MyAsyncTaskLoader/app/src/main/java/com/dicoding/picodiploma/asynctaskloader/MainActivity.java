@@ -4,11 +4,12 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.dicoding.picodiploma.asynctaskloader.Adapter.WeatherAdapter;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<WeatherItems>> {
 
-    ListView listView;
+    RecyclerView recyclerView;
     WeatherAdapter adapter;
     EditText edtCity;
     Button btnSearch;
@@ -28,20 +29,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adapter = new WeatherAdapter(this);
+        adapter = new WeatherAdapter();
         adapter.notifyDataSetChanged();
-        listView = (ListView) findViewById(R.id.listView);
 
-        listView.setAdapter(adapter);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
-        edtCity = (EditText) findViewById(R.id.edit_kota);
-        btnSearch = (Button) findViewById(R.id.btn_kota);
+        edtCity = findViewById(R.id.editCity);
+        btnSearch = findViewById(R.id.btnCity);
 
         btnSearch.setOnClickListener(myListener);
 
-        String kota = edtCity.getText().toString();
+        String city = edtCity.getText().toString();
         Bundle bundle = new Bundle();
-        bundle.putString(EXTRAS_CITY, kota);
+        bundle.putString(EXTRAS_CITY, city);
 
         //Inisiasi dari Loader, dimasukkan ke dalam onCreate
         getLoaderManager().initLoader(0, bundle, this);
@@ -74,13 +76,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     View.OnClickListener myListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String kota = edtCity.getText().toString();
+            String city = edtCity.getText().toString();
 
             // Jika edit text-nya kosong maka do nothing
-            if (TextUtils.isEmpty(kota)) return;
+            if (TextUtils.isEmpty(city)) return;
 
             Bundle bundle = new Bundle();
-            bundle.putString(EXTRAS_CITY, kota);
+            bundle.putString(EXTRAS_CITY, city);
             getLoaderManager().restartLoader(0, bundle, MainActivity.this);
         }
     };
