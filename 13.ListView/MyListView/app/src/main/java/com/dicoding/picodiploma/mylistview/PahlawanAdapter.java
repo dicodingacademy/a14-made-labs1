@@ -47,9 +47,9 @@ public class PahlawanAdapter extends BaseAdapter {
         }
 
         Pahlawan pahlawan = (Pahlawan) getItem(i);
-        TextView txtNama = view.findViewById(R.id.txt_nama);
-        TextView txtDescription = view.findViewById(R.id.txt_deskripsi);
-        ImageView imgPahlawan = view.findViewById(R.id.img_president);
+        TextView txtNama = view.findViewById(R.id.txt_name);
+        TextView txtDescription = view.findViewById(R.id.txt_description);
+        ImageView imgPahlawan = view.findViewById(R.id.img_pahlawan);
         txtNama.setText(pahlawan.getName());
         txtDescription.setText(pahlawan.getDescription());
         imgPahlawan.setImageResource(pahlawan.getImage());
