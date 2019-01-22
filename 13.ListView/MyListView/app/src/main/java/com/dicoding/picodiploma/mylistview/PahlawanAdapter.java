@@ -41,18 +41,18 @@ public class PahlawanAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view == null){
+        if (view == null) {
             view = LayoutInflater.from(context).
                     inflate(R.layout.item_pahlawan, viewGroup, false);
         }
 
-        Pahlawan pahlawan = (Pahlawan)getItem(i);
-        TextView txt_nama = view.findViewById(R.id.txt_nama);
-        TextView txt_deskripsi = view.findViewById(R.id.txt_deskripsi);
-        ImageView img_pahlawan = view.findViewById(R.id.img_president);
-        txt_nama.setText(pahlawan.getNama());
-        txt_deskripsi.setText(pahlawan.getDeskripsi());
-        img_pahlawan.setImageResource(pahlawan.getImage());
+        Pahlawan pahlawan = (Pahlawan) getItem(i);
+        TextView txtNama = view.findViewById(R.id.txt_nama);
+        TextView txtDescription = view.findViewById(R.id.txt_deskripsi);
+        ImageView imgPahlawan = view.findViewById(R.id.img_president);
+        txtNama.setText(pahlawan.getName());
+        txtDescription.setText(pahlawan.getDescription());
+        imgPahlawan.setImageResource(pahlawan.getImage());
 
         return view;
     }
