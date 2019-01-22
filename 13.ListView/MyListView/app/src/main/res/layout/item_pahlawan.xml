@@ -5,30 +5,30 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/img_president"
+        android:id="@+id/img_pahlawan"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <TextView
-        android:id="@+id/txt_nama"
+        android:id="@+id/txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
-        android:layout_toEndOf="@id/img_president"
-        android:text="@string/nama_pahlawan"
+        android:layout_toEndOf="@id/img_pahlawan"
+        android:text="@string/name_pahlawan"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txt_deskripsi"
-        android:text="lorem ipsum dolor sit amet "
+        android:id="@+id/txt_description"
+        android:text="lorem ipsum dolor sit amet"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/txt_nama"
+        android:layout_below="@id/txt_name"
         android:ellipsize="end"
         android:maxLines="3"
         android:layout_marginStart="26dp"
-        android:layout_toRightOf="@id/img_president"
+        android:layout_toRightOf="@id/img_pahlawan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
