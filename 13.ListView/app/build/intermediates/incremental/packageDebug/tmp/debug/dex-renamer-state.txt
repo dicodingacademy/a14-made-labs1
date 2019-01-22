@@ -1,0 +1,7 @@
+#Tue Jan 22 09:24:35 WIB 2019
+base.0=/Users/macbookpro/Documents/Project/MadeDIcoding/a14-made-labs1/13.ListView/app/build/intermediates/dex/debug/mergeProjectDexDebug/out
+path.1=classes.dex
+renamed.1=classes2.dex
+path.0=classes.dex
+renamed.0=classes.dex
+base.1=/Users/macbookpro/Documents/Project/MadeDIcoding/a14-made-labs1/13.ListView/app/build/intermediates/dex/debug/mergeExtDexDebug/out

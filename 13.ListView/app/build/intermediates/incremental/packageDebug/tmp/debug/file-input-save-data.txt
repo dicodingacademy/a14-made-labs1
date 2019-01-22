@@ -1,0 +1,11 @@
+#Internal package file, do not edit.
+#Tue Jan 22 09:24:35 WIB 2019
+1.base=/Users/macbookpro/Documents/Project/MadeDIcoding/a14-made-labs1/13.ListView/app/build/intermediates/dex/debug/mergeProjectDexDebug/out
+0.baseType=DIRECTORY
+1.baseType=DIRECTORY
+count=2
+1.set=DEX
+0.path=classes.dex
+0.set=DEX
+0.base=/Users/macbookpro/Documents/Project/MadeDIcoding/a14-made-labs1/13.ListView/app/build/intermediates/dex/debug/mergeExtDexDebug/out
+1.path=classes.dex
