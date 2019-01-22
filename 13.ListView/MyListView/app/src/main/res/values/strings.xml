@@ -2,7 +2,7 @@
     <string name="app_name">MyListView</string>
     <string name="nama_pahlawan">Nama Pahlawan</string>
 
-    <string-array name="data_nama">
+    <string-array name="data_name">
         <item>Cut Nyak Dien</item>
         <item>Ki Hajar Dewantara</item>
         <item>Moh Yamin</item>
@@ -11,16 +11,16 @@
         <item>Sukarno</item>
     </string-array>
 
-    <string-array name="data_deskripsi">
+    <string-array name="data_description">
         <item>Cut Nyak Dhien adalah seorang Pahlawan Nasional Indonesia dari Aceh yang berjuang melawan Belanda pada masa Perang Aceh</item>
         <item>Raden Mas Soewardi Soerjaningrat adalah aktivis pergerakan kemerdekaan Indonesia, kolumnis, politisi, dan pelopor pendidikan bagi kaum pribumi Indonesia dari zaman penjajahan Belanda</item>
         <item>Prof. Mr. Mohammad Yamin, S.H. adalah sastrawan, sejarawan, budayawan, politikus, dan ahli hukum yang telah dihormati sebagai pahlawan nasional Indonesia</item>
-        <item>Patimura lahir di Haria, pulau Saparua, Maluku, 8 Juni 1783 – meninggal di Ambon, Maluku, 16 Desember 1817 pada umur 34 tahun, juga dikenal dengan nama Kapitan Pattimura adalah Pahlawan nasional Indonesia dari Maluku</item>
+        <item>Patimura lahir di Haria, pulau Saparua, Maluku, 8 Juni 1783 – meninggal di Ambon, Maluku, 16 Desember 1817 pada umur 34 tahun, juga dikenal dengan name Kapitan Pattimura adalah Pahlawan nasional Indonesia dari Maluku</item>
         <item>Raden Adjeng Kartini atau sebenarnya lebih tepat disebut Raden Ayu Kartini adalah seorang tokoh Jawa dan Pahlawan Nasional Indonesia</item>
         <item>Dr. Ir. H. Soekarno adalah Presiden pertama Republik Indonesia yang menjabat pada periode 1945–1967.</item>
     </string-array>
 
-    <array name="data_foto">
+    <array name="data_photo">
         <item>@drawable/cut_nyak_dien</item>
         <item>@drawable/ki_hajar_dewantara</item>
         <item>@drawable/moh_yamin</item>
