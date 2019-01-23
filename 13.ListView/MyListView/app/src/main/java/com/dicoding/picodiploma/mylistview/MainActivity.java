@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     String[] dataName;
     String[] dataDescription;
-    TypedArray imagePahlawan;
-    PahlawanAdapter adapter;
+    TypedArray dataPhoto;
+    HeroAdapter adapter;
     ListView listView;
 
     @Override
@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.lv_list);
 
         prepare();
-
         addItem();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -39,20 +38,20 @@ public class MainActivity extends AppCompatActivity {
     private void prepare() {
         dataName = getResources().getStringArray(R.array.data_name);
         dataDescription = getResources().getStringArray(R.array.data_description);
-        imagePahlawan = getResources().obtainTypedArray(R.array.data_photo);
+        dataPhoto = getResources().obtainTypedArray(R.array.data_photo);
     }
 
     private void addItem() {
-        ArrayList<Pahlawan> pahlawan = new ArrayList<>();
-        adapter = new PahlawanAdapter(this, pahlawan);
+        ArrayList<Hero> heroes = new ArrayList<>();
+        adapter = new HeroAdapter(this, heroes);
 
         for (int i = 0; i < dataName.length; i++) {
-            Pahlawan pahlawans = new Pahlawan();
-            pahlawans.setImage(imagePahlawan.getResourceId(i, -1));
-            pahlawans.setName(dataName[i]);
-            pahlawans.setDescription(dataDescription[i]);
-            pahlawan.add(pahlawans);
-            adapter.setPahlawans(pahlawan);
+            Hero hero = new Hero();
+            hero.setPhoto(dataPhoto.getResourceId(i, -1));
+            hero.setName(dataName[i]);
+            hero.setDescription(dataDescription[i]);
+            heroes.add(hero);
+            adapter.setHeroes(heroes);
         }
         listView.setAdapter(adapter);
     }
