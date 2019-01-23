@@ -19,9 +19,9 @@ public class HeroAdapter extends BaseAdapter {
         this.heroes = heroes;
     }
 
-    public HeroAdapter(Context context, ArrayList<Hero> heroes) {
+    public HeroAdapter(Context context) {
         this.context = context;
-        this.heroes = heroes;
+        heroes = new ArrayList<>();
     }
 
     @Override
