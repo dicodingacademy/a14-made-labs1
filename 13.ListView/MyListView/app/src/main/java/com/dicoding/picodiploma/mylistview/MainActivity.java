@@ -22,7 +22,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        adapter = new HeroAdapter(this);
+
         listView = findViewById(R.id.lv_list);
+        listView.setAdapter(adapter);
 
         prepare();
         addItem();
@@ -43,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void addItem() {
         ArrayList<Hero> heroes = new ArrayList<>();
-        adapter = new HeroAdapter(this, heroes);
 
         for (int i = 0; i < dataName.length; i++) {
             Hero hero = new Hero();
@@ -51,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
             hero.setName(dataName[i]);
             hero.setDescription(dataDescription[i]);
             heroes.add(hero);
-            adapter.setHeroes(heroes);
         }
-        listView.setAdapter(adapter);
+
+        adapter.setHeroes(heroes);
     }
 }
