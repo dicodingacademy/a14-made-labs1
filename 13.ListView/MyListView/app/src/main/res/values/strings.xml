@@ -10,6 +10,10 @@
         <item>Patimura</item>
         <item>R A Kartini</item>
         <item>Sukarno</item>
+        <item>Tuanku Imam Bonjol</item>
+        <item>Pangeran Antasari</item>
+        <item>Bung Tomo</item>
+        <item>Mohammad Hatta</item>
     </string-array>
 
     <string-array name="data_description">
@@ -19,6 +23,10 @@
         <item>Patimura lahir di Haria, pulau Saparua, Maluku, 8 Juni 1783 – meninggal di Ambon, Maluku, 16 Desember 1817 pada umur 34 tahun, juga dikenal dengan name Kapitan Pattimura adalah Pahlawan nasional Indonesia dari Maluku</item>
         <item>Raden Adjeng Kartini atau sebenarnya lebih tepat disebut Raden Ayu Kartini adalah seorang tokoh Jawa dan Pahlawan Nasional Indonesia</item>
         <item>Dr. Ir. H. Soekarno adalah Presiden pertama Republik Indonesia yang menjabat pada periode 1945–1967.</item>
+        <item>Seorang ulama, pemimpin dan pejuang yang berperang melawan Belanda dalam peperangan yang dikenal dengan nama Perang Padri pada tahun 1803-1838.</item>
+        <item>Pimpinan pemerintahan tertinggi di Kesultanan Banjar (Sultan Banjar) dengan menyandang gelar Panembahan Amiruddin Khalifatul Mukminin.</item>
+        <item>Pahlawan yang terkenal karena peranannya dalam membangkitkan semangat rakyat untuk melawan kembalinya penjajah Belanda melalui tentara NICA.</item>
+        <item>Tokoh pejuang, negarawan, ekonom, dan juga Wakil Presiden Indonesia yang pertama</item>
     </string-array>
 
     <array name="data_photo">
@@ -28,5 +36,9 @@
         <item>@drawable/patimura</item>
         <item>@drawable/r_a_kartini</item>
         <item>@drawable/sukarno</item>
+        <item>@drawable/imam_bonjol</item>
+        <item>@drawable/antasari</item>
+        <item>@drawable/bung_tomo</item>
+        <item>@drawable/moh_hatta</item>
     </array>
 </resources>
