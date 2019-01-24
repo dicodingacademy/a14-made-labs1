@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HeroAdapter extends BaseAdapter {
+class HeroAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private ArrayList<Hero> heroes;
 
     public void setHeroes(ArrayList<Hero> heroes) {

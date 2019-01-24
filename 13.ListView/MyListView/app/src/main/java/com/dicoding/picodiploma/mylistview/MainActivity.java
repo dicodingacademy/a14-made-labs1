@@ -12,11 +12,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    String[] dataName;
-    String[] dataDescription;
-    TypedArray dataPhoto;
-    HeroAdapter adapter;
-    ListView listView;
+    private String[] dataName;
+    private String[] dataDescription;
+    private TypedArray dataPhoto;
+    private HeroAdapter adapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

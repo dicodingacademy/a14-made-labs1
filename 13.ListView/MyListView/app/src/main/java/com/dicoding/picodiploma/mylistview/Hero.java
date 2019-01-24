@@ -1,9 +1,10 @@
 package com.dicoding.picodiploma.mylistview;
 
-public class Hero {
+class Hero {
 
-    int photo;
-    String name, description;
+    private int photo;
+    private String name;
+    private String description;
 
     public int getPhoto() {
         return photo;
