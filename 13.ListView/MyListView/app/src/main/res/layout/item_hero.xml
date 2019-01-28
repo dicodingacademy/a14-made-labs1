@@ -6,9 +6,9 @@
 
     <ImageView
         android:id="@+id/img_photo"
-        android:scaleType="fitXY"
         android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_height="100dp"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/txt_name"
@@ -22,14 +22,14 @@
 
     <TextView
         android:id="@+id/txt_description"
-        android:text="@string/lorem"
-        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/txt_name"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/img_photo"
         android:ellipsize="end"
         android:maxLines="3"
-        android:layout_marginStart="26dp"
-        android:layout_toRightOf="@id/img_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="@string/lorem" />
 
 </RelativeLayout>
