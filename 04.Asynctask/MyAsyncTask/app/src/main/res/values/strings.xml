@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">MyAsyncTask</string>
-    <string name="status">Status Aplikasi</string>
-    <string name="status_pre">Status : onPreExecute</string>
-    <string name="status_post">Status : onPostExecute</string>
-    <string name="desc">Description</string>
-</resources>
