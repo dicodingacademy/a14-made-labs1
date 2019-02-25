@@ -28,9 +28,13 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.lv_list);
         listView.setAdapter(adapter);
 
+        //Menyipakan data dari resource
         prepare();
+
+        //Menambahkan data dari resource ke adapter
         addItem();
 
+        //Memberi aksi pada listView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

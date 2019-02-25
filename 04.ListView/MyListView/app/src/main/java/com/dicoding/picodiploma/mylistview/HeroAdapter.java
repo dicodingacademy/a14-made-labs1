@@ -15,11 +15,11 @@ class HeroAdapter extends BaseAdapter {
     private final Context context;
     private ArrayList<Hero> heroes;
 
-    public void setHeroes(ArrayList<Hero> heroes) {
+    void setHeroes(ArrayList<Hero> heroes) {
         this.heroes = heroes;
     }
 
-    public HeroAdapter(Context context) {
+    HeroAdapter(Context context) {
         this.context = context;
         heroes = new ArrayList<>();
     }
@@ -41,16 +41,35 @@ class HeroAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        ViewHolder viewHolder;
         if (view == null) {
+            //Menghubungkan ViewHolder dengan View
             view = LayoutInflater.from(context).inflate(R.layout.item_hero, viewGroup, false);
+            viewHolder = new ViewHolder(view);
+            view.setTag(viewHolder);
+
+            //Mengubah nilai pahlawan sesuai dari posisinya
+            Hero hero = (Hero) getItem(i);
+            viewHolder.bind(hero);
         }
-        Hero hero = (Hero) getItem(i);
-        TextView txtName = view.findViewById(R.id.txt_name);
-        TextView txtDescription = view.findViewById(R.id.txt_description);
-        ImageView imgPhoto = view.findViewById(R.id.img_photo);
-        txtName.setText(hero.getName());
-        txtDescription.setText(hero.getDescription());
-        imgPhoto.setImageResource(hero.getPhoto());
         return view;
+    }
+
+    private class ViewHolder {
+        TextView txtName;
+        TextView txtDescription;
+        ImageView imgPhoto;
+
+        ViewHolder(View view) {
+            txtName = view.findViewById(R.id.txt_name);
+            txtDescription = view.findViewById(R.id.txt_description);
+            imgPhoto = view.findViewById(R.id.img_photo);
+        }
+
+        void bind(Hero hero) {
+            txtName.setText(hero.getName());
+            txtDescription.setText(hero.getDescription());
+            imgPhoto.setImageResource(hero.getPhoto());
+        }
     }
 }
