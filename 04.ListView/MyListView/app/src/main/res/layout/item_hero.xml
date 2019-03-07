@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/img_photo"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:scaleType="fitXY" />
 
     <TextView
