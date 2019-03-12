@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-class HeroAdapter extends BaseAdapter {
+public class HeroAdapter extends BaseAdapter {
 
     private final Context context;
     private ArrayList<Hero> heroes;
@@ -41,11 +41,10 @@ class HeroAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder viewHolder;
         if (view == null) {
             //Menghubungkan ViewHolder dengan View
             view = LayoutInflater.from(context).inflate(R.layout.item_hero, viewGroup, false);
-            viewHolder = new ViewHolder(view);
+            ViewHolder viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
 
             //Mengubah nilai pahlawan sesuai dari posisinya
@@ -56,9 +55,9 @@ class HeroAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView txtName;
-        TextView txtDescription;
-        ImageView imgPhoto;
+        private TextView txtName;
+        private TextView txtDescription;
+        private ImageView imgPhoto;
 
         ViewHolder(View view) {
             txtName = view.findViewById(R.id.txt_name);

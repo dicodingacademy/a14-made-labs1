@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] dataDescription;
     private TypedArray dataPhoto;
     private HeroAdapter adapter;
-    private ListView listView;
+    private ArrayList<Hero> heroes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new HeroAdapter(this);
 
-        listView = findViewById(R.id.lv_list);
+        ListView listView = findViewById(R.id.lv_list);
         listView.setAdapter(adapter);
 
         //Menyipakan data dari resource
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this, dataName[i], Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, heroes.get(i).getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addItem() {
-        ArrayList<Hero> heroes = new ArrayList<>();
+        heroes = new ArrayList<>();
 
         for (int i = 0; i < dataName.length; i++) {
             Hero hero = new Hero();
