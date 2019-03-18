@@ -44,13 +44,13 @@ public class HeroAdapter extends BaseAdapter {
         if (view == null) {
             //Menghubungkan ViewHolder dengan View
             view = LayoutInflater.from(context).inflate(R.layout.item_hero, viewGroup, false);
-            ViewHolder viewHolder = new ViewHolder(view);
-            view.setTag(viewHolder);
-
-            //Mengubah nilai pahlawan sesuai dari posisinya
-            Hero hero = (Hero) getItem(i);
-            viewHolder.bind(hero);
         }
+
+        ViewHolder viewHolder = new ViewHolder(view);
+
+        //Mengubah nilai pahlawan sesuai dari posisinya
+        Hero hero = (Hero) getItem(i);
+        viewHolder.bind(hero);
         return view;
     }
 
