@@ -1,4 +1,4 @@
-package com.nbs.mytestingapp;
+package com.dicoding.picodiploma.mytestingapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
