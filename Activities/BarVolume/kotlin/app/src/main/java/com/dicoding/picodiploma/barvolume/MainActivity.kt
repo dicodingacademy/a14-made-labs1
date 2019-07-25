@@ -1,11 +1,11 @@
 package com.dicoding.picodiploma.barvolume
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var edtWidth: EditText
@@ -53,19 +53,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             /*
             Validasi apakah inputan masih ada yang kosong
              */
-            if (inputLength.isEmpty()) {
-                isEmptyFields = true
-                edtLength.error = "Field ini tidak boleh kosong"
-            }
-
-            if (inputWidth.isEmpty()) {
-                isEmptyFields = true
-                edtWidth.error = "Field ini tidak boleh kosong"
-            }
-
-            if (inputHeight.isEmpty()) {
-                isEmptyFields = true
-                edtHeight.error = "Field ini tidak boleh kosong"
+            when {
+                inputLength.isEmpty() -> {
+                    isEmptyFields = true
+                    edtLength.error = "Field ini tidak boleh kosong"
+                }
+                inputWidth.isEmpty() -> {
+                    isEmptyFields = true
+                    edtWidth.error = "Field ini tidak boleh kosong"
+                }
+                inputHeight.isEmpty() -> {
+                    isEmptyFields = true
+                    edtHeight.error = "Field ini tidak boleh kosong"
+                }
             }
 
             /*
@@ -76,26 +76,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val width = toDouble(inputWidth)
             val height = toDouble(inputHeight)
 
-            if (length == null) {
-                isInvalidDouble = true
-                edtLength.error = "Field ini harus berupa nomer yang valid"
-            }
-
-            if (width == null) {
-                isInvalidDouble = true
-                edtWidth.error = "Field ini harus berupa nomer yang valid"
-            }
-
-            if (height == null) {
-                isInvalidDouble = true
-                edtHeight.error = "Field ini harus berupa nomer yang valid"
+            when {
+                length == null -> {
+                    isInvalidDouble = true
+                    edtLength.error = "Field ini harus berupa nomer yang valid"
+                }
+                width == null -> {
+                    isInvalidDouble = true
+                    edtWidth.error = "Field ini harus berupa nomer yang valid"
+                }
+                height == null -> {
+                    isInvalidDouble = true
+                    edtHeight.error = "Field ini harus berupa nomer yang valid"
+                }
             }
 
             /*
             Jika semua inputan valid maka tampilkan hasilnya
              */
             if (!isEmptyFields && !isInvalidDouble) {
-                val volume = length!! * width!! * height!!
+                val volume = length as Double * width as Double * height as Double
                 tvResult.text = volume.toString()
             }
         }
