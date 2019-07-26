@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == MoveForResultActivity.RESULT_CODE) {
                 val selectedValue = data?.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0)
-                tvResult.text = String.format("Hasil : %s", selectedValue)
+                tvResult.text = "Hasil : $selectedValue"
             }
         }
 
