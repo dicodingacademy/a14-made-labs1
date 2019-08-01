@@ -6,7 +6,6 @@ import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dataDescription: Array<String>
     private lateinit var dataPhoto: TypedArray
     private lateinit var adapter: HeroAdapter
-    private lateinit var heroes: ArrayList<Hero>
+    private var heroes:MutableList<Hero> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +43,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addItem() {
-        heroes = ArrayList()
-
         for (i in dataName.indices) {
             val hero = Hero(
                     dataPhoto.getResourceId(i, -1),
