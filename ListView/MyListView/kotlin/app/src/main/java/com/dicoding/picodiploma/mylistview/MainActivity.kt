@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dataDescription: Array<String>
     private lateinit var dataPhoto: TypedArray
     private lateinit var adapter: HeroAdapter
-    private var heroes:MutableList<Hero> = mutableListOf()
+    private var heroes: ArrayList<Hero> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         addItem()
 
         //Memberi aksi pada listView
-        listView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            Toast.makeText(this@MainActivity, heroes[i].name, Toast.LENGTH_SHORT).show()
+        listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            Toast.makeText(this@MainActivity, heroes[position].name, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addItem() {
-        for (i in dataName.indices) {
+        for (position in dataName.indices) {
             val hero = Hero(
-                    dataPhoto.getResourceId(i, -1),
-                    dataName[i],
-                    dataDescription[i]
+                    dataPhoto.getResourceId(position, -1),
+                    dataName[position],
+                    dataDescription[position]
             )
             heroes.add(hero)
         }

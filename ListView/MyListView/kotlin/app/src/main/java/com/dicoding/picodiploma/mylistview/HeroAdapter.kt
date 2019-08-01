@@ -8,12 +8,10 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-import java.util.ArrayList
-
 class HeroAdapter internal constructor(private val context: Context) : BaseAdapter() {
-    private var heroes:MutableList<Hero> = mutableListOf()
+    private var heroes:ArrayList<Hero> = arrayListOf()
 
-    internal fun setHeroes(heroes: MutableList<Hero>) {
+    internal fun setHeroes(heroes: ArrayList<Hero>) {
         this.heroes = heroes
     }
 
@@ -25,19 +23,19 @@ class HeroAdapter internal constructor(private val context: Context) : BaseAdapt
 
     override fun getItemId(i: Int): Long = i.toLong()
 
-    override fun getView(i: Int, view: View?, viewGroup: ViewGroup): View {
-        var view = view
-        if (view == null) {
+    override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View {
+        var itemView = view
+        if (itemView == null) {
             //Menghubungkan ViewHolder dengan View
-            view = LayoutInflater.from(context).inflate(R.layout.item_hero, viewGroup, false)
+            itemView = LayoutInflater.from(context).inflate(R.layout.item_hero, viewGroup, false)
         }
 
-        val viewHolder = ViewHolder(view as View)
+        val viewHolder = ViewHolder(itemView as View)
 
         //Mengubah nilai pahlawan sesuai dari posisinya
-        val hero = getItem(i) as Hero
+        val hero = getItem(position) as Hero
         viewHolder.bind(hero)
-        return view
+        return itemView
     }
 
     private inner class ViewHolder internal constructor(view: View) {
