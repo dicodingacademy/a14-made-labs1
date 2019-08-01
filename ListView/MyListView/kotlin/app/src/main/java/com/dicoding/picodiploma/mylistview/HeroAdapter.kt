@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 class HeroAdapter internal constructor(private val context: Context) : BaseAdapter() {
-    private var heroes:ArrayList<Hero> = arrayListOf()
+    private var heroes: ArrayList<Hero> = arrayListOf()
 
     internal fun setHeroes(heroes: ArrayList<Hero>) {
         this.heroes = heroes
