@@ -1,4 +1,4 @@
-#### a14-made-labs1
+## a14-made-labs1
 Repository ini berisi kode hasil dari codelab yang ada di **Modul 1 kelas Menjadi Android Developer Expert di Dicoding**.
 Di dalamnya terdapat materi:
 * Activity
