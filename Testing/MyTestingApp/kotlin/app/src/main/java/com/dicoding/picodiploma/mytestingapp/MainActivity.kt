@@ -42,13 +42,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     name.append(names[i]).append("\n")
                 }
                 tvText.text = name.toString()
-
-                try {
-                    Thread.sleep(3000000)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-
             }
         }
     }
