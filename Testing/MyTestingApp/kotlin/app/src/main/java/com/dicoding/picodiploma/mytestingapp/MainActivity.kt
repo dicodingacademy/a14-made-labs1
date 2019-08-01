@@ -1,17 +1,13 @@
 package com.dicoding.picodiploma.mytestingapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.onComplete
 import java.util.*
-import java.util.concurrent.Future
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btnSetValue: Button
@@ -19,8 +15,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var imgPreview: ImageView
 
     private var names = ArrayList<String>()
-    private var delayAsync: Future<Unit>? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,18 +43,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 tvText.text = name.toString()
 
-                delayAsync = doAsync {
+                try {
                     Thread.sleep(3000000)
-                    onComplete {
-                        Log.d("DelayAsync", "Done")
-                    }
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
                 }
+
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        delayAsync?.cancel(true)
     }
 }
