@@ -11,27 +11,19 @@ import android.widget.TextView
 import java.util.ArrayList
 
 class HeroAdapter internal constructor(private val context: Context) : BaseAdapter() {
-    private var heroes: ArrayList<Hero>
+    private var heroes:MutableList<Hero> = mutableListOf()
 
-    internal fun setHeroes(heroes: ArrayList<Hero>) {
+    internal fun setHeroes(heroes: MutableList<Hero>) {
         this.heroes = heroes
     }
 
-    init {
-        heroes = ArrayList()
-    }
+    override fun getCount(): Int = heroes.size
 
-    override fun getCount(): Int {
-        return heroes.size
-    }
 
-    override fun getItem(i: Int): Any {
-        return heroes[i]
-    }
+    override fun getItem(i: Int): Any = heroes[i]
 
-    override fun getItemId(i: Int): Long {
-        return i.toLong()
-    }
+
+    override fun getItemId(i: Int): Long = i.toLong()
 
     override fun getView(i: Int, view: View?, viewGroup: ViewGroup): View {
         var view = view
