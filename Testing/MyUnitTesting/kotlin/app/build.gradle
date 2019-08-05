@@ -29,6 +29,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.27.0'
+    testImplementation 'org.mockito:mockito-inline:2.8.47'
+
     implementation "androidx.core:core-ktx:1.0.2"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
