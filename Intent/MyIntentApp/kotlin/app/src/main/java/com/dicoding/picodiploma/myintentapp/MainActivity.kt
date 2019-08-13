@@ -3,18 +3,11 @@ package com.dicoding.picodiploma.myintentapp
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var btnMoveActivity: Button
-    private lateinit var btnMoveWithDataActivity: Button
-    private lateinit var btnMoveWithObject: Button
-    private lateinit var btnDialPhone: Button
-    private lateinit var btnMoveForResult: Button
-    private lateinit var tvResult: TextView
 
     companion object {
         private const val REQUEST_CODE = 100
@@ -24,22 +17,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnMoveActivity = findViewById(R.id.btn_move_activity)
-        btnMoveActivity.setOnClickListener(this)
-
-        btnMoveWithDataActivity = findViewById(R.id.btn_move_activity_data)
-        btnMoveWithDataActivity.setOnClickListener(this)
-
-        btnMoveWithObject = findViewById(R.id.btn_move_activity_object)
-        btnMoveWithObject.setOnClickListener(this)
-
-        btnDialPhone = findViewById(R.id.btn_dial_number)
-        btnDialPhone.setOnClickListener(this)
-
-        btnMoveForResult = findViewById(R.id.btn_move_for_result)
-        btnMoveForResult.setOnClickListener(this)
-
-        tvResult = findViewById(R.id.tv_result)
+        btn_move_activity.setOnClickListener(this)
+        btn_move_activity_data.setOnClickListener(this)
+        btn_move_activity_object.setOnClickListener(this)
+        btn_dial_number.setOnClickListener(this)
+        btn_move_for_result.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -114,7 +96,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == MoveForResultActivity.RESULT_CODE) {
                 val selectedValue = data?.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0)
-                tvResult.text = "Hasil : $selectedValue"
+                tv_result.text = "Hasil : $selectedValue"
             }
         }
 

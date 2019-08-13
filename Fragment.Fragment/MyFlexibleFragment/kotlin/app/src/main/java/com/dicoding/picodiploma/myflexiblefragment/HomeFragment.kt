@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -19,8 +21,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val btnCategory = view.findViewById<Button>(R.id.btn_category)
-        btnCategory.setOnClickListener(this)
+        btn_category.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -32,13 +33,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
             jika ada fragment di dalam backstack maka fragment yang akan di close / remove
             jika sudah tidak ada fragment di dalam backstack maka activity yang akan di close / finish
              */
-            val mFragmentManager = fragmentManager
-            if (mFragmentManager != null) {
-                val mCategoryFragment = CategoryFragment()
-                val mFragmentTransaction = mFragmentManager.beginTransaction()
-                mFragmentTransaction.replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
-                mFragmentTransaction.addToBackStack(null)
-                mFragmentTransaction.commit()
+            val mCategoryFragment = CategoryFragment()
+            fragmentManager?.commit {
+                replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
+                addToBackStack(null)
             }
         }
     }

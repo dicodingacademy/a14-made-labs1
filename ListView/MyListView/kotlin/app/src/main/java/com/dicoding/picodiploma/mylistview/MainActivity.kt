@@ -3,9 +3,9 @@ package com.dicoding.picodiploma.mylistview
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.widget.AdapterView
-import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,8 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter = HeroAdapter(this)
 
-        val listView = findViewById<ListView>(R.id.lv_list)
-        listView.adapter = adapter
+        lv_list.adapter = adapter
 
         //Menyipakan data dari resource
         prepare()
@@ -30,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         //Menambahkan data dari resource ke adapter
         addItem()
 
-        //Memberi aksi pada listView
-        listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+        //Memberi aksi pada lv_list
+        lv_list.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             Toast.makeText(this@MainActivity, heroes[position].name, Toast.LENGTH_SHORT).show()
         }
     }
