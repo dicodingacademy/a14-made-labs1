@@ -10,14 +10,11 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_detail_category.*
 
 
 class DetailCategoryFragment : Fragment(), View.OnClickListener {
-
-    private lateinit var tvCategoryName: TextView
-    private lateinit var tvCategoryDescription: TextView
-    private lateinit var btnProfile: Button
-    private lateinit var btnShowDialog: Button
+    
     var description: String? = null
 
     companion object {
@@ -41,12 +38,8 @@ class DetailCategoryFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvCategoryName = view.findViewById(R.id.tv_category_name)
-        tvCategoryDescription = view.findViewById(R.id.tv_category_description)
-        btnProfile = view.findViewById(R.id.btn_profile)
-        btnProfile.setOnClickListener(this)
-        btnShowDialog = view.findViewById(R.id.btn_show_dialog)
-        btnShowDialog.setOnClickListener(this)
+        btn_profile.setOnClickListener(this)
+        btn_show_dialog.setOnClickListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -59,9 +52,8 @@ class DetailCategoryFragment : Fragment(), View.OnClickListener {
 
         if (arguments != null) {
             val categoryName = arguments?.getString(EXTRA_NAME)
-            tvCategoryName.text = categoryName
-            tvCategoryDescription.text = description
-
+            tv_category_name.text = categoryName
+            tv_category_description.text = description
         }
     }
 

@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '29.0.1'
     defaultConfig {
         applicationId "com.dicoding.picodiploma.mytestingapp"
         minSdkVersion 21
