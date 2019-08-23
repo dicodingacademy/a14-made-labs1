@@ -9,12 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button btnMoveActivity;
-    Button btnMoveWithDataActivity;
-    Button btnMoveWithObject;
-    Button btnDialPhone;
-    Button btnMoveForResult;
-    TextView tvResult;
+    private Button btnMoveActivity;
+    private Button btnMoveWithDataActivity;
+    private Button btnMoveWithObject;
+    private Button btnDialPhone;
+    private Button btnMoveForResult;
+    private TextView tvResult;
 
     private int REQUEST_CODE = 100;
 

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 public class MoveWithObjectActivity extends AppCompatActivity {
     public static final String EXTRA_PERSON = "extra_person";
-    TextView tvObject;
+    private TextView tvObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
