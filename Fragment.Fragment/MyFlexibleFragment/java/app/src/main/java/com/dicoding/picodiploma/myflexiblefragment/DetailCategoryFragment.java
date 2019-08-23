@@ -17,20 +17,20 @@ import android.widget.Toast;
 
 public class DetailCategoryFragment extends Fragment implements View.OnClickListener {
 
-    TextView tvCategoryName;
-    TextView tvCategoryDescription;
-    Button btnProfile;
-    Button btnShowDialog;
+    private TextView tvCategoryName;
+    private TextView tvCategoryDescription;
+    private Button btnProfile;
+    private Button btnShowDialog;
 
-    public static String EXTRA_NAME = "extra_name";
-    public static String EXTRA_DESCRIPTION = "extra_description";
+    public static final String EXTRA_NAME = "extra_name";
+    private static final String EXTRA_DESCRIPTION = "extra_description";
     private String description;
 
     public DetailCategoryFragment() {
         // Required empty public constructor
     }
 
-    public String getDescription() {
+    private String getDescription() {
         return description;
     }
 
@@ -103,7 +103,7 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
     /*
     Kode yang akan dijalankan ketika option dialog dipilih ok
      */
-    OptionDialogFragment.OnOptionDialogListener optionDialogListener = new OptionDialogFragment.OnOptionDialogListener() {
+    public final OptionDialogFragment.OnOptionDialogListener optionDialogListener = new OptionDialogFragment.OnOptionDialogListener() {
         @Override
         public void onOptionChosen(String text) {
             Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
