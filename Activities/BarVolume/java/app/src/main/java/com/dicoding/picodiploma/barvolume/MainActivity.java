@@ -9,9 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText edtWidth, edtHeight, edtLength;
-    Button btnCalculate;
-    TextView tvResult;
+    private EditText edtWidth, edtHeight, edtLength;
+    private Button btnCalculate;
+    private TextView tvResult;
 
     private static final String STATE_RESULT = "state_result";
 
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    Double toDouble(String str) {
+    private Double toDouble(String str) {
         try {
             return Double.valueOf(str);
         } catch (NumberFormatException e) {
