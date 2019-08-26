@@ -3,7 +3,9 @@ package com.dicoding.picodiploma.myintentapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -112,12 +114,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         request_code yaitu code yang dicantumkan ke dalam intent saat memulai (pada saat startactivity)
         result_code yaitu code yang dicantumkan ke dalam intent di activity yang dibuka (biasanya pada saat sebelum activity ditutup)
          */
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == MoveForResultActivity.RESULT_CODE) {
-                int selectedValue = data.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0);
-                tvResult.setText(String.format("Hasil : %s", selectedValue));
-            }
+        if (requestCode == REQUEST_CODE && resultCode == MoveForResultActivity.RESULT_CODE) {
+            int selectedValue = data.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0);
+            tvResult.setText(String.format("Hasil : %s", selectedValue));
         }
-
     }
 }
