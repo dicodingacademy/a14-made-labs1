@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/activity_vertical_margin"
+    android:padding="16dp"
     tools:context="com.dicoding.picodiploma.myflexiblefragment.OptionDialogFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="16dp"
         android:text="@string/question_coach" />
 
     <RadioGroup
@@ -22,28 +22,28 @@
             android:id="@+id/rb_saf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="16dp"
             android:text="@string/sir_alex_ferguson" />
 
         <RadioButton
             android:id="@+id/rb_mou"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="16dp"
             android:text="@string/jose_mourinho" />
 
         <RadioButton
             android:id="@+id/rb_lvg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="16dp"
             android:text="@string/louis_van_gaal" />
 
         <RadioButton
             android:id="@+id/rb_moyes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="16dp"
             android:text="@string/david_moyes" />
     </RadioGroup>
 
@@ -58,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
             android:layout_weight="0.5"
             android:text="@string/close" />
 
@@ -67,7 +66,6 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
             android:layout_weight="0.5"
             android:text="@string/choose" />
