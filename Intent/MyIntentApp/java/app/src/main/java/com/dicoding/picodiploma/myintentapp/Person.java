@@ -61,10 +61,10 @@ public class Person implements Parcelable {
         dest.writeString(this.city);
     }
 
-    public Person() {
+    Person() {
     }
 
-    protected Person(Parcel in) {
+    private Person(Parcel in) {
         this.name = in.readString();
         this.age = in.readInt();
         this.email = in.readString();
