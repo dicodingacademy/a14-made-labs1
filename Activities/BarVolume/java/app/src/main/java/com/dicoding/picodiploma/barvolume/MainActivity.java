@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Validasi apakah inputan berupa double
              */
 
-            Double length = toDouble(inputLength);
-            Double width = toDouble(inputWidth);
-            Double height = toDouble(inputHeight);
+            Double length = parseToDouble(inputLength);
+            Double width = parseToDouble(inputWidth);
+            Double height = parseToDouble(inputHeight);
 
             if (length == null) {
                 isInvalidDouble = true;
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private Double toDouble(String str) {
+    private Double parseToDouble(String str) {
         try {
             return Double.valueOf(str);
         } catch (NumberFormatException e) {

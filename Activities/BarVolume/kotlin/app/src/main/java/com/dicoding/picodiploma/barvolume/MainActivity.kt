@@ -6,9 +6,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var edtWidth: EditText
+    private lateinit var edtHeight: EditText
+    private lateinit var edtLength: EditText
+    private lateinit var btnCalculate: Button
+    private lateinit var tvResult: TextView
 
     companion object {
         private const val STATE_RESULT = "state_result"
@@ -18,24 +23,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn_calculate.setOnClickListener(this)
+        edtWidth = findViewById(R.id.edt_width)
+        edtHeight = findViewById(R.id.edt_height)
+        edtLength = findViewById(R.id.edt_length)
+        btnCalculate = findViewById(R.id.btn_calculate)
+        tvResult = findViewById(R.id.tv_result)
+
+        btnCalculate.setOnClickListener(this)
 
         if (savedInstanceState != null) {
             val result = savedInstanceState.getString(STATE_RESULT)
-            tv_result.text = result
+            tvResult.text = result
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(STATE_RESULT, tv_result.text.toString())
+        outState.putString(STATE_RESULT, tvResult.text.toString())
     }
 
     override fun onClick(v: View) {
         if (v.id == R.id.btn_calculate) {
-            val inputLength = edt_length.text.toString().trim { it <= ' ' }
-            val inputWidth = edt_width.text.toString().trim { it <= ' ' }
-            val inputHeight = edt_height.text.toString().trim { it <= ' ' }
+            val inputLength = edtLength.text.toString().trim()
+            val inputWidth = edtWidth.text.toString().trim()
+            val inputHeight = edtHeight.text.toString().trim()
 
             var isEmptyFields = false
             var isInvalidDouble = false
@@ -46,15 +57,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             when {
                 inputLength.isEmpty() -> {
                     isEmptyFields = true
-                    edt_length.error = "Field ini tidak boleh kosong"
+                    edtLength.error = "Field ini tidak boleh kosong"
                 }
                 inputWidth.isEmpty() -> {
                     isEmptyFields = true
-                    edt_width.error = "Field ini tidak boleh kosong"
+                    edtWidth.error = "Field ini tidak boleh kosong"
                 }
                 inputHeight.isEmpty() -> {
                     isEmptyFields = true
-                    edt_height.error = "Field ini tidak boleh kosong"
+                    edtHeight.error = "Field ini tidak boleh kosong"
                 }
             }
 
@@ -62,22 +73,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             Validasi apakah inputan berupa double
              */
 
-            val length = toDouble(inputLength)
-            val width = toDouble(inputWidth)
-            val height = toDouble(inputHeight)
+            val length = parseToDouble(inputLength)
+            val width = parseToDouble(inputWidth)
+            val height = parseToDouble(inputHeight)
 
             when {
                 length == null -> {
                     isInvalidDouble = true
-                    edt_length.error = "Field ini harus berupa nomer yang valid"
+                    edtLength.error = "Field ini harus berupa nomer yang valid"
                 }
                 width == null -> {
                     isInvalidDouble = true
-                    edt_width.error = "Field ini harus berupa nomer yang valid"
+                    edtWidth.error = "Field ini harus berupa nomer yang valid"
                 }
                 height == null -> {
                     isInvalidDouble = true
-                    edt_height.error = "Field ini harus berupa nomer yang valid"
+                    edtHeight.error = "Field ini harus berupa nomer yang valid"
                 }
             }
 
@@ -86,12 +97,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
              */
             if (!isEmptyFields && !isInvalidDouble) {
                 val volume = length as Double * width as Double * height as Double
-                tv_result.text = volume.toString()
+                tvResult.text = volume.toString()
             }
         }
     }
 
-    private fun toDouble(str: String): Double? {
+    private fun parseToDouble(str: String): Double? {
         return try {
             str.toDouble()
         } catch (e: NumberFormatException) {
