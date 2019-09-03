@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val inputHeight = edtHeight.text.toString().trim()
 
             var isEmptyFields = false
-            var isInvalidDouble = false
 
             /*
             Validasi apakah inputan masih ada yang kosong
@@ -70,43 +69,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             /*
-            Validasi apakah inputan berupa double
-             */
-
-            val length = parseToDouble(inputLength)
-            val width = parseToDouble(inputWidth)
-            val height = parseToDouble(inputHeight)
-
-            when {
-                length == null -> {
-                    isInvalidDouble = true
-                    edtLength.error = "Field ini harus berupa nomer yang valid"
-                }
-                width == null -> {
-                    isInvalidDouble = true
-                    edtWidth.error = "Field ini harus berupa nomer yang valid"
-                }
-                height == null -> {
-                    isInvalidDouble = true
-                    edtHeight.error = "Field ini harus berupa nomer yang valid"
-                }
-            }
-
-            /*
             Jika semua inputan valid maka tampilkan hasilnya
              */
-            if (!isEmptyFields && !isInvalidDouble) {
-                val volume = length as Double * width as Double * height as Double
+            if (!isEmptyFields) {
+                val volume = inputLength.toDouble() * inputWidth.toDouble() * inputHeight.toDouble()
                 tvResult.text = volume.toString()
             }
         }
     }
 
-    private fun parseToDouble(str: String): Double? {
-        return try {
-            str.toDouble()
-        } catch (e: NumberFormatException) {
-            null
-        }
-    }
 }

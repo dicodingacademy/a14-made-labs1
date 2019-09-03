@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String inputHeight = edtHeight.getText().toString().trim();
 
             boolean isEmptyFields = false;
-            boolean isInvalidDouble = false;
 
             /*
             Validasi apakah inputan masih ada yang kosong
@@ -69,43 +68,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             /*
-            Validasi apakah inputan berupa double
-             */
-
-            Double length = parseToDouble(inputLength);
-            Double width = parseToDouble(inputWidth);
-            Double height = parseToDouble(inputHeight);
-
-            if (length == null) {
-                isInvalidDouble = true;
-                edtLength.setError("Field ini harus berupa nomer yang valid");
-            }
-
-            if (width == null) {
-                isInvalidDouble = true;
-                edtWidth.setError("Field ini harus berupa nomer yang valid");
-            }
-
-            if (height == null) {
-                isInvalidDouble = true;
-                edtHeight.setError("Field ini harus berupa nomer yang valid");
-            }
-
-            /*
             Jika semua inputan valid maka tampilkan hasilnya
              */
-            if (!isEmptyFields && !isInvalidDouble) {
-                double volume = length * width * height;
+            if (!isEmptyFields) {
+                double volume = Double.valueOf(inputLength) * Double.valueOf(inputWidth) * Double.valueOf(inputHeight);
                 tvResult.setText(String.valueOf(volume));
             }
-        }
-    }
-
-    private Double parseToDouble(String str) {
-        try {
-            return Double.valueOf(str);
-        } catch (NumberFormatException e) {
-            return null;
         }
     }
 }
