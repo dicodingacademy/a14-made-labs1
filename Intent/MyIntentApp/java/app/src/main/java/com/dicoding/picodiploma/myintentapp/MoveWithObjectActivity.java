@@ -6,14 +6,13 @@ import android.widget.TextView;
 
 public class MoveWithObjectActivity extends AppCompatActivity {
     public static final String EXTRA_PERSON = "extra_person";
-    private TextView tvObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_with_object);
 
-        tvObject = findViewById(R.id.tv_object_received);
+        TextView tvObject = findViewById(R.id.tv_object_received);
 
         /*
         Object parcelable bisa kita dapatkan dengan memanggil getParcelableExtra

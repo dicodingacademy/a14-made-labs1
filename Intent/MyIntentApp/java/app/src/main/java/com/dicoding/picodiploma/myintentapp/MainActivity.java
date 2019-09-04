@@ -11,11 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btnMoveActivity;
-    private Button btnMoveWithDataActivity;
-    private Button btnMoveWithObject;
-    private Button btnDialPhone;
-    private Button btnMoveForResult;
     private TextView tvResult;
 
     private final int REQUEST_CODE = 100;
@@ -25,19 +20,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMoveActivity = findViewById(R.id.btn_move_activity);
+        Button btnMoveActivity = findViewById(R.id.btn_move_activity);
         btnMoveActivity.setOnClickListener(this);
 
-        btnMoveWithDataActivity = findViewById(R.id.btn_move_activity_data);
+        Button btnMoveWithDataActivity = findViewById(R.id.btn_move_activity_data);
         btnMoveWithDataActivity.setOnClickListener(this);
 
-        btnMoveWithObject = findViewById(R.id.btn_move_activity_object);
+        Button btnMoveWithObject = findViewById(R.id.btn_move_activity_object);
         btnMoveWithObject.setOnClickListener(this);
 
-        btnDialPhone = findViewById(R.id.btn_dial_number);
+        Button btnDialPhone = findViewById(R.id.btn_dial_number);
         btnDialPhone.setOnClickListener(this);
 
-        btnMoveForResult = findViewById(R.id.btn_move_for_result);
+        Button btnMoveForResult = findViewById(R.id.btn_move_for_result);
         btnMoveForResult.setOnClickListener(this);
 
         tvResult = findViewById(R.id.tv_result);

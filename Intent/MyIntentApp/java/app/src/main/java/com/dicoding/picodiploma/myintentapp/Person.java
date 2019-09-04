@@ -45,36 +45,30 @@ public class Person implements Parcelable {
         this.city = city;
     }
 
-    /*
-    Beberapa kode di bawah ini hasil generate dari plugins parcelable
-     */
+    protected Person(Parcel in) {
+        name = in.readString();
+        age = in.readInt();
+        email = in.readString();
+        city = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(age);
+        dest.writeString(email);
+        dest.writeString(city);
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
-        dest.writeInt(this.age);
-        dest.writeString(this.email);
-        dest.writeString(this.city);
-    }
-
-    Person() {
-    }
-
-    private Person(Parcel in) {
-        this.name = in.readString();
-        this.age = in.readInt();
-        this.email = in.readString();
-        this.city = in.readString();
-    }
-
-    public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
+    public static final Creator<Person> CREATOR = new Creator<Person>() {
         @Override
-        public Person createFromParcel(Parcel source) {
-            return new Person(source);
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
         }
 
         @Override
