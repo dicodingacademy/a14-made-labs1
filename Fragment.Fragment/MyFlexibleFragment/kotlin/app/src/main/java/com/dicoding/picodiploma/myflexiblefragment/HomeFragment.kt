@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import kotlinx.android.synthetic.main.fragment_home.*
+import androidx.fragment.app.FragmentManager
 
 
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -21,7 +20,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_category.setOnClickListener(this)
+        val btnCategory:Button = view.findViewById(R.id.btn_category)
+        btnCategory.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -34,10 +34,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
             jika sudah tidak ada fragment di dalam backstack maka activity yang akan di close / finish
              */
             val mCategoryFragment = CategoryFragment()
-            fragmentManager?.commit {
-                replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
-                addToBackStack(null)
-            }
+            val mFragmentManager = fragmentManager as FragmentManager
+            mFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
+                    .addToBackStack(null)
+                    .commit()
         }
     }
 }

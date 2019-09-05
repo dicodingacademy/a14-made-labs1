@@ -2,11 +2,13 @@ package com.dicoding.picodiploma.myflexiblefragment;
 
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +55,11 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
              */
             FragmentManager mFragmentManager = getFragmentManager();
             if (mFragmentManager != null) {
-                FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
-                mFragmentTransaction.replace(R.id.frame_container, mDetailCategoryFragment,
-                        DetailCategoryFragment.class.getSimpleName());
-                mFragmentTransaction.addToBackStack(null);
-                mFragmentTransaction.commit();
+                mFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame_container, mDetailCategoryFragment, DetailCategoryFragment.class.getSimpleName())
+                        .addToBackStack(null)
+                        .commit();
             }
         }
     }

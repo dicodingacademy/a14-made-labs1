@@ -1,6 +1,5 @@
 package com.dicoding.picodiploma.myflexiblefragment
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,22 +11,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_detail_category.*
 
-
 class DetailCategoryFragment : Fragment(), View.OnClickListener {
-    
+
+    lateinit var tvCategoryName: TextView
+    lateinit var tvCategoryDescription: TextView
+    lateinit var btnProfile: Button
+    lateinit var btnShowDialog: Button
     var description: String? = null
 
     companion object {
         var EXTRA_NAME = "extra_name"
         var EXTRA_DESCRIPTION = "extra_description"
-    }
-    /*
-    Kode yang akan dijalankan ketika option dialog dipilih ok
-     */
-    internal var optionDialogListener: OptionDialogFragment.OnOptionDialogListener = object : OptionDialogFragment.OnOptionDialogListener {
-        override fun onOptionChosen(text: String?) {
-            Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +32,12 @@ class DetailCategoryFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_profile.setOnClickListener(this)
-        btn_show_dialog.setOnClickListener(this)
+        tvCategoryName = view.findViewById(R.id.tv_category_name);
+        tvCategoryDescription = view.findViewById(R.id.tv_category_description);
+        btnProfile = view.findViewById(R.id.btn_profile);
+        btnProfile.setOnClickListener(this);
+        btnShowDialog = view.findViewById(R.id.btn_show_dialog);
+        btnShowDialog.setOnClickListener(this);
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -82,4 +80,12 @@ class DetailCategoryFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    /*
+    Kode yang akan dijalankan ketika option dialog dipilih ok
+    */
+    internal var optionDialogListener: OptionDialogFragment.OnOptionDialogListener = object : OptionDialogFragment.OnOptionDialogListener {
+        override fun onOptionChosen(text: String?) {
+            Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
+        }
+    }
 }
