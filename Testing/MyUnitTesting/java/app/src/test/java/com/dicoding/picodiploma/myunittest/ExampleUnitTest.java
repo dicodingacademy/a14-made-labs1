@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.myunittesting;
+package com.dicoding.picodiploma.myunittest;
 
 import org.junit.Test;
 
