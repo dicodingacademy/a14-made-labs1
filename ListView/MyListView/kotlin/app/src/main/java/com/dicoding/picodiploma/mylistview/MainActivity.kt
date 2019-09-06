@@ -3,9 +3,9 @@ package com.dicoding.picodiploma.mylistview
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.widget.AdapterView
+import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,15 +13,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dataDescription: Array<String>
     private lateinit var dataPhoto: TypedArray
     private lateinit var adapter: HeroAdapter
-    private var heroes: ArrayList<Hero> = arrayListOf()
+    private var heroes = arrayListOf<Hero>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val listView: ListView = findViewById(R.id.lv_list)
+
         adapter = HeroAdapter(this)
 
-        lv_list.adapter = adapter
+        listView.adapter = adapter
 
         //Menyipakan data dari resource
         prepare()
@@ -30,9 +32,10 @@ class MainActivity : AppCompatActivity() {
         addItem()
 
         //Memberi aksi pada lv_list
-        lv_list.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+        listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             Toast.makeText(this@MainActivity, heroes[position].name, Toast.LENGTH_SHORT).show()
         }
+        
     }
 
     private fun prepare() {
@@ -50,6 +53,6 @@ class MainActivity : AppCompatActivity() {
             )
             heroes.add(hero)
         }
-        adapter.setHeroes(heroes)
+        adapter.heroes = heroes
     }
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class HeroAdapter extends BaseAdapter {
 
     private final Context context;
-    private ArrayList<Hero> heroes;
+    private ArrayList<Hero> heroes = new ArrayList<>();
 
     void setHeroes(ArrayList<Hero> heroes) {
         this.heroes = heroes;
@@ -21,7 +21,6 @@ public class HeroAdapter extends BaseAdapter {
 
     HeroAdapter(Context context) {
         this.context = context;
-        heroes = new ArrayList<>();
     }
 
     @Override
@@ -41,17 +40,18 @@ public class HeroAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view == null) {
+        View itemView = view;
+        if (itemView == null) {
             //Menghubungkan ViewHolder dengan View
-            view = LayoutInflater.from(context).inflate(R.layout.item_hero, viewGroup, false);
+            itemView = LayoutInflater.from(context).inflate(R.layout.item_hero, viewGroup, false);
         }
 
-        ViewHolder viewHolder = new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(itemView);
 
         //Mengubah nilai pahlawan sesuai dari posisinya
         Hero hero = (Hero) getItem(i);
         viewHolder.bind(hero);
-        return view;
+        return itemView;
     }
 
     private class ViewHolder {

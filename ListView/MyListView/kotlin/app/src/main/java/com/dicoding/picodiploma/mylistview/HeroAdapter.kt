@@ -9,17 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 
 class HeroAdapter internal constructor(private val context: Context) : BaseAdapter() {
-    private var heroes: ArrayList<Hero> = arrayListOf()
-
-    internal fun setHeroes(heroes: ArrayList<Hero>) {
-        this.heroes = heroes
-    }
+    internal var heroes = arrayListOf<Hero>()
 
     override fun getCount(): Int = heroes.size
 
-
     override fun getItem(i: Int): Any = heroes[i]
-
 
     override fun getItemId(i: Int): Long = i.toLong()
 
