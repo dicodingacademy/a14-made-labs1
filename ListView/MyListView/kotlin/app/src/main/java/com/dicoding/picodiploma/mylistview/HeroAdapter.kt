@@ -39,11 +39,6 @@ class HeroAdapter internal constructor(private val context: Context) : BaseAdapt
          private val imgPhoto: ImageView = view.findViewById(R.id.img_photo)
 
          internal fun bind(hero: Hero) {
-            with(view){
-                txt_name.text = hero.name
-                txt_description.text = hero.description
-                img_photo.setImageResource(hero.photo)
-            }
             txtName.text = hero.name
             txtDescription.text = hero.description
             imgPhoto.setImageResource(hero.photo)

@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var adapter: HeroAdapter
     private lateinit var dataName: Array<String>
     private lateinit var dataDescription: Array<String>
     private lateinit var dataPhoto: TypedArray
-    private lateinit var adapter: HeroAdapter
     private var heroes = arrayListOf<Hero>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
