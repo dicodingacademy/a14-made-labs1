@@ -4,4 +4,4 @@
     android:id="@+id/frame_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dicoding.picodiploma.myflexiblefragment.MainActivity" />
+    tools:context=".MainActivity" />

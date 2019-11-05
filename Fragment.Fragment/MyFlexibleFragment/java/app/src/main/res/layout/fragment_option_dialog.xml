@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.dicoding.picodiploma.myflexiblefragment.OptionDialogFragment">
+    tools:context=".OptionDialogFragment">
 
     <TextView
         android:layout_width="match_parent"
