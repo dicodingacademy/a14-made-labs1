@@ -16,7 +16,7 @@ public class MainViewModelTest {
     private final double dummyWidth = 7.0;
     private final double dummyHeight = 6.0;
     private final double dummyVolume = 504.0;
-    private final double dummyCircumference = 2016.0;
+    private final double dummyCircumference = 100.0;
     private final double dummySurfaceArea = 396.0;
 
     @Before

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.dicoding.picodiploma.myflexiblefragment.DetailCategoryFragment">
+    tools:context=".DetailCategoryFragment">
 
     <TextView
         android:id="@+id/tv_category_name"

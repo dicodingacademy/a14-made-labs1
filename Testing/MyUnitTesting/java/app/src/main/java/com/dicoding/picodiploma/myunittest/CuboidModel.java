@@ -28,6 +28,6 @@ class CuboidModel {
     }
 
     public double getCircumference() {
-        return 4 * (width * length * height);
+        return 4 * (width + length + height);
     }
 }
