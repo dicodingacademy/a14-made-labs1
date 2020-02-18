@@ -2,17 +2,15 @@ package com.dicoding.picodiploma.myflexiblefragment;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -46,14 +44,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             jika sudah tidak ada fragment di dalam backstack maka activity yang akan di close / finish
              */
             CategoryFragment mCategoryFragment = new CategoryFragment();
-            FragmentManager mFragmentManager = getFragmentManager();
-            if (mFragmentManager != null) {
-                mFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_container, mCategoryFragment, CategoryFragment.class.getSimpleName())
-                        .addToBackStack(null)
-                        .commit();
-            }
+            FragmentManager mFragmentManager = getChildFragmentManager();
+            mFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frame_container, mCategoryFragment, CategoryFragment.class.getSimpleName())
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 }
