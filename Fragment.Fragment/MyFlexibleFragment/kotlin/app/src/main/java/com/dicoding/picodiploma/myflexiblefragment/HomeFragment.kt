@@ -20,7 +20,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val btnCategory:Button = view.findViewById(R.id.btn_category)
+        val btnCategory: Button = view.findViewById(R.id.btn_category)
         btnCategory.setOnClickListener(this)
     }
 
@@ -34,12 +34,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
             jika sudah tidak ada fragment di dalam backstack maka activity yang akan di close / finish
              */
             val mCategoryFragment = CategoryFragment()
-            val mFragmentManager = childFragmentManager
-            mFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
-                    .addToBackStack(null)
-                    .commit()
+            val mFragmentManager = fragmentManager
+            mFragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
+                addToBackStack(null)
+                commit()
+            }
         }
     }
 }
