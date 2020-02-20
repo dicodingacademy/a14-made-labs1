@@ -49,8 +49,8 @@ class OptionDialogFragment : DialogFragment(), View.OnClickListener {
         val fragment = parentFragment
 
         if (fragment is DetailCategoryFragment) {
-            val detailCategoryFragment = fragment as DetailCategoryFragment?
-            this.optionDialogListener = detailCategoryFragment?.optionDialogListener
+            val detailCategoryFragment = fragment
+            this.optionDialogListener = detailCategoryFragment.optionDialogListener
         }
     }
 
