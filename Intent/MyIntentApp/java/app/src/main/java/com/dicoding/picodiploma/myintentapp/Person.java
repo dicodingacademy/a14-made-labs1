@@ -13,6 +13,9 @@ public class Person implements Parcelable {
     private String email;
     private String city;
 
+    public Person() {
+    }
+
     public String getName() {
         return name;
     }
