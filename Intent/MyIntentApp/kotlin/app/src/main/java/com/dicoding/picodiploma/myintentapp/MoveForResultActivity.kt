@@ -25,7 +25,7 @@ class MoveForResultActivity : AppCompatActivity(), View.OnClickListener {
         btnChoose = findViewById(R.id.btn_choose)
         rgNumber = findViewById(R.id.rg_number)
 
-        btn_choose.setOnClickListener(this)
+        btnChoose.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
