@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_set_value) {
+            Log.d("MainActivity", names.toString());
             StringBuilder name = new StringBuilder();
+//            for (int i = 0; i <= 3; i++) {
             for (int i = 0; i <= 2; i++) {
                 name.append(names.get(i)).append("\n");
             }
