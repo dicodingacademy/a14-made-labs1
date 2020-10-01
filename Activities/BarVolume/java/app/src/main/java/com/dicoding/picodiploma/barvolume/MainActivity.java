@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Jika semua inputan valid maka tampilkan hasilnya
              */
             if (!isEmptyFields) {
-                double volume = Double.valueOf(inputLength) * Double.valueOf(inputWidth) * Double.valueOf(inputHeight);
+                Double volume = Double.valueOf(inputLength) * Double.valueOf(inputWidth) * Double.valueOf(inputHeight);
                 tvResult.setText(String.valueOf(volume));
             }
         }
