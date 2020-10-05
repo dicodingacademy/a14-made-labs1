@@ -20,7 +20,7 @@ class MoveWithObjectActivity : AppCompatActivity() {
         /*
         Object parcelable bisa kita dapatkan dengan memanggil getParcelableExtra
          */
-        val person = intent.getParcelableExtra(EXTRA_PERSON) as Person
+        val person = intent.getParcelableExtra<Person>(EXTRA_PERSON) as Person
 
         val text = "Name : ${person.name.toString()},\nEmail : ${person.email},\nAge : ${person.age},\nLocation : ${person.city}"
         tvObject.text = text
