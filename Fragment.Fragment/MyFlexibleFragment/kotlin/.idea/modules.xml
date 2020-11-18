@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyFlexibleFragment.iml" filepath="$PROJECT_DIR$/MyFlexibleFragment.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/kotlin.iml" filepath="$PROJECT_DIR$/.idea/kotlin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kotlin.iml" filepath="$PROJECT_DIR$/kotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MyFlexibleFragment.kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/MyFlexibleFragment.kotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/kotlin.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/kotlin.app.iml" />
     </modules>
   </component>
 </project>
