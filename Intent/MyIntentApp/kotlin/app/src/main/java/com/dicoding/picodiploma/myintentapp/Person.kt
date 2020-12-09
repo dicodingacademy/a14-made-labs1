@@ -1,7 +1,7 @@
 package com.dicoding.picodiploma.myintentapp
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by sidiqpermana on 9/11/16.

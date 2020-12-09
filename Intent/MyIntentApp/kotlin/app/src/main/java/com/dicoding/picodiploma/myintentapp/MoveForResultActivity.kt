@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_move_for_result.*
 
 class MoveForResultActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -30,9 +29,9 @@ class MoveForResultActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v.id == R.id.btn_choose) {
-            if (rg_number.checkedRadioButtonId != 0) {
+            if (rgNumber.checkedRadioButtonId > 0) {
                 var value = 0
-                when (rg_number.checkedRadioButtonId) {
+                when (rgNumber.checkedRadioButtonId) {
                     R.id.rb_50 -> value = 50
 
                     R.id.rb_100 -> value = 100

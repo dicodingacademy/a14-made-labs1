@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btnMoveForResult:Button = findViewById(R.id.btn_move_for_result)
         btnMoveForResult.setOnClickListener(this)
 
-        tvResult = findViewById(R.id.tv_result);
+        tvResult = findViewById(R.id.tv_result)
     }
 
     override fun onClick(v: View) {
@@ -111,7 +110,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == MoveForResultActivity.RESULT_CODE) {
                 val selectedValue = data?.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0)
-                tv_result.text = "Hasil : $selectedValue"
+                tvResult.text = "Hasil : $selectedValue"
             }
         }
 
