@@ -2,25 +2,25 @@ package com.dicoding.picodiploma.myunittest
 
 // Cuboid == Balok
 internal class CuboidModel {
-    private var width: Double = 0.0
     private var length: Double = 0.0
+    private var width: Double = 0.0
     private var height: Double = 0.0
 
-    fun getVolume(): Double = width * length * height
+    fun save(length: Double, width: Double, height: Double) {
+        this.length = length
+        this.width = width
+        this.height = height
+    }
+
+    fun getVolume(): Double = length * width * height
 
     fun getSurfaceArea(): Double {
-        val wl = width * length
+        val lw = length * width
         val wh = width * height
         val lh = length * height
 
-        return 2 * (wl + wh + lh)
+        return 2 * (lw + wh + lh)
     }
 
-    fun getCircumference(): Double = 4 * (width + length + height)
-
-    fun save(width: Double, length: Double, height: Double) {
-        this.width = width
-        this.length = length
-        this.height = height
-    }
+    fun getCircumference(): Double = 4 * (length + width + height)
 }
