@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class OptionDialogFragment extends DialogFragment implements View.OnClickListener {
+public class OptionDialogFragment extends DialogFragment {
 
     private Button btnChoose, btnClose;
     private RadioGroup rgOptions;
@@ -34,14 +34,34 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnChoose = view.findViewById(R.id.btn_choose);
-        btnChoose.setOnClickListener(this);
         btnClose = view.findViewById(R.id.btn_close);
-        btnClose.setOnClickListener(this);
         rgOptions = view.findViewById(R.id.rg_options);
         rbSaf = view.findViewById(R.id.rb_saf);
         rbLvg = view.findViewById(R.id.rb_lvg);
         rbMou = view.findViewById(R.id.rb_mou);
         rbMoyes = view.findViewById(R.id.rb_moyes);
+        btnChoose.setOnClickListener(v -> {
+            int checkedRadioButtonId = rgOptions.getCheckedRadioButtonId();
+            if (checkedRadioButtonId != -1) {
+                String coach = null;
+                if (checkedRadioButtonId == R.id.rb_saf) {
+                    coach = rbSaf.getText().toString().trim();
+                } else if (checkedRadioButtonId == R.id.rb_mou) {
+                    coach = rbMou.getText().toString().trim();
+                } else if (checkedRadioButtonId == R.id.rb_lvg) {
+                    coach = rbLvg.getText().toString().trim();
+                } else if (checkedRadioButtonId == R.id.rb_moyes) {
+                    coach = rbMoyes.getText().toString().trim();
+                }
+                if (optionDialogListener != null) {
+                    optionDialogListener.onOptionChosen(coach);
+                }
+                getDialog().dismiss();
+            }
+        });
+        btnClose.setOnClickListener(v -> {
+            getDialog().cancel();
+        });
     }
 
     @Override
@@ -67,44 +87,6 @@ public class OptionDialogFragment extends DialogFragment implements View.OnClick
         Saat detach maka set null pada optionDialogListener
          */
         this.optionDialogListener = null;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_close:
-                getDialog().cancel();
-                break;
-
-            case R.id.btn_choose:
-                int checkedRadioButtonId = rgOptions.getCheckedRadioButtonId();
-                if (checkedRadioButtonId != -1) {
-                    String coach = null;
-                    switch (checkedRadioButtonId) {
-                        case R.id.rb_saf:
-                            coach = rbSaf.getText().toString().trim();
-                            break;
-
-                        case R.id.rb_mou:
-                            coach = rbMou.getText().toString().trim();
-                            break;
-
-                        case R.id.rb_lvg:
-                            coach = rbLvg.getText().toString().trim();
-                            break;
-
-                        case R.id.rb_moyes:
-                            coach = rbMoyes.getText().toString().trim();
-                            break;
-                    }
-
-                    if (optionDialogListener != null) {
-                        optionDialogListener.onOptionChosen(coach);
-                    }
-                    getDialog().dismiss();
-                }
-                break;
-        }
     }
 
     public interface OnOptionDialogListener {

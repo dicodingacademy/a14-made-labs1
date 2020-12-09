@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class DetailCategoryFragment extends Fragment implements View.OnClickListener {
+public class DetailCategoryFragment extends Fragment {
 
     private TextView tvCategoryName;
     private TextView tvCategoryDescription;
@@ -51,9 +51,17 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
         tvCategoryName = view.findViewById(R.id.tv_category_name);
         tvCategoryDescription = view.findViewById(R.id.tv_category_description);
         btnProfile = view.findViewById(R.id.btn_profile);
-        btnProfile.setOnClickListener(this);
+        btnProfile.setOnClickListener(v -> {
+            Intent mIntent = new Intent(getActivity(), ProfileActivity.class);
+            startActivity(mIntent);
+        });
         btnShowDialog = view.findViewById(R.id.btn_show_dialog);
-        btnShowDialog.setOnClickListener(this);
+        btnShowDialog.setOnClickListener(v -> {
+            OptionDialogFragment mOptionDialogFragment = new OptionDialogFragment();
+
+            FragmentManager mFragmentManager = getChildFragmentManager();
+            mOptionDialogFragment.show(mFragmentManager, OptionDialogFragment.class.getSimpleName());
+        });
     }
 
     @Override
@@ -83,30 +91,8 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
         outState.putString(EXTRA_DESCRIPTION, getDescription());
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_profile:
-                Intent mIntent = new Intent(getActivity(), ProfileActivity.class);
-                startActivity(mIntent);
-                break;
-
-            case R.id.btn_show_dialog:
-                OptionDialogFragment mOptionDialogFragment = new OptionDialogFragment();
-
-                FragmentManager mFragmentManager = getChildFragmentManager();
-                mOptionDialogFragment.show(mFragmentManager, OptionDialogFragment.class.getSimpleName());
-                break;
-        }
-    }
-
     /*
     Kode yang akan dijalankan ketika option dialog dipilih ok
      */
-    public final OptionDialogFragment.OnOptionDialogListener optionDialogListener = new OptionDialogFragment.OnOptionDialogListener() {
-        @Override
-        public void onOptionChosen(String text) {
-            Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
-        }
-    };
+    public final OptionDialogFragment.OnOptionDialogListener optionDialogListener = text -> Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
 }
