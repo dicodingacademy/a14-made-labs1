@@ -38,8 +38,8 @@ public class MainViewModelTest {
         cuboidModel = new CuboidModel();
         mainViewModel = new MainViewModel(cuboidModel);
         mainViewModel.save(dummyLength, dummyWidth, dummyHeight);
-        double volume = mainViewModel.getCircumference();
-        assertEquals(dummyCircumference, volume, 0.0001);
+        double circumference = mainViewModel.getCircumference();
+        assertEquals(dummyCircumference, circumference, 0.0001);
     }
 
     @Test
@@ -47,8 +47,8 @@ public class MainViewModelTest {
         cuboidModel = new CuboidModel();
         mainViewModel = new MainViewModel(cuboidModel);
         mainViewModel.save(dummyLength, dummyWidth, dummyHeight);
-        double volume = mainViewModel.getSurfaceArea();
-        assertEquals(dummySurfaceArea, volume, 0.0001);
+        double surfaceArea = mainViewModel.getSurfaceArea();
+        assertEquals(dummySurfaceArea, surfaceArea, 0.0001);
     }
 
     @Test
@@ -62,16 +62,16 @@ public class MainViewModelTest {
     @Test
     public void testMockCircumference() {
         when(mainViewModel.getCircumference()).thenReturn(dummyCircumference);
-        double volume = mainViewModel.getCircumference();
+        double circumference = mainViewModel.getCircumference();
         verify(cuboidModel).getCircumference();
-        assertEquals(dummyCircumference, volume, 0.0001);
+        assertEquals(dummyCircumference, circumference, 0.0001);
     }
 
     @Test
     public void testMockSurfaceArea() {
         when(mainViewModel.getSurfaceArea()).thenReturn(dummySurfaceArea);
-        double volume = mainViewModel.getSurfaceArea();
+        double surfaceArea = mainViewModel.getSurfaceArea();
         verify(cuboidModel).getSurfaceArea();
-        assertEquals(dummySurfaceArea, volume, 0.0001);
+        assertEquals(dummySurfaceArea, surfaceArea, 0.0001);
     }
 }
