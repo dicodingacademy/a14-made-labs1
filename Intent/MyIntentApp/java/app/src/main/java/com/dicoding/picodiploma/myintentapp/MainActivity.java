@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-}
-
-
     /*
     Callback onActvityResult dipanggil setelah kode finish() di dalam MoveForResultActivity dipanggil
     Perhatikan pengecekan request code yang diterima
