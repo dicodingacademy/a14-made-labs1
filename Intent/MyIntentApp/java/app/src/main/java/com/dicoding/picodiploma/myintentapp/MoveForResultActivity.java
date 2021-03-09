@@ -30,24 +30,16 @@ public class MoveForResultActivity extends AppCompatActivity
         if (v.getId() == R.id.btn_choose) {
             if (rgNumber.getCheckedRadioButtonId() != 0) {
                 int value = 0;
-                switch (rgNumber.getCheckedRadioButtonId()) {
-                    case R.id.rb_50:
-                        value = 50;
-                        break;
-
-                    case R.id.rb_100:
-                        value = 100;
-                        break;
-
-                    case R.id.rb_150:
-                        value = 150;
-                        break;
-
-                    case R.id.rb_200:
-                        value = 200;
-                        break;
+                int id = rgNumber.getCheckedRadioButtonId();
+                if (id == R.id.rb_50) {
+                    value = 50;
+                } else if (id == R.id.rb_100) {
+                    value = 100;
+                } else if (id == R.id.rb_150) {
+                    value = 150;
+                } else if (id == R.id.rb_200) {
+                    value = 200;
                 }
-
                 /*
                 Intent ini digunakan untuk mengirimkan kembali ke activity induk
                 Perhatikan bahwa kita mencantumkan RESULT_CODE ke dalam metode setResult
