@@ -1,7 +1,7 @@
 package com.dicoding.picodiploma.myunittest
 
 // Cuboid == Balok
-internal class CuboidModel {
+class CuboidModel {
     private var length: Double = 0.0
     private var width: Double = 0.0
     private var height: Double = 0.0
