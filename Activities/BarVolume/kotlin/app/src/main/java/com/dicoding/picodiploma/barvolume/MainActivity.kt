@@ -53,19 +53,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             /*
             Validasi apakah inputan masih ada yang kosong
              */
-            when {
-                inputLength.isEmpty() -> {
-                    isEmptyFields = true
-                    edtLength.error = "Field ini tidak boleh kosong"
-                }
-                inputWidth.isEmpty() -> {
-                    isEmptyFields = true
-                    edtWidth.error = "Field ini tidak boleh kosong"
-                }
-                inputHeight.isEmpty() -> {
-                    isEmptyFields = true
-                    edtHeight.error = "Field ini tidak boleh kosong"
-                }
+            if (inputLength.isEmpty()) {
+                isEmptyFields = true
+                edtLength.error = "Field ini tidak boleh kosong"
+            }
+            if (inputWidth.isEmpty()) {
+                isEmptyFields = true
+                edtWidth.error = "Field ini tidak boleh kosong"
+            }
+            if (inputHeight.isEmpty()) {
+                isEmptyFields = true;
+                edtHeight.error = "Field ini tidak boleh kosong"
             }
 
             /*

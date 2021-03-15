@@ -92,3 +92,9 @@ Activities/BarVolume/java/.gradle/vcs-1/gc.properties
 Activities/BarVolume/java/java.iml
 
 Testing/MyUnitTesting/kotlin/.idea/
+
+Activities/BarVolume/kotlin/.gradle/6.5/
+
+Activities/BarVolume/kotlin/.gradle/buildOutputCleanup/
+
+Activities/BarVolume/kotlin/.gradle/checksums/
